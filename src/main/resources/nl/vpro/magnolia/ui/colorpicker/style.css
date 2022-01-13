@@ -1,0 +1,8 @@
+.v-colorpicker-area {
+    border: solid 1px #aaa;
+}
+
+.v-colorpicker-popup {
+    left: 200px !important;
+    top: 30px !important;
+}

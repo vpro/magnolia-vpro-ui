@@ -1,0 +1,54 @@
+= VPRO magnolia UI components
+:toc:
+
+== Color picker
+
+Differences with: https://github.com/magnolia-community/color-picker-field
+
+- stores as string, `String Color#getCSS`, rather than `int Color#getRGB`
+- can show text field too (editable)
+- more configurable
+
+=== Usage
+
+[source, yaml]
+----
+ color:
+   $type: cssColorPickerField
+   pickerAfterText: true
+   pickerWidth: 100
+   pickerHeight: 100
+   showText: true
+----
+
+== ReferredColumn
+
+Can be used as a column. Like so:
+[source, yaml]
+----
+- name: author
+  $type: referredColumn
+  workspace: persons
+  forType:
+    - mgnl:vijverTip
+  otherProperty: name
+----
+
+== EnumField
+
+We provide a simpler version to use enums in a combobox.
+
+[source, yaml]
+----
+ type:
+    $type: enumField
+    enum: nl.vpro.domain.koos.KoosTipType
+----
+
+Just specify as field $type `enumField` the name of the enum.
+
+The enum is presented on default via its `toString` method, unless it implements `nl.vpro.i18n.Displayable`.
+
+If both of these are not desired (e.g. because you can't change the implementation of the enum), then you can set a `Converter` in the field definition or extend `nl.vpro.magnolia.ui.enumfield.EnumFieldDefinition` and overwerite `#convertToPresentation`
+
+
