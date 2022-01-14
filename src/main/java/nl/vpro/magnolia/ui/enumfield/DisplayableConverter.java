@@ -1,8 +1,8 @@
 package nl.vpro.magnolia.ui.enumfield;
 
 import com.vaadin.data.ValueContext;
-import java.util.Locale;
 import nl.vpro.i18n.Displayable;
+import nl.vpro.i18n.Locales;
 
 public class DisplayableConverter<E extends Enum<E> & Displayable> extends EnumConverter<E> {
 
@@ -12,6 +12,8 @@ public class DisplayableConverter<E extends Enum<E> & Displayable> extends EnumC
 
     @Override
     public String convertToPresentation(E value, ValueContext context) {
-        return value.getDisplayName(context.getLocale().orElse(Locale.getDefault())).getValue();
+        return value.getDisplayName(
+            context.getLocale().orElse(Locales.getDefault())
+        ).getValue();
     }
 }

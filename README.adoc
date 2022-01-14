@@ -49,6 +49,6 @@ Just specify as field $type `enumField` the name of the enum.
 
 The enum is presented on default via its `toString` method, unless it implements `nl.vpro.i18n.Displayable`.
 
-If both of these are not desired (e.g. because you can't change the implementation of the enum), then you can set a `Converter` in the field definition or extend `nl.vpro.magnolia.ui.enumfield.EnumFieldDefinition` and overwerite `#convertToPresentation`
+If both of these are not desired (e.g. because you can't change the implementation of the enum), then you can set a `Converter` in the field definition or extend `nl.vpro.magnolia.ui.enumfield.EnumFieldDefinition` and overwrite `#convertToPresentation`
 
 

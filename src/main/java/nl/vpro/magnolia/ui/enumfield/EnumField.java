@@ -34,6 +34,7 @@ public class EnumField extends CustomField<String> {
 
         valueContext = new ValueContext(listing);
         Class<? extends Enum<?>> enumClass = definition.getEnum();
+
         listing.setItems(
             Arrays.stream(enumClass.getEnumConstants())
                 .map(e -> definition.convertToPresentation(e, valueContext))

@@ -3,6 +3,7 @@ package nl.vpro.magnolia.ui.enumfield;
 import com.vaadin.data.*;
 import info.magnolia.ui.field.ConfiguredFieldDefinition;
 import info.magnolia.ui.field.FieldType;
+import java.util.Optional;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
@@ -57,8 +58,6 @@ public class EnumFieldDefinition extends ConfiguredFieldDefinition<String> {
         }
     }
 
-
-
     /**
      *
      */
@@ -84,8 +83,21 @@ public class EnumFieldDefinition extends ConfiguredFieldDefinition<String> {
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})
-    protected static Converter<String, Enum<?>> converterFromFromEnum(Class<? extends Enum<?>> enumClass) {
-        return Displayable.class.isAssignableFrom(enumClass) ? new DisplayableConverter(enumClass) : new EnumConverter(enumClass);
+    protected Converter<String, Enum<?>> converterFromFromEnum(Class<? extends Enum<?>> enumClass) {
+        return getDisplayableConverter(enumClass).orElseGet(() ->  new EnumConverter(enumClass));
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    Optional<Converter<String, Enum<?>>> getDisplayableConverter(Class<? extends Enum<?>> enumClass) {
+        try {
+            return Optional.of(enumClass)
+                .filter(Displayable.class::isAssignableFrom)
+                .map(e -> new DisplayableConverter(e))
+                ;
+        } catch (NoClassDefFoundError classNotFoundException) {
+            return Optional.empty();
+        }
+
     }
 
 }
