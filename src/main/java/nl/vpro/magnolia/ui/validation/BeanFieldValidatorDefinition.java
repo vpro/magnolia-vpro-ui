@@ -2,19 +2,26 @@ package nl.vpro.magnolia.ui.validation;
 
 import info.magnolia.ui.field.ConfiguredFieldValidatorDefinition;
 import info.magnolia.ui.field.ValidatorType;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
-@EqualsAndHashCode(callSuper = true)
 @ValidatorType("beanValidator")
-@Data
 public class BeanFieldValidatorDefinition extends ConfiguredFieldValidatorDefinition {
 
+    @Getter
+    @Setter
+    private String bean;
 
-    String bean;
-    String property;
+    @Getter
+    @Setter
+    private String property;
+
+    @Getter
+    @Setter
+    private Class<?>[] groups;
+
     Class<?> beanClass;
-    Class<?>[] groups;
+
+
 
     public BeanFieldValidatorDefinition() {
         setFactoryClass(BeanFieldValidatorFactory.class);
