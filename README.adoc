@@ -66,16 +66,18 @@ The enum is presented on default via its `toString` method, unless it implements
 
 If both of these are not desired (e.g. because you can't change the implementation of the enum), then you can set a `Converter` in the field definition or extend `nl.vpro.magnolia.ui.enumfield.EnumFieldDefinition` and overwrite `#convertToPresentation`
 
-== bean validation
+== Bean validation
 
-The idea is to use the `javax.validation` framework
+The idea is to use the link:https://beanvalidation.org/2.0/[`javax.validation`] framework
 [source, yaml]
 ----
 validator:
    urlValidation:
       $type: beanValidator
       bean: nl.vpro.koos.KoosTip
-      property: url
+      property: link
 ----
-This is as yet untested
+
+This way the validation of given bean property is 'borrowed', which is for example in this case exactly what we want, because the value will
+end up there eventually.
 
