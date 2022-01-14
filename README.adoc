@@ -51,4 +51,16 @@ The enum is presented on default via its `toString` method, unless it implements
 
 If both of these are not desired (e.g. because you can't change the implementation of the enum), then you can set a `Converter` in the field definition or extend `nl.vpro.magnolia.ui.enumfield.EnumFieldDefinition` and overwrite `#convertToPresentation`
 
+== bean validation
+
+The idea is to use the `javax.validation` framework
+[source, yaml]
+----
+validator:
+   urlValidation:
+      $type: beanValidator
+      bean: nl.vpro.koos.KoosTip
+      property: url
+----
+This is as yet untested
 
