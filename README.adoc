@@ -1,6 +1,12 @@
 = VPRO magnolia UI components
 :toc:
 
+image:https://github.com/vpro/magnolia-vpro-ui/workflows/build/badge.svg?[Build Status,link=https://github.com/vpro/magnolia-vpro-ui/actions?query=workflow%build]
+image:https://img.shields.io/maven-central/v/nl.vpro/magnolia-vpro-ui.svg[MavenCentral,link=https://search.maven.org/search?q=g:%22nl.vpro%22]
+// image:http://www.javadoc.io/badge/nl.vpro/magnolia-vpro-ui/.svg?color=blue[javadoc,link=http://www.javadoc.io/doc/nl.vpro/magnolia-vpro-ui/]
+// image:https://codecov.io/gh/vpro/magnolia-vpro-ui/branch/main/graph/badge.svg[codecov,link=https://codecov.io/gh/vpro/magnolia-vpro-ui]
+image:https://img.shields.io/nexus/s/https/oss.sonatype.org/nl.vpro/magnolia-vpro-ui.svg[snapshots,link=https://oss.sonatype.org/content/repositories/snapshots/nl/vpro/]
+
 == Color picker
 
 Differences with: https://github.com/magnolia-community/color-picker-field
