@@ -17,4 +17,5 @@
 .v-colorpicker-popup {
     left: 200px !important;
     top: 30px !important;
+    border-radius: 5px; /* it inherits 30 which is ridiculous */
 }
