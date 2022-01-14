@@ -132,7 +132,7 @@
     <dependency>
       <groupId>nl.vpro.shared</groupId>
       <artifactId>vpro-shared-i18n</artifactId>
-      <version>2.29.2-SNAPSHOT</version>
+      <version>2.29.2</version>
       <optional>true</optional>
     </dependency>
     <!-- You need this dependency if your want to use $type: beanValidator -->
