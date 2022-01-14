@@ -64,7 +64,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>3.2.2</version>
         <configuration>
           <archive>
             <manifestEntries>
@@ -74,9 +74,8 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>2.5.3</version>
+        <version>3.0.0-M5</version>
         <configuration>
           <branchName>${project.version}</branchName>
           <tagNameFormat>@{project.version}</tagNameFormat>
@@ -84,7 +83,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>3.3.1</version>
         <configuration>
           <failOnError>false</failOnError>
           <doclint>none</doclint>
@@ -93,12 +92,11 @@
       </plugin>
       <plugin>
         <artifactId>maven-deploy-plugin</artifactId>
-        <version>2.8.2</version>
+        <version>3.0.0-M2</version>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>1.4.1</version>
+        <version>3.0.0</version>
         <executions>
           <execution>
             <id>enforce-maven</id>
@@ -129,10 +127,19 @@
       <version>1.18.22</version>
       <scope>provided</scope>
     </dependency>
+
+    <!-- You need this dependency if your enum want to implement Displayable -->
     <dependency>
       <groupId>nl.vpro.shared</groupId>
       <artifactId>vpro-shared-i18n</artifactId>
       <version>2.29.2-SNAPSHOT</version>
+      <optional>true</optional>
+    </dependency>
+    <!-- You need this dependency if your want to use $type: beanValidator -->
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>2.0.1.Final</version>
       <optional>true</optional>
     </dependency>
   </dependencies>
@@ -215,6 +222,16 @@
     <repository>
       <id>magnolia-nexus</id>
       <url>https://nexus.magnolia-cms.com/content/groups/public</url>
+    </repository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
     </repository>
   </repositories>
 
