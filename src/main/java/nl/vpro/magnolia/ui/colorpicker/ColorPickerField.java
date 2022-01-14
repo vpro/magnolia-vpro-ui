@@ -14,9 +14,11 @@ import com.vaadin.shared.ui.ValueChangeMode;
 import com.vaadin.shared.ui.colorpicker.Color;
 import com.vaadin.ui.*;
 
+import nl.vpro.i18n.MultiLanguageString;
+
 /**
  * @author Michiel Meeuwissen
- * @since 1.0
+ * @since 3.0
  */
 @Log4j2
 @StyleSheet({"style.css"}) // to add a border to the color area
@@ -60,13 +62,14 @@ public class ColorPickerField extends CustomField<String> {
         picker.setDefaultCaptionEnabled(true);
         picker.setHistoryVisibility(true);
         picker.setSwatchesVisibility(true);
+
     }
 
     HorizontalLayout createLayoutWithText() {
         final TextField textField = new TextField();
         textField.setValueChangeMode(ValueChangeMode.BLUR);
         textField.setWidth(7, Unit.EM);
-        textField.setRequiredIndicatorVisible(definition.isRequired());
+        //textField.setRequiredIndicatorVisible(definition.isRequired());
         textField.setValue(getValue());
         textField.setEnabled(true);
 
@@ -93,7 +96,13 @@ public class ColorPickerField extends CustomField<String> {
 
         Validator<String> beforeConversion = (value, context) -> {
             if (!COLOR.matcher(String.valueOf(value)).matches()) {
-                return ValidationResult.error(String.format("Not a valid color value %s", value));
+                return ValidationResult.error(
+                    MultiLanguageString.builder()
+                        .en("Not a valid color value {0}")
+                        .nl("Geen geldige kleur {0}")
+                        .args(value)
+                        .build()
+                        .get(getLocale()));
             } else {
                 return ValidationResult.ok();
             }
@@ -124,15 +133,20 @@ public class ColorPickerField extends CustomField<String> {
 
 
         final HorizontalLayout layout = new HorizontalLayout();
+        layout.addStyleName("colorpicker"); // for css class .v-horizontal-layout-colorpicker (used in style.css)
         //layout.setSizeFull();
 
         layout.setSpacing(false);
         if (definition.isPickerAfterText()) {
             layout.addComponent(textField);
             layout.addComponent(picker);
+            textField.addStyleName("right");
+            picker.addStyleName("left");
         } else {
             layout.addComponent(picker);
             layout.addComponent(textField);
+            textField.addStyleName("left");
+            picker.addStyleName("right");
         }
         return layout;
 

@@ -1,5 +1,17 @@
-.v-colorpicker-area {
-    border: solid 1px #aaa;
+.v-colorpicker .v-caption {
+    padding: 0;
+}
+.v-colorpicker-area, .v-horizontallayout-colorpicker .v-textfield {
+    border: dotted 1px #aaa;
+}
+
+/* empty border on side of colorpicker, looks nicer */
+.v-horizontallayout-colorpicker .v-textfield-left {
+    border-left: 0;
+}
+
+.v-horizontallayout-colorpicker .v-textfield-right {
+    border-right: 0;
 }
 
 .v-colorpicker-popup {
