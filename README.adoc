@@ -8,6 +8,12 @@ Differences with: https://github.com/magnolia-community/color-picker-field
 - stores as string, `String Color#getCSS`, rather than `int Color#getRGB`
 - can show text field too (editable)
 - more configurable
+**  `showText: <true|false>`
+**  `pickerAfterText: <true|false>`
+**  `cssInPopup: <true: false>`
+** `pickerWidth: 100`
+** `pickerHeight: 100`
+
 
 === Usage
 
@@ -15,10 +21,11 @@ Differences with: https://github.com/magnolia-community/color-picker-field
 ----
  color:
    $type: cssColorPickerField
+   showText: true
    pickerAfterText: true
    pickerWidth: 100
    pickerHeight: 100
-   showText: true
+
 ----
 
 == ReferredColumn
@@ -34,6 +41,8 @@ Can be used as a column. Like so:
   otherProperty: name
 ----
 
+This can be used in workbench view to display a field in another nod. In this case a column `author` contains a reference to a node in the `persons` workspace, and rather then showing the `uuid` of the node, the `name` property of the referenced node is shown.
+
 == EnumField
 
 We provide a simpler version to use enums in a combobox.
@@ -45,7 +54,7 @@ We provide a simpler version to use enums in a combobox.
     enum: nl.vpro.domain.koos.KoosTipType
 ----
 
-Just specify as field $type `enumField` the name of the enum.
+Just specify as field $type `enumField`, and the name of the enum.
 
 The enum is presented on default via its `toString` method, unless it implements `nl.vpro.i18n.Displayable`.
 
