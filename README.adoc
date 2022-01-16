@@ -111,6 +111,13 @@ For this to work you need a validator implementation.
 
 == Country field
 
+A drop down with countries of the world
+[souce, yaml]
+----
+ country:
+   $type: countryField
+----
+Countries are displayed in current `Locale`, and stored as ISO 639 country code.
 
 [NOTE]
 ====
