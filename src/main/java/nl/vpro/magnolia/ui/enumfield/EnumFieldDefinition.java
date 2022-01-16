@@ -61,8 +61,12 @@ public class EnumFieldDefinition extends ConfiguredFieldDefinition<String> {
     /**
      *
      */
-    protected String convertToPresentation(Enum<?> value, ValueContext context) {
+    String convertToPresentation(Enum<?> value, ValueContext context) {
         return getConverter().convertToPresentation(value, context);
+    }
+
+    protected String convertToPresentation(String value, ValueContext context) {
+        return convertToPresentation(getEnumByName(value), context);
     }
 
     protected String convertToModel(String value, ValueContext context) {
@@ -71,9 +75,7 @@ public class EnumFieldDefinition extends ConfiguredFieldDefinition<String> {
         return enumValue == null ? null : enumValue.name();
     }
 
-    String convertToPresentation(String value, ValueContext context) {
-        return getConverter().convertToPresentation(getEnumByName(value), context);
-    }
+
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     private  Enum<?> getEnumByName(String value) {

@@ -64,7 +64,22 @@ Just specify as field $type `enumField`, and the name of the enum.
 
 The enum is presented on default via its `toString` method, unless it implements `nl.vpro.i18n.Displayable`.
 
-If both of these are not desired (e.g. because you can't change the implementation of the enum), then you can set a `Converter` in the field definition or extend `nl.vpro.magnolia.ui.enumfield.EnumFieldDefinition` and overwrite `#convertToPresentation`
+
+
+[NOTE]
+====
+Use following maven dependency if you want to use `Dispayable`
+[source, xml]
+----
+<dependency>
+  <groupId>nl.vpro.shared</groupId>
+  <artifactId>vpro-shared-i18n</artifactId>
+  <version>2.29.2</version>
+</dependency>
+----
+====
+
+If both of these are not desired (e.g. because you can't change the implementation of the enum), then you can set a `Converter` in the field definition or extend `nl.vpro.magnolia.ui.enumfield.EnumFieldDefinition` and overwrite `#convertToPresentation` (See e.g. the implementation of `$type: countryField`)
 
 == Bean validation
 
@@ -80,4 +95,35 @@ validator:
 
 This way the validation of given bean property is 'borrowed', which is for example in this case exactly what we want, because the value will
 end up there eventually.
+
+[NOTE]
+====
+For this to work you need a validator implementation.
+[source, xml]
+----
+<dependency>
+  <groupId>org.hibernate.validator</groupId>
+  <artifactId>hibernate-validator</artifactId>
+  <version>6.2.1.Final</version>
+</dependency>
+----
+====
+
+== Country field
+
+
+[NOTE]
+====
+For this to work you need
+[source, xml]
+----
+<dependency>
+    <groupId>com.neovisionaries</groupId>
+    <artifactId>nv-i18n</artifactId>
+    <version>1.29</version>
+</dependency>
+----
+====
+
+
 

@@ -25,19 +25,22 @@ public class EnumField extends CustomField<String> {
 
     protected void createComponent() {
         if (definition.isMultiselect()) {
+            ComboBoxMultiselect<String> multiselect = new ComboBoxMultiselect<>();
+            multiselect.setItemCaptionGenerator((ItemCaptionGenerator<String>) EnumField.this::getCaption);
             listing = new ComboBoxMultiselect<>();
         } else {
             ComboBox<String> comboBox = new ComboBox<>();
             comboBox.setEmptySelectionAllowed(! definition.isRequired());
+            comboBox.setItemCaptionGenerator((ItemCaptionGenerator<String>) EnumField.this::getCaption);
             listing = comboBox;
         }
+
 
         valueContext = new ValueContext(listing);
         Class<? extends Enum<?>> enumClass = definition.getEnum();
 
         listing.setItems(
-            Arrays.stream(enumClass.getEnumConstants())
-                .map(e -> definition.convertToPresentation(e, valueContext))
+            Arrays.stream(enumClass.getEnumConstants()).map(Enum::name)
         );
     }
 
@@ -55,7 +58,7 @@ public class EnumField extends CustomField<String> {
     @Override
     public String getValue() {
         if (listing instanceof SingleSelect) {
-            return getValue((String) ((SingleSelect<?>) listing).getValue());
+            return (String) ((SingleSelect<?>) listing).getValue();
         } else {
             // TODO
             return null;
@@ -65,7 +68,7 @@ public class EnumField extends CustomField<String> {
     protected void setSingleValue(SingleSelect<String> select, String value) {
         if (value != null) {
             try {
-                select.setValue(definition.convertToPresentation(value, valueContext));
+                select.setValue(value);
             } catch (IllegalArgumentException iae) {
                 log.warn(iae);
             }
@@ -74,8 +77,8 @@ public class EnumField extends CustomField<String> {
         }
     }
 
-    protected String getValue(String value) {
-        return definition.convertToModel(value, valueContext);
+    protected String getCaption(String value) {
+        return definition.convertToPresentation(value, valueContext);
     }
 
 }
