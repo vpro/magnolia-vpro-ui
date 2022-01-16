@@ -27,7 +27,9 @@ public class BeanFieldValidator extends AbstractValidator<String> {
     @SneakyThrows
     @Override
     public ValidationResult apply(String value, ValueContext context) {
-        Set<? extends ConstraintViolation<?>> violations = VALIDATOR.validateValue(definition.getBeanClass(), definition.getProperty(), value, definition.getGroups());
+        Set<? extends ConstraintViolation<?>> violations = VALIDATOR.validateValue(
+            definition.getBeanClass(), definition.getProperty(), value, definition.getGroups()
+        );
         if (violations.isEmpty()) {
             return toResult(value, true);
         } else {

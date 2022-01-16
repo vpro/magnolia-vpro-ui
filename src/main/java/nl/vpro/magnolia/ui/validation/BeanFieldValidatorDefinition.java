@@ -19,9 +19,7 @@ public class BeanFieldValidatorDefinition extends ConfiguredFieldValidatorDefini
     @Setter
     private Class<?>[] groups;
 
-    Class<?> beanClass;
-
-
+    private Class<?> beanClass;
 
     public BeanFieldValidatorDefinition() {
         setFactoryClass(BeanFieldValidatorFactory.class);
