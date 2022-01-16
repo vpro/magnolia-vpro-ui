@@ -2,13 +2,14 @@ package nl.vpro.magnolia.ui.referredcolumn;
 
 import com.vaadin.data.ValueProvider;
 import com.vaadin.ui.renderers.TextRenderer;
-import info.magnolia.context.Context;
+import info.magnolia.context.SystemContext;
 import info.magnolia.ui.contentapp.configuration.column.ColumnType;
 import info.magnolia.ui.contentapp.configuration.column.ConfiguredColumnDefinition;
 import java.util.List;
 import javax.jcr.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * @author Michiel Meeuwissen
@@ -17,6 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @ColumnType("referredColumn")
+@Log4j2
 public class ReferredColumnDefinition extends ConfiguredColumnDefinition<Node> {
 
     private String otherProperty;
@@ -33,26 +35,34 @@ public class ReferredColumnDefinition extends ConfiguredColumnDefinition<Node> {
     public static class ReferredProvider implements ValueProvider<Node, String> {
 
         private final ReferredColumnDefinition definition;
-        private final Context context;
+        private final SystemContext context; // using system context to avoid opening sessions we can't close
 
-        public ReferredProvider(ReferredColumnDefinition definition, Context context) {
+        public ReferredProvider(ReferredColumnDefinition definition, SystemContext context) {
             this.definition = definition;
             this.context = context;
         }
 
         @Override
         public String apply(Node node) {
-
             try {
+
                 String type = node.getPrimaryNodeType().getName();
                 if (definition.getForType() == null || definition.getForType().contains(type)) {
+
+                    Session session = context.getJCRSession(definition.getWorkspace());
                     Property value = node.getProperty(definition.getName());
                     String propertyName = definition.getOtherProperty();
-                    return context.getJCRSession(definition.getWorkspace()).getNodeByIdentifier(value.getString()).getProperty(propertyName).getString();
+                    return session.getNodeByIdentifier(value.getString()).getProperty(propertyName).getString();
                 } else {
                     return "-";
                 }
             } catch (RepositoryException e) {
+                if (e.getCause() instanceof IllegalArgumentException) {
+                    // expected because we used to store the name there...
+                    log.debug(e.getMessage());
+                } else {
+                    log.error(e.getMessage(), e);
+                }
                 return e.getMessage();
             }
         }
