@@ -30,10 +30,12 @@ public class ColorPickerFieldDefinition extends ConfiguredFieldDefinition<String
 
     private static final Pattern COLOR = Pattern.compile("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");
 
-    private static final Pattern RGB = Pattern.compile("rgb\\(\\s*(\\d+)\\s*,\\s*(\\d+)\\s*,\\s*(\\d+)\\s*\\)");
-    private static final Pattern RGBA = Pattern.compile("rgba\\(\\s*(\\d+)\\s*,\\s*(\\d+)\\s*,\\s*\\s*(\\d+)\\s*,\\s*([01]*(?:\\.\\d+)?)\\s*\\)");
-    private static final Pattern HSL= Pattern.compile("hsl\\(\\s*(\\d+)\\s*%\\s*,\\s*(\\d+)\\s*%\\s*,\\s*(\\d+)\\s*%\\s*\\)");
-    private static final Pattern HSLA= Pattern.compile("hsl\\(\\s*(\\d+)\\s*%\\s*,\\s*(\\d+)\\s*%\\s*,\\s*(\\d+)\\s*%\\s*,\\s*([01]*(?:\\.\\d+)?)\\s*\\)");
+    private static final Pattern RGB = Pattern.compile("^rgb\\(\\s*(\\d+)\\s*,\\s*(\\d+)\\s*,\\s*(\\d+)\\s*\\)$");
+    private static final Pattern RGBA = Pattern.compile("^rgba\\(\\s*(\\d+)\\s*,\\s*(\\d+)\\s*,\\s*\\s*(\\d+)\\s*,\\s*([01]*(?:\\.\\d+)?)\\s*\\)$");
+    private static final Pattern HSL= Pattern.compile("^hsl\\(\\s*(\\d+)\\s*%\\s*,\\s*(\\d+)\\s*%\\s*,\\s*(\\d+)\\s*%\\s*\\)$");
+    private static final Pattern HSLA= Pattern.compile("^hsl\\(\\s*(\\d+)\\s*%\\s*,\\s*(\\d+)\\s*%\\s*,\\s*(\\d+)\\s*%\\s*,\\s*([01]*(?:\\.\\d+)?)\\s*\\)$");
+
+    private static final Pattern INT= Pattern.compile("^\\d+$");
 
     private boolean cssInPopup = false;
     private int pickerWidth = 100;
@@ -70,6 +72,8 @@ public class ColorPickerFieldDefinition extends ConfiguredFieldDefinition<String
                 return "rgb(" + color.getRed() + "," + color.getGreen() + "," + color.getBlue() + ")";
             case RGBA:
                 return getRGBA(color);
+            case INT:
+                return String.valueOf(color.getRGB());
             default:
                 return color.getCSS();
         }
@@ -80,7 +84,7 @@ public class ColorPickerFieldDefinition extends ConfiguredFieldDefinition<String
     }
 
 
-    Optional<Color> getColorFromCSSValue(String color) {
+    Optional<Color> getColorFromStringValue(String color) {
         if (StringUtils.isNotBlank(color)) {
             color = color.trim();
             try {
@@ -139,6 +143,10 @@ public class ColorPickerFieldDefinition extends ConfiguredFieldDefinition<String
                             (int) (255 * parseFloat(matcher.group(4)))
                         ));
                     }
+                    matcher = INT.matcher(color);
+                    if (matcher.matches()) {
+                        return Optional.of(new Color(parseInt(color)));
+                    }
                 }
             } catch (StringIndexOutOfBoundsException | IllegalArgumentException nfe) {
                 log.debug("Couldn't parse {}", color);
@@ -163,7 +171,9 @@ public class ColorPickerFieldDefinition extends ConfiguredFieldDefinition<String
         RGB("rgb(255,255,255)".length() + "em"),
         RGBA("rgba(255,255,255,1.0".length() + "em"),
         HSL("hsl(100%,100%,100%)".length() + "em"),
-        HSLA("hsla(100%,100%,100%,1.0".length() + "em");
+        HSLA("hsla(100%,100%,100%,1.0".length() + "em"),
+        INT("5em")
+        ;
 
         @Getter
         final String width;

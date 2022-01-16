@@ -67,7 +67,7 @@ public class ColorPickerField extends CustomField<String> {
         textField.setReadOnly(false);
         textField.addValueChangeListener(
             event -> {
-                Color color = definition.getColorFromCSSValue(event.getValue()).orElse(null);
+                Color color = definition.getColorFromStringValue(event.getValue()).orElse(null);
                 if (color != null) {
                     ColorPickerField.this.setValue(definition.getStringValue(color));
                     picker.setData(color);
@@ -76,7 +76,7 @@ public class ColorPickerField extends CustomField<String> {
         );
         textField.addBlurListener(
             event -> {
-                Color color = definition.getColorFromCSSValue(textField.getValue()).orElse(null);
+                Color color = definition.getColorFromStringValue(textField.getValue()).orElse(null);
                 if (color != null) {
                     ColorPickerField.this.setValue(definition.getStringValue(color));
                     picker.setValue(color);
@@ -141,13 +141,13 @@ public class ColorPickerField extends CustomField<String> {
     }
 
     private Color getColor() {
-        return definition.getColorFromCSSValue(getValue()).orElse(getDefaultColor());
+        return definition.getColorFromStringValue(getValue()).orElse(getDefaultColor());
     }
 
 
     @Override
     protected void doSetValue(String value) {
-        this.picker.setValue(definition.getColorFromCSSValue(value).orElse(this.picker.getValue()));
+        this.picker.setValue(definition.getColorFromStringValue(value).orElse(this.picker.getValue()));
     }
 
     @Override
@@ -156,7 +156,7 @@ public class ColorPickerField extends CustomField<String> {
     }
 
     protected Color getDefaultColor() {
-        return definition.getColorFromCSSValue((String) definition.getDefaultValue()).orElse(Color.WHITE);
+        return definition.getColorFromStringValue((String) definition.getDefaultValue()).orElse(Color.WHITE);
 
     }
 

@@ -12,7 +12,7 @@ class ColorPickerFieldDefinitionTest {
 
     @Test
     public void parseRgb() {
-        Color color = definition.getColorFromCSSValue("rgb(10, 11, 12)").get();
+        Color color = definition.getColorFromStringValue("rgb(10, 11, 12)").get();
         assertThat(color.getRed()).isEqualTo(10);
         assertThat(color.getGreen()).isEqualTo(11);
         assertThat(color.getBlue()).isEqualTo(12);
@@ -21,7 +21,7 @@ class ColorPickerFieldDefinitionTest {
 
     @Test
     public void parseRgba() {
-        Color color = definition.getColorFromCSSValue("rgba(10, 11, 12, 0.5)").get();
+        Color color = definition.getColorFromStringValue("rgba(10, 11, 12, 0.5)").get();
         assertThat(color.getRed()).isEqualTo(10);
         assertThat(color.getGreen()).isEqualTo(11);
         assertThat(color.getBlue()).isEqualTo(12);
@@ -32,8 +32,14 @@ class ColorPickerFieldDefinitionTest {
 
     @Test
     public void parseHash() {
-        Color color = definition.getColorFromCSSValue("#fff").get();
+        Color color = definition.getColorFromStringValue("#fff").get();
         assertThat(color.getCSS()).isEqualTo("#ffffff");
+    }
+
+    @Test
+    public void parseInt() {
+        Color color = definition.getColorFromStringValue("123455").get();
+        assertThat(color.getCSS()).isEqualTo("#01e23f");
     }
 
 }
