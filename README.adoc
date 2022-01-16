@@ -14,9 +14,9 @@ Differences with: https://github.com/magnolia-community/color-picker-field
 - stores as string, `String Color#getCSS`, rather than `int Color#getRGB`
 - can show text field too (editable)
 - more configurable
-**  `showText: <true|false>`
-**  `pickerAfterText: <true|false>`
+**  `text: <NOT|BEFORE|AFTER>`
 **  `cssInPopup: <true: false>`
+** `format: <HASH|RGB|RGBA>
 ** `pickerWidth: 100`
 ** `pickerHeight: 100`
 
@@ -27,8 +27,8 @@ Differences with: https://github.com/magnolia-community/color-picker-field
 ----
  color:
    $type: cssColorPickerField
-   showText: true
-   pickerAfterText: true
+   text: AFTER
+   defaultValue: '#000'
    pickerWidth: 100
    pickerHeight: 100
 
