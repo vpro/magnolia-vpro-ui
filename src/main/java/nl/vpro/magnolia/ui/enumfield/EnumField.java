@@ -2,8 +2,7 @@ package nl.vpro.magnolia.ui.enumfield;
 
 import com.vaadin.data.ValueContext;
 import com.vaadin.ui.*;
-import java.util.Arrays;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import lombok.extern.log4j.Log4j2;
 import org.vaadin.addons.ComboBoxMultiselect;
@@ -89,7 +88,7 @@ public class EnumField<E extends Enum<E>> extends CustomField<String> {
                 log.warn(iae);
             }
         } else {
-            select.setValue(null);
+            select.setValue(Collections.emptySet());
         }
     }
 
