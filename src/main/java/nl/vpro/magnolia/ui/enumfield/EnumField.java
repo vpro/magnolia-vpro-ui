@@ -3,6 +3,8 @@ package nl.vpro.magnolia.ui.enumfield;
 import com.vaadin.data.ValueContext;
 import com.vaadin.ui.*;
 import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.extern.log4j.Log4j2;
 import org.vaadin.addons.ComboBoxMultiselect;
 
@@ -49,8 +51,7 @@ public class EnumField<E extends Enum<E>> extends CustomField<String> {
         if (listing instanceof SingleSelect) {
             setSingleValue((SingleSelect<String>) listing, value);
         } else {
-            // TODO
-
+            setMultiValue((MultiSelect<String>) listing, value);
         }
     }
 
@@ -60,8 +61,11 @@ public class EnumField<E extends Enum<E>> extends CustomField<String> {
         if (listing instanceof SingleSelect) {
             return (String) ((SingleSelect<?>) listing).getValue();
         } else {
-            // TODO
-            return null;
+            Set<?> value = ((MultiSelect<?>) listing).getValue();
+            if (value == null) {
+                return null;
+            }
+            return value.stream().map(Object::toString).collect(Collectors.joining(","));
         }
     }
 
@@ -69,6 +73,18 @@ public class EnumField<E extends Enum<E>> extends CustomField<String> {
         if (value != null) {
             try {
                 select.setValue(value);
+            } catch (IllegalArgumentException iae) {
+                log.warn(iae);
+            }
+        } else {
+            select.setValue(null);
+        }
+    }
+
+    protected void setMultiValue(MultiSelect<String> select, String value) {
+        if (value != null) {
+            try {
+                select.setValue(Arrays.stream(value.split(",")).collect(Collectors.toSet()));
             } catch (IllegalArgumentException iae) {
                 log.warn(iae);
             }
