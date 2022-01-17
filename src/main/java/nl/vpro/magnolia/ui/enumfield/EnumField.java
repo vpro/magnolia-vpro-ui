@@ -28,7 +28,7 @@ public class EnumField<E extends Enum<E>> extends CustomField<String> {
         if (definition.isMultiselect()) {
             ComboBoxMultiselect<String> multiselect = new ComboBoxMultiselect<>();
             multiselect.setItemCaptionGenerator((ItemCaptionGenerator<String>) EnumField.this::getCaption);
-            listing = new ComboBoxMultiselect<>();
+            listing = multiselect;
         } else {
             ComboBox<String> comboBox = new ComboBox<>();
             comboBox.setEmptySelectionAllowed(! definition.isRequired());
