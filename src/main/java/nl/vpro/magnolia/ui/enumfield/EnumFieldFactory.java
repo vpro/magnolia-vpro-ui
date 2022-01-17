@@ -9,17 +9,17 @@ import javax.inject.Inject;
  * @author Michiel Meeuwissen
  * @since 3.0
  */
-public class EnumFieldFactory extends AbstractFieldFactory<String, EnumFieldDefinition> {
+public class EnumFieldFactory<E extends Enum<E>> extends AbstractFieldFactory<String, AbstractEnumFieldDefinition<E>> {
 
 
     @Inject
-    public EnumFieldFactory(EnumFieldDefinition definition, ComponentProvider componentProvider) throws ClassNotFoundException {
+    public EnumFieldFactory(AbstractEnumFieldDefinition<E> definition, ComponentProvider componentProvider) throws ClassNotFoundException {
         super(definition, componentProvider);
     }
 
     @Override
-    public EnumField createFieldComponent() {
-        return new EnumField(definition);
+    public EnumField<E> createFieldComponent() {
+        return new EnumField<E>(definition);
     }
 
 }

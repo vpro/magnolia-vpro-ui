@@ -1,28 +1,29 @@
 package nl.vpro.magnolia.ui.countryfield;
 
 
-import info.magnolia.ui.field.FieldType;
-
 import com.neovisionaries.i18n.CountryCode;
 import com.vaadin.data.ValueContext;
-
+import info.magnolia.ui.field.FieldType;
 import nl.vpro.i18n.Locales;
-import nl.vpro.magnolia.ui.enumfield.EnumFieldDefinition;
+import nl.vpro.magnolia.ui.enumfield.AbstractEnumFieldDefinition;
 
 /**
  * @author Michiel Meeuwissen
  * @since 3.0
  */
 @FieldType("countryField")
-public class CountrySelectFieldDefinition extends EnumFieldDefinition {
+public class CountrySelectFieldDefinition extends AbstractEnumFieldDefinition<CountryCode> {
 
     public CountrySelectFieldDefinition() {
         super(CountryCode.class);
     }
 
     @Override
-    protected String convertToPresentation(String value, ValueContext context) {
-        return CountryCode.valueOf(value).toLocale()
+    protected String convertToPresentation(CountryCode value, ValueContext context) {
+        if (value == null) {
+            return "";
+        }
+        return value.toLocale()
             .getDisplayCountry(context.getLocale().orElse(Locales.getDefault()));
     }
 }

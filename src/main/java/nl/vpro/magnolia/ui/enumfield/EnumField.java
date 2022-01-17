@@ -7,13 +7,13 @@ import lombok.extern.log4j.Log4j2;
 import org.vaadin.addons.ComboBoxMultiselect;
 
 @Log4j2
-public class EnumField extends CustomField<String> {
+public class EnumField<E extends Enum<E>> extends CustomField<String> {
 
-    private final EnumFieldDefinition definition;
+    private final AbstractEnumFieldDefinition<E> definition;
     private AbstractListing<String> listing;
     private ValueContext valueContext;
 
-    public EnumField(EnumFieldDefinition definition) {
+    public EnumField(AbstractEnumFieldDefinition<E> definition) {
         this.definition = definition;
         createComponent();
     }
