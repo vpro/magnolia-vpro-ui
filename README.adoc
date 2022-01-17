@@ -117,6 +117,19 @@ This can be used in workbench view to display a field in another nod. In this ca
    $type: unhtmlColumn
 ----
 
+[NOTE]
+====
+For this to work you need
+[source, xml]
+----
+<dependency>
+  <groupId>nl.vpro.shared</groupId>
+  <artifactId>vpro-shared-util</artifactId>
+  <version>2.29.2</version>
+</dependency>
+----
+====
+
 == Validators
 
 === Bean validation [[bean_validation]]
