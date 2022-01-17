@@ -7,7 +7,8 @@ image:https://img.shields.io/maven-central/v/nl.vpro/magnolia-vpro-ui.svg[MavenC
 // image:https://codecov.io/gh/vpro/magnolia-vpro-ui/branch/main/graph/badge.svg[codecov,link=https://codecov.io/gh/vpro/magnolia-vpro-ui]
 image:https://img.shields.io/nexus/s/https/oss.sonatype.org/nl.vpro/magnolia-vpro-ui.svg[snapshots,link=https://oss.sonatype.org/content/repositories/snapshots/nl/vpro/magnolia-vpro-ui/]
 
-== Color picker [[color_picker]]
+== Fields
+=== Color picker [[color_picker]]
 
 Differences with: https://github.com/magnolia-community/color-picker-field
 
@@ -21,7 +22,7 @@ Differences with: https://github.com/magnolia-community/color-picker-field
 ** `pickerHeight: 100`
 
 
-=== Usage
+==== Usage
 
 [source, yaml]
 ----
@@ -34,22 +35,7 @@ Differences with: https://github.com/magnolia-community/color-picker-field
 
 ----
 
-== ReferredColumn [[referred_column]]
-
-Can be used as a column. Like so:
-[source, yaml]
-----
-- name: author
-  $type: referredColumn
-  workspace: persons
-  forType:
-    - mgnl:vijverTip
-  otherProperty: name
-----
-
-This can be used in workbench view to display a field in another nod. In this case a column `author` contains a reference to a node in the `persons` workspace, and rather then showing the `uuid` of the node, the `name` property of the referenced node is shown.
-
-== EnumField [[enum_field]]
+=== EnumField [[enum_field]]
 
 We provide a simpler version to use enums in a combobox.
 
@@ -81,7 +67,59 @@ Use following maven dependency if you want to use `Dispayable`
 
 If both of these are not desired (e.g. because you can't change the implementation of the enum), then you can set a `Converter` in the field definition or extend `nl.vpro.magnolia.ui.enumfield.EnumFieldDefinition` and overwrite `#convertToPresentation` (See e.g. the implementation of `$type: countryField` <<country_field>>)
 
-== Bean validation [[bean_validation]]
+
+===  Country field [[country_field]]
+
+A drop down with countries of the world
+[souce, yaml]
+----
+ country:
+   $type: countryField
+----
+Countries are displayed in current `Locale`, and stored as ISO 639 country code.
+
+[NOTE]
+====
+For this to work you need
+[source, xml]
+----
+<dependency>
+    <groupId>com.neovisionaries</groupId>
+    <artifactId>nv-i18n</artifactId>
+    <version>1.29</version>
+</dependency>
+----
+====
+
+
+== Columns
+=== ReferredColumn [[referred_column]]
+
+Can be used as a column. Like so:
+[source, yaml]
+----
+- name: author
+  $type: referredColumn
+  workspace: persons
+  forType:
+    - mgnl:vijverTip
+  otherProperty: name
+----
+
+This can be used in workbench view to display a field in another nod. In this case a column `author` contains a reference to a node in the `persons` workspace, and rather then showing the `uuid` of the node, the `name` property of the referenced node is shown.
+
+
+=== Unhtml column definition
+
+[souce, yaml]
+----
+ description:
+   $type: unhtmlColumn
+----
+
+== Validators
+
+=== Bean validation [[bean_validation]]
 
 The idea is to use the link:https://beanvalidation.org/2.0/[`javax.validation`] framework
 [source, yaml]
@@ -109,28 +147,6 @@ For this to work you need a validator implementation.
 ----
 ====
 
-== Country field [[country_field]]
-
-A drop down with countries of the world
-[souce, yaml]
-----
- country:
-   $type: countryField
-----
-Countries are displayed in current `Locale`, and stored as ISO 639 country code.
-
-[NOTE]
-====
-For this to work you need
-[source, xml]
-----
-<dependency>
-    <groupId>com.neovisionaries</groupId>
-    <artifactId>nv-i18n</artifactId>
-    <version>1.29</version>
-</dependency>
-----
-====
 
 
 
