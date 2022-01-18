@@ -10,6 +10,7 @@ import lombok.SneakyThrows;
 import nl.vpro.util.TextUtil;
 
 /**
+ * A column definition that presents the value of a rich text field, but stripped from all markup.
  * @author Michiel Meeuwissen
  * @since 3.0
  */
