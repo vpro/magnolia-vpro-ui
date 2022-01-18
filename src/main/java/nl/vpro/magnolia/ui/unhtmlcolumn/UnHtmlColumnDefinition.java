@@ -1,7 +1,6 @@
 package nl.vpro.magnolia.ui.unhtmlcolumn;
 
 import com.vaadin.data.ValueProvider;
-import com.vaadin.ui.renderers.TextRenderer;
 import info.magnolia.ui.contentapp.configuration.column.ColumnType;
 import info.magnolia.ui.contentapp.configuration.column.ConfiguredColumnDefinition;
 import javax.inject.Inject;
@@ -19,7 +18,6 @@ public class UnHtmlColumnDefinition extends ConfiguredColumnDefinition<Node> {
 
 
     public UnHtmlColumnDefinition() {
-        setRenderer(TextRenderer.class);
         setValueProvider(Provider.class);
     }
 
