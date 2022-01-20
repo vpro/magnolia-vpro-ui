@@ -61,7 +61,8 @@ public class ColorPickerField extends CustomField<String> {
         textField.setValueChangeMode(ValueChangeMode.BLUR);
         textField.setWidth(definition.getFormat().getWidth());
         //textField.setRequiredIndicatorVisible(definition.isRequired());
-        textField.setValue(definition.getStringValue(getDefaultColor()));
+        Color defaultColor = getDefaultColor();
+        textField.setValue(definition.getStringValue(defaultColor));
         textField.setEnabled(true);
 
         textField.setReadOnly(false);
