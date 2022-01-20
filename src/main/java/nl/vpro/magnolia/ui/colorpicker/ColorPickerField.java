@@ -61,7 +61,7 @@ public class ColorPickerField extends CustomField<String> {
         textField.setValueChangeMode(ValueChangeMode.BLUR);
         textField.setWidth(definition.getFormat().getWidth());
         //textField.setRequiredIndicatorVisible(definition.isRequired());
-        textField.setValue(getValue());
+        textField.setValue(definition.getStringValue(getDefaultColor()));
         textField.setEnabled(true);
 
         textField.setReadOnly(false);
@@ -148,6 +148,8 @@ public class ColorPickerField extends CustomField<String> {
     @Override
     protected void doSetValue(String value) {
         this.picker.setValue(definition.getColorFromStringValue(value).orElse(this.picker.getValue()));
+        Color color = definition.getColorFromStringValue(value).orElse(this.picker.getValue());
+        this.picker.setValue(color);
     }
 
     @Override

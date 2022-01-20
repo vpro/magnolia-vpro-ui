@@ -30,10 +30,10 @@ public class ColorPickerFieldDefinition extends ConfiguredFieldDefinition<String
 
     private static final Pattern COLOR = Pattern.compile("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");
 
-    private static final Pattern RGB = Pattern.compile("^rgb\\(\\s*(\\d+)\\s*,\\s*(\\d+)\\s*,\\s*(\\d+)\\s*\\)$");
+    private static final Pattern RGB  = Pattern.compile("^rgb\\(\\s*(\\d+)\\s*,\\s*(\\d+)\\s*,\\s*(\\d+)\\s*\\)$");
     private static final Pattern RGBA = Pattern.compile("^rgba\\(\\s*(\\d+)\\s*,\\s*(\\d+)\\s*,\\s*\\s*(\\d+)\\s*,\\s*([01]*(?:\\.\\d+)?)\\s*\\)$");
-    private static final Pattern HSL= Pattern.compile("^hsl\\(\\s*(\\d+)\\s*%\\s*,\\s*(\\d+)\\s*%\\s*,\\s*(\\d+)\\s*%\\s*\\)$");
-    private static final Pattern HSLA= Pattern.compile("^hsl\\(\\s*(\\d+)\\s*%\\s*,\\s*(\\d+)\\s*%\\s*,\\s*(\\d+)\\s*%\\s*,\\s*([01]*(?:\\.\\d+)?)\\s*\\)$");
+    private static final Pattern HSL  = Pattern.compile("^hsl\\(\\s*(\\d+)\\s*%\\s*,\\s*(\\d+)\\s*%\\s*,\\s*(\\d+)\\s*%\\s*\\)$");
+    private static final Pattern HSLA = Pattern.compile("^hsl\\(\\s*(\\d+)\\s*%\\s*,\\s*(\\d+)\\s*%\\s*,\\s*(\\d+)\\s*%\\s*,\\s*([01]*(?:\\.\\d+)?)\\s*\\)$");
 
     private static final Pattern INT= Pattern.compile("^\\d+$");
 
@@ -49,10 +49,9 @@ public class ColorPickerFieldDefinition extends ConfiguredFieldDefinition<String
     public ColorPickerFieldDefinition(SimpleTranslator translator) {
         setType(String.class);
         setFactoryClass(ColorPickerFieldFactory.class);
-        setDefaultValue(Color.WHITE);
+        //setDefaultValue(getStringValue(Color.WHITE));
         setI18n(true);
         this.translator = translator;
-
     }
 
 
@@ -83,6 +82,11 @@ public class ColorPickerFieldDefinition extends ConfiguredFieldDefinition<String
         return String.format(Locale.US, "rgba(%d,%d,%d,%.1f)", color.getRed(), color.getGreen(), color.getBlue(), (float) color.getAlpha() / 255);
     }
 
+
+
+    public void setDefaultValue(String defaultValue) {
+        super.setDefaultValue(defaultValue);
+    }
 
     Optional<Color> getColorFromStringValue(String color) {
         if (StringUtils.isNotBlank(color)) {
