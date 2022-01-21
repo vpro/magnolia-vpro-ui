@@ -71,7 +71,7 @@ If both of these are not desired (e.g. because you can't change the implementati
 ===  Country field [[country_field]]
 
 A drop down with countries of the world
-[souce, yaml]
+[source, yaml]
 ----
  country:
    $type: countryField
@@ -91,6 +91,17 @@ For this to work you need
 ----
 ====
 
+== IntegerRange
+
+Just a drop down with integers
+[source, yaml]
+----
+ fields
+  myinteger:
+    $type: integerRangeField
+    min: 3
+    max: 11
+----
 
 == Columns
 === ReferredColumn [[referred_column]]
