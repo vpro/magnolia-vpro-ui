@@ -184,6 +184,24 @@ fields:
     $type: pomsTypesField
 ----
 
+=== POMS Ageratings
+
+TODO (ready but not yet moved)
+
+=== POMS Content Ratings
+
+TODO (ready but not yet moved)
+
+
+=== POMS Channels
+
+TODO (ready but not yet moved)
+
+=== POMS Broadcasters
+
+TODO (ready but not yet moved)
+
+
 == Columns
 === ReferredColumn [[referred_column]]
 
