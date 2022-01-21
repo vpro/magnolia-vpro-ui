@@ -16,6 +16,7 @@ may at least facilitate use showing our code.
 Currently, there is no need yet to let this be an actual magnolia module.
 
 SNAPSHOT's are present in sonatype.
+
 .pom.xml dependency
 [source,xml]
 ----
@@ -45,8 +46,7 @@ Differences with: https://github.com/magnolia-community/color-picker-field
 ** `pickerHeight: 100`
 
 
-==== Usage
-
+.Example usage of color picker field in a form (described in yaml)
 [source, yaml]
 ----
  color:
@@ -62,6 +62,7 @@ Differences with: https://github.com/magnolia-community/color-picker-field
 
 We provide a simpler version to use enums in a combobox.
 
+.Example usage of enumField
 [source, yaml]
 ----
  type:
@@ -78,6 +79,8 @@ The enum is presented on default via its `toString` method, unless it implements
 [NOTE]
 ====
 Use following maven dependency if you want to use `Dispayable`
+
+.vpro-i18n dependency
 [source, xml]
 ----
 <dependency>
@@ -104,6 +107,8 @@ Countries are displayed in current `Locale`, and stored as ISO 639 country code.
 [NOTE]
 ====
 For this to work you need
+
+.nv-i18n dependency
 [source, xml]
 ----
 <dependency>
@@ -114,9 +119,11 @@ For this to work you need
 ----
 ====
 
-=== IntegerRange
+=== IntegerRange [[integerrange_field]]
 
 Just a drop down with integers
+
+.Example of `integerRangeField`
 [source, yaml]
 ----
 fields:
@@ -130,6 +137,8 @@ fields:
 === ReferredColumn [[referred_column]]
 
 Can be used as a column. Like so:
+
+.Example of `referredColumn`
 [source, yaml]
 ----
 - name: author
@@ -169,6 +178,8 @@ For this to work you need
 === Bean validation [[bean_validation]]
 
 The idea is to use the link:https://beanvalidation.org/2.0/[`javax.validation`] framework
+
+.Example usage of beanValidator validator.
 [source, yaml]
 ----
 validator:
@@ -184,6 +195,8 @@ end up there eventually.
 [NOTE]
 ====
 For this to work you need a validator implementation.
+
+.Dependency on validator implementation
 [source, xml]
 ----
 <dependency>
