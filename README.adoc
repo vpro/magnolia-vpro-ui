@@ -96,7 +96,7 @@ For this to work you need
 Just a drop down with integers
 [source, yaml]
 ----
- fields
+fields:
   myinteger:
     $type: integerRangeField
     min: 3
