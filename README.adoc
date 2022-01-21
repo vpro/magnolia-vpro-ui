@@ -146,6 +146,8 @@ fields:
 
 === POMS media chooser
 
+Shows a text field and a button. If you click on the button the POMS 'Media Selector' will be popped up, and you can select a media object. You'll need to log in poms
+
 [source, yaml]
 ----
 fields:
@@ -167,6 +169,7 @@ For this to work you need
    <version>5.30.4</version>
 </dependency>
 ----
+and a property poms `poms.baseUrl=https://poms.omroep.nl/`
 ====
 
 
