@@ -1,5 +1,7 @@
 = VPRO magnolia UI components
 :toc:
+:toclevels: 5
+
 
 image:https://github.com/vpro/magnolia-vpro-ui/workflows/build/badge.svg?[Build Status,link=https://github.com/vpro/magnolia-vpro-ui/actions?query=workflow%build]
 image:https://img.shields.io/maven-central/v/nl.vpro/magnolia-vpro-ui.svg[MavenCentral,link=https://search.maven.org/search?q=g:%22nl.vpro%22]
@@ -144,7 +146,23 @@ fields:
     $type: randomUUIDField
 ----
 
-=== POMS media chooser
+=== POMS Fields
+
+
+[NOTE]
+====
+For these to work you need
+[source, xml]
+----
+<dependency>
+   <groupId>nl.vpro.media</groupId>
+   <artifactId>media-domain</artifactId>
+   <version>5.30.4</version>
+</dependency>
+----
+====
+
+==== Media chooser
 
 Shows a text field and a button. If you click on the button the POMS 'Media Selector' will be popped up, and you can select a media object. You'll need to log in poms
 
@@ -158,22 +176,11 @@ fields:
       - SERIES
 ----
 
-[NOTE]
-====
-For this to work you need
-[source, xml]
-----
-<dependency>
-   <groupId>nl.vpro.media</groupId>
-   <artifactId>media-domain</artifactId>
-   <version>5.30.4</version>
-</dependency>
-----
-and a property poms `poms.baseUrl=https://poms.omroep.nl/`
-====
+A property poms `poms.baseUrl=https://poms.omroep.nl/` needs to be present
 
 
-=== POMS types
+
+==== Media Types
 
 A dropdown with types from POMS
 
@@ -184,20 +191,24 @@ fields:
     $type: pomsTypesField
 ----
 
-=== POMS Ageratings
+==== Ageratings
+
+NICAM ageratings
 
 TODO (ready but not yet moved)
 
-=== POMS Content Ratings
+==== Content Ratings
+
+NICAM content ratings
 
 TODO (ready but not yet moved)
 
 
-=== POMS Channels
+==== Channels
 
 TODO (ready but not yet moved)
 
-=== POMS Broadcasters
+==== Broadcasters
 
 TODO (ready but not yet moved)
 
