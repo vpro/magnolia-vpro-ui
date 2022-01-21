@@ -156,6 +156,20 @@ fields:
       - SERIES
 ----
 
+[NOTE]
+====
+For this to work you need
+[source, xml]
+----
+<dependency>
+   <groupId>nl.vpro.media</groupId>
+   <artifactId>media-domain</artifactId>
+   <version>5.30.4</version>
+</dependency>
+----
+====
+
+
 === POMS types
 
 A dropdown with types from POMS
