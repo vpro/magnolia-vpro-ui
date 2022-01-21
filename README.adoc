@@ -7,6 +7,29 @@ image:https://img.shields.io/maven-central/v/nl.vpro/magnolia-vpro-ui.svg[MavenC
 // image:https://codecov.io/gh/vpro/magnolia-vpro-ui/branch/main/graph/badge.svg[codecov,link=https://codecov.io/gh/vpro/magnolia-vpro-ui]
 image:https://img.shields.io/nexus/s/https/oss.sonatype.org/nl.vpro/magnolia-vpro-ui.svg[snapshots,link=https://oss.sonatype.org/content/repositories/snapshots/nl/vpro/magnolia-vpro-ui/]
 
+== Introduction
+
+These are a few magnolia UI components which we developed mostly years ago. Recently we migrated to Magnolia 6 and its new framework, and we had
+to migrate these components too. We took the occasion to isolate them to this github project. Hopefully it may benefit others, or otherwise it
+may at least facilitate use showing our code.
+
+Currently, there is no need yet to let this be an actual magnolia module.
+
+SNAPSHOT's are present in sonatype.
+.pom.xml dependency
+[source,xml]
+----
+ <dependency>
+  <groupId>nl.vpro</groupId>
+  <artifactId>magnolia-vpro-ui</artifactId>
+  <verrsion>1.0-SNAPSHOT</version>
+ </dependency>
+----
+We'll make a release when we're ready, and the artifact will be available in maven central then.
+
+Some components described below have extra dependencies, which will not come in automatically (they're optional), which is indicated in notes then.
+
+
 == Fields
 === Color picker [[color_picker]]
 
