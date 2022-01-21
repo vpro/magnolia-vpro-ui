@@ -133,6 +133,40 @@ fields:
     max: 11
 ----
 
+=== Random UUID
+
+Default readonly field containing a random UUID.
+
+[source, yaml]
+----
+fields:
+  uuid:
+    $type: randomUUIDField
+----
+
+=== POMS media chooser
+
+[source, yaml]
+----
+fields:
+  media:
+    $type: mediaChooserField
+    mediaType:
+      - BROADCAST
+      - SERIES
+----
+
+=== POMS types
+
+A dropdown with types from POMS
+
+[source, yaml]
+----
+fields:
+  mediaType:
+    $type: pomsTypesField
+----
+
 == Columns
 === ReferredColumn [[referred_column]]
 
