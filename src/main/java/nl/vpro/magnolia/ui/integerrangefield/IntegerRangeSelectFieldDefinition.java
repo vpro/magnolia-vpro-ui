@@ -12,6 +12,7 @@ import java.util.stream.IntStream;
 import com.vaadin.ui.*;
 
 /**
+ * A simple custom field that just shows a combobox with a range of integers
  * @author Michiel Meeuwissen
  * @since 1.0
  * */
