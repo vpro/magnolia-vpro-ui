@@ -91,7 +91,7 @@ For this to work you need
 ----
 ====
 
-== IntegerRange
+=== IntegerRange
 
 Just a drop down with integers
 [source, yaml]
