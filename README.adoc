@@ -198,24 +198,20 @@ fields:
 
 ==== Age ratings
 
-NICAM age ratings
-
-TODO (ready but not yet moved)
+link:https://www.kijkwijzer.nl/[NICAM] age ratings
 
 ==== Content ratings
 
-NICAM content ratings
-
-TODO (ready but not yet moved)
+link:https://www.kijkwijzer.nl/[NICAM] content ratings
 
 
 ==== Channels
 
-TODO (ready but not yet moved)
+Drop down with all known channels. Channels that at some point where visible in the Netherlands.
 
 ==== Broadcasters
 
-TODO (ready but not yet moved)
+Dropdown with all know Dutch broadcasters.
 
 
 == Columns
