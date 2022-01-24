@@ -60,7 +60,7 @@ Differences with: https://github.com/magnolia-community/color-picker-field
 
 ----
 
-=== EnumField [[enum_field]]
+=== Enum field [[enum_field]]
 
 We provide a simpler version to use enums in a combobox.
 
@@ -121,7 +121,7 @@ For this to work you need
 ----
 ====
 
-=== IntegerRange [[integerrange_field]]
+=== Integer range field [[integerrange_field]]
 
 Just a drop down with integers
 
@@ -137,7 +137,9 @@ fields:
 
 === Random UUID
 
-Default readonly field containing a random UUID.
+Text field which default value is a random UUID.
+
+On default it is readonly (but this can be overridden)
 
 [source, yaml]
 ----
@@ -164,7 +166,7 @@ For these to work you need
 
 ==== Media chooser
 
-Shows a text field and a button. If you click on the button the POMS 'Media Selector' will be popped up, and you can select a media object. You'll need to log in poms
+Shows a text field and a button. If you click on the button the POMS 'Media Selector' will be popped up, and you can select a media object. You'll need a poms-account for this.
 
 [source, yaml]
 ----
@@ -178,9 +180,12 @@ fields:
 
 A property poms `poms.baseUrl=https://poms.omroep.nl/` needs to be present
 
+==== Thesaurus
+
+TODO, a very similar popup exists for the Thesaurus of  Beel & Geluid. Integration would be quite straight forward.
 
 
-==== Media Types
+==== Media types
 
 A dropdown with types from POMS
 
@@ -191,13 +196,13 @@ fields:
     $type: pomsTypesField
 ----
 
-==== Ageratings
+==== Age ratings
 
-NICAM ageratings
+NICAM age ratings
 
 TODO (ready but not yet moved)
 
-==== Content Ratings
+==== Content ratings
 
 NICAM content ratings
 
@@ -214,7 +219,7 @@ TODO (ready but not yet moved)
 
 
 == Columns
-=== ReferredColumn [[referred_column]]
+=== Referred column [[referred_column]]
 
 Can be used as a column. Like so:
 
@@ -232,7 +237,7 @@ Can be used as a column. Like so:
 This can be used in workbench view to display a field in another nod. In this case a column `author` contains a reference to a node in the `persons` workspace, and rather then showing the `uuid` of the node, the `name` property of the referenced node is shown.
 
 
-=== Unhtml column definition
+=== Unhtml column
 
 [souce, yaml]
 ----
@@ -286,7 +291,3 @@ For this to work you need a validator implementation.
 </dependency>
 ----
 ====
-
-
-
-
