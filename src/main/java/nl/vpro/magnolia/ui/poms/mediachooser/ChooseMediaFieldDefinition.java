@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 import lombok.Getter;
 import lombok.Setter;
 import nl.vpro.domain.media.MediaType;
-import nl.vpro.i18n.Displayable;
 
 /**
  * @author rico
@@ -37,7 +36,10 @@ public class ChooseMediaFieldDefinition extends ConfiguredFieldDefinition<String
         } else if (mediaType == null || mediaType.isEmpty()) {
             return "Kies een " + MediaType.MEDIA.getDisplayName();
         } else {
-            return "Kies een " + mediaType.stream().map(Displayable::getDisplayName).map(String::toLowerCase).collect(Collectors.joining(" of een "));
+            return "Kies een " + mediaType.stream()
+                .map(mt -> mt.getDisplayName())
+                .map(String::toLowerCase)
+                .collect(Collectors.joining(" of een "));
         }
 
     }
