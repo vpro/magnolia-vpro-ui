@@ -287,3 +287,27 @@ For this to work you need a validator implementation.
 </dependency>
 ----
 ====
+
+==== HTML embed validator
+
+Checks whether the value is acceptable as an embed code. The contained HTML must be sane, and contain only https-references.
+
+
+.Example usage of htmlEmbed validator.
+[source, yaml]
+----
+validator:
+   embedValidation:
+      $type: htmlEmbedValidator
+----
+
+
+==== Link validator
+
+.Example usage of linkValidator
+[source, yaml]
+----
+validator:
+   embedValidation:
+      $type: linkFieldValidator
+----
