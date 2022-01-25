@@ -35,7 +35,7 @@
     <id>datasource-broadcasters</id>
     <component>
       <type>info.magnolia.ui.field.SelectFieldSupport</type>
-      <implementation>nl.vpro.magnolia.ui.field.broadcasters.BroadcastersSelectFieldSupport</implementation>
+      <implementation>nl.vpro.magnolia.ui.poms.broadcasters.BroadcastersSelectFieldSupport</implementation>
     </component>
   </components>
 </module>
