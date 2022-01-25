@@ -4,38 +4,7 @@
   <name>magnolia-vpro-ui</name>
   <displayName>VPRO Magnolia UI module</displayName>
   <version>1.0</version>
-  <properties>
-    <property>
-      <name>poms.baseUrl</name>
-      <value>https://poms.omroep.nl</value>
-    </property>
-    <property>
-      <name>broadcasters.repository.location</name>
-      <value>${poms.baseUrl}/broadcasters/</value>
-    </property>
-    <property>
-      <name>broadcasters.repository.async</name>
-      <value>false</value>
-    </property>
-     <property>
-      <name>broadcasters.repository.needsOtherIDs</name>
-      <value>false</value>
-    </property>
-  </properties>
   <components>
     <id>main</id>
-    <component>
-      <type>nl.vpro.domain.user.BroadcasterService</type>
-      <implementation>nl.vpro.media.broadcaster.BroadcasterServiceImpl</implementation>
-      <scope>singleton</scope>
-      <lazy>false</lazy>
-    </component>
-  </components>
-  <components>
-    <id>datasource-broadcasters</id>
-    <component>
-      <type>info.magnolia.ui.field.SelectFieldSupport</type>
-      <implementation>nl.vpro.magnolia.ui.field.broadcasters.BroadcastersSelectFieldSupport</implementation>
-    </component>
   </components>
 </module>

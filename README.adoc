@@ -5,9 +5,9 @@
 
 image:https://github.com/vpro/magnolia-vpro-ui/workflows/build/badge.svg?[Build Status,link=https://github.com/vpro/magnolia-vpro-ui/actions?query=workflow%build]
 image:https://img.shields.io/maven-central/v/nl.vpro/magnolia-vpro-ui.svg[MavenCentral,link=https://search.maven.org/search?q=g:%22nl.vpro%22]
-// image:http://www.javadoc.io/badge/nl.vpro/magnolia-vpro-ui/.svg?color=blue[javadoc,link=http://www.javadoc.io/doc/nl.vpro/magnolia-vpro-ui/]
+// image:http://www.javadoc.io/badge/nl.vpro.magnolia/magnolia-vpro-ui/.svg?color=blue[javadoc,link=http://www.javadoc.io/doc/nl.vpro.magnolia/magnolia-vpro-ui/]
 // image:https://codecov.io/gh/vpro/magnolia-vpro-ui/branch/main/graph/badge.svg[codecov,link=https://codecov.io/gh/vpro/magnolia-vpro-ui]
-image:https://img.shields.io/nexus/s/https/oss.sonatype.org/nl.vpro/magnolia-vpro-ui.svg[snapshots,link=https://oss.sonatype.org/content/repositories/snapshots/nl/vpro/magnolia-vpro-ui/]
+image:https://img.shields.io/nexus/s/https/oss.sonatype.org/nl.vpro.magnolia/magnolia-vpro-ui.svg[snapshots,link=https://oss.sonatype.org/content/repositories/snapshots/nl/vpro/magnolia/magnolia-vpro-ui/]
 
 == Introduction
 
@@ -157,9 +157,9 @@ For these to work you need
 [source, xml]
 ----
 <dependency>
-   <groupId>nl.vpro.media</groupId>
-   <artifactId>media-domain</artifactId>
-   <version>5.30.4</version>
+   <groupId>nl.vpro.magnolia</groupId>
+   <artifactId>magnolia-vpro-ui-poms</artifactId>
+   <version>1.0-SNAPSHOT</version>
 </dependency>
 ----
 ====
