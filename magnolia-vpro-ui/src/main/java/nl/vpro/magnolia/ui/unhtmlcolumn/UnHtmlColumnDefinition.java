@@ -1,11 +1,14 @@
 package nl.vpro.magnolia.ui.unhtmlcolumn;
 
-import com.vaadin.data.ValueProvider;
 import info.magnolia.ui.contentapp.configuration.column.ColumnType;
 import info.magnolia.ui.contentapp.configuration.column.ConfiguredColumnDefinition;
+
 import javax.inject.Inject;
 import javax.jcr.Node;
-import lombok.SneakyThrows;
+import javax.jcr.RepositoryException;
+
+import com.vaadin.data.ValueProvider;
+
 import nl.vpro.util.TextUtil;
 
 /**
@@ -29,10 +32,13 @@ public class UnHtmlColumnDefinition extends ConfiguredColumnDefinition<Node> {
             this.definition = definition;
         }
 
-        @SneakyThrows
         @Override
         public String apply(Node property) {
-            return TextUtil.stripHtml(property.getProperty(definition.getName()).getString());
+            try {
+                return TextUtil.stripHtml(property.getProperty(definition.getName()).getString());
+            } catch (RepositoryException pathNotFoundException) {
+                return "";
+            }
         }
     }
 }
