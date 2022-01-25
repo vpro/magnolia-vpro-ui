@@ -150,6 +150,7 @@ fields:
 
 === POMS Fields
 
+image:https://img.shields.io/nexus/s/https/oss.sonatype.org/nl.vpro.magnolia/magnolia-vpro-ui-poms.svg[snapshots,link=https://oss.sonatype.org/content/repositories/snapshots/nl/vpro/magnolia/magnolia-vpro-ui-poms/]
 
 [NOTE]
 ====
