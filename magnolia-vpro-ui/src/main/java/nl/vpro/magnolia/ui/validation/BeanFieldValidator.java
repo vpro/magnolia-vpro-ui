@@ -2,6 +2,7 @@ package nl.vpro.magnolia.ui.validation;
 
 import lombok.SneakyThrows;
 
+import java.util.Optional;
 import java.util.Set;
 
 import javax.validation.*;
@@ -32,7 +33,7 @@ public class BeanFieldValidator extends AbstractValidator<String> {
     @Override
     public ValidationResult apply(String value, ValueContext context) {
         Set<? extends ConstraintViolation<?>> violations = VALIDATOR.validateValue(
-            definition.getBeanClass(), definition.getProperty(), value, definition.getGroups()
+            definition.getBeanClass(), definition.getProperty(), value, Optional.ofNullable(definition.getGroups()).orElse(new Class<?>[0])
         );
         if (violations.isEmpty()) {
             return toResult(value, true);
