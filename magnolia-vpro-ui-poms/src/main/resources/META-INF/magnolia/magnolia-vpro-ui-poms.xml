@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE module SYSTEM "module.dtd">
 <module>
-  <name>magnolia-vpro-ui</name>
+  <name>magnolia-vpro-ui-poms</name>
   <displayName>VPRO Magnolia UI module</displayName>
   <version>1.0</version>
   <properties>
