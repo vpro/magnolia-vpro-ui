@@ -27,7 +27,7 @@ public class BeanFieldValidatorDefinition extends ConfiguredFieldValidatorDefini
 
     Class<?> getBeanClass() throws ClassNotFoundException {
         if (beanClass == null) {
-            beanClass = Class.forName(bean);
+            beanClass = Class.forName(getBean());
         }
         return beanClass;
     }
