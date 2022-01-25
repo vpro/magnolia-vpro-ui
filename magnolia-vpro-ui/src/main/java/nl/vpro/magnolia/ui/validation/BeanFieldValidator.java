@@ -1,11 +1,14 @@
 package nl.vpro.magnolia.ui.validation;
 
+import lombok.SneakyThrows;
+
+import java.util.Set;
+
+import javax.validation.*;
+
 import com.vaadin.data.ValidationResult;
 import com.vaadin.data.ValueContext;
 import com.vaadin.data.validator.AbstractValidator;
-import java.util.Set;
-import javax.validation.*;
-import lombok.SneakyThrows;
 
 
 /**
@@ -22,6 +25,7 @@ public class BeanFieldValidator extends AbstractValidator<String> {
 
     protected BeanFieldValidator(String errorMessage, BeanFieldValidatorDefinition definition) {
         super(errorMessage);
+        this.definition = definition;
     }
 
     @SneakyThrows

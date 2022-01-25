@@ -289,7 +289,7 @@ For this to work you need a validator implementation.
 ----
 ====
 
-==== HTML embed validator
+=== HTML embed validator
 
 Checks whether the value is acceptable as an embed code. The contained HTML must be sane, and contain only https-references.
 
@@ -303,7 +303,7 @@ validator:
 ----
 
 
-==== Link validator
+=== Link validator
 
 .Example usage of linkValidator
 [source, yaml]
