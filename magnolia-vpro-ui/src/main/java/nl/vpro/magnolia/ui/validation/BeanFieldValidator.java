@@ -21,7 +21,7 @@ public class BeanFieldValidator extends AbstractValidator<String> {
 
     private static final Validator VALIDATOR = FACTORY.getValidator();
 
-    private BeanFieldValidatorDefinition definition;
+    private final BeanFieldValidatorDefinition definition;
 
     protected BeanFieldValidator(String errorMessage, BeanFieldValidatorDefinition definition) {
         super(errorMessage);
