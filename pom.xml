@@ -1,11 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>nl.vpro</groupId>
-  <artifactId>magnolia-vpro-ui</artifactId>
+  <groupId>nl.vpro.magnolia</groupId>
+  <artifactId>magnolia-vpro-ui-parent</artifactId>
+
   <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
   <inceptionYear>2022</inceptionYear>
   <url>https://github.com/vpro/magnolia-vpro-ui</url>
+
+  <modules>
+    <module>magnolia-vpro-ui</module>
+    <module>magnolia-vpro-ui-poms</module>
+  </modules>
 
   <licenses>
     <license>
@@ -123,11 +130,15 @@
         <version>2.29.2</version>
         <type>pom</type>
         <scope>import</scope>
-    </dependency>
+      </dependency>
+      <dependency>
+        <groupId>nl.vpro.magnolia</groupId>
+        <artifactId>magnolia-vpro-ui</artifactId>
+        <version>${project.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <dependencies>
-
     <dependency>
       <groupId>info.magnolia.ui</groupId>
       <artifactId>magnolia-ui-framework</artifactId>
@@ -140,32 +151,6 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- You need this dependency if your enum want to implement Displayable -->
-    <dependency>
-      <groupId>nl.vpro.shared</groupId>
-      <artifactId>vpro-shared-i18n</artifactId>
-      <optional>true</optional>
-    </dependency>
-
-    <!-- You need this dependency if you need unhtml  -->
-    <dependency>
-      <groupId>nl.vpro.shared</groupId>
-      <artifactId>vpro-shared-util</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>nl.vpro.media</groupId>
-      <artifactId>media-domain</artifactId>
-      <version>5.30.4</version>
-      <optional>true</optional>
-    </dependency>
-    <!-- You need this dependency if your want to use $type: beanValidator -->
-    <dependency>
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
-      <version>2.0.1.Final</version>
-      <optional>true</optional>
-    </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
