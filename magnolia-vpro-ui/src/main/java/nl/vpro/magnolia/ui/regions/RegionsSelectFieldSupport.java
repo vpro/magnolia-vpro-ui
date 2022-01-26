@@ -7,7 +7,6 @@ import java.util.Comparator;
 import java.util.Locale;
 import java.util.stream.Stream;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.meeuw.i18n.countries.CurrentCountry;
@@ -18,8 +17,8 @@ import com.neovisionaries.i18n.CountryCode;
 import com.vaadin.data.*;
 import com.vaadin.data.provider.*;
 import com.vaadin.server.ExternalResource;
-import com.vaadin.server.Page;
-import com.vaadin.ui.*;
+import com.vaadin.ui.IconGenerator;
+import com.vaadin.ui.ItemCaptionGenerator;
 
 public class RegionsSelectFieldSupport implements SelectFieldSupport<Region> {
 
@@ -35,11 +34,6 @@ public class RegionsSelectFieldSupport implements SelectFieldSupport<Region> {
         I18nContentSupport i18nContentSupport) {
         this.fieldDefinition = definition;
         this.i18nContentSupport = i18nContentSupport;
-
-    }
-
-    @PostConstruct
-    public void postconstruct() {
 
     }
 
@@ -86,7 +80,7 @@ public class RegionsSelectFieldSupport implements SelectFieldSupport<Region> {
         //return item -> new ExternalResource("/webjars/flag-icon-css/flags/4x3/" + item.toLowerCase() + ".svg");
 
         return region -> {
-            if (region instanceof CurrentCountry) {
+            if (fieldDefinition.isUseIcons() && region instanceof CurrentCountry) {
                 CurrentCountry country = (CurrentCountry) region;
                 if (country.getCountryCode().getAssignment() == CountryCode.Assignment.OFFICIALLY_ASSIGNED) {
                     return new ExternalResource("https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/flags/4x3/" + region.getCode().toLowerCase() + ".svg");

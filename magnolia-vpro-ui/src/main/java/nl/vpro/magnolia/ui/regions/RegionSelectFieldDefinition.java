@@ -6,7 +6,6 @@ import info.magnolia.ui.field.FieldType;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.meeuw.i18n.regions.Region;
@@ -45,11 +44,6 @@ public class RegionSelectFieldDefinition extends ComboBoxFieldDefinition<Region>
         setFactoryClass(RegionsSelectFactory.class);
         setDatasource(dataSourceDefinition);
         setStyleName("region");
-    }
-
-    @PostConstruct
-    public void postConstruct() {
-
     }
 
 }
