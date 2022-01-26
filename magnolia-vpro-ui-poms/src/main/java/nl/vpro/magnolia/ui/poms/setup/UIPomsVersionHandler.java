@@ -18,14 +18,11 @@ import java.util.List;
 public class UIPomsVersionHandler extends DefaultModuleVersionHandler {
 
 
-    public UIPomsVersionHandler() {
-    }
-
     @Override
     protected List<Task> getExtraInstallTasks(InstallContext installContext) {
         return Arrays.asList(
             new BootstrapSingleResource(
-                "Form allowed methods",
+                "By pass kijkwijzer",
                 "By pass kijkwijzer",
                 "/setup/config.server.filters.bypasses.kijkwijzer.yaml")
         );
