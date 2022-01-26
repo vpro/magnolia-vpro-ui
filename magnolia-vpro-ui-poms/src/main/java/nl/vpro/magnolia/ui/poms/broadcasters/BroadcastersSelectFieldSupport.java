@@ -1,11 +1,16 @@
 package nl.vpro.magnolia.ui.poms.broadcasters;
 
+import info.magnolia.ui.field.SelectFieldSupport;
+
+import java.util.stream.Stream;
+
+import javax.inject.Inject;
+
 import com.vaadin.data.*;
 import com.vaadin.data.provider.*;
 import com.vaadin.ui.IconGenerator;
 import com.vaadin.ui.ItemCaptionGenerator;
-import info.magnolia.ui.field.SelectFieldSupport;
-import java.util.stream.Stream;
+
 import nl.vpro.domain.user.BroadcasterService;
 import nl.vpro.domain.user.Organization;
 
@@ -14,6 +19,7 @@ public class BroadcastersSelectFieldSupport implements SelectFieldSupport<String
 
     private final BroadcasterService broadcasterService;
 
+    @Inject
     public BroadcastersSelectFieldSupport(BroadcasterService broadcasterService) {
         this.broadcasterService = broadcasterService;
     }

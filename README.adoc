@@ -96,15 +96,19 @@ Use following maven dependency if you want to use `Dispayable`
 If both of these are not desired (e.g. because you can't change the implementation of the enum), then you can set a `Converter` in the field definition or extend `nl.vpro.magnolia.ui.enumfield.EnumFieldDefinition` and overwrite `#convertToPresentation` (See e.g. the implementation of `$type: countryField` <<country_field>>)
 
 
-===  Country field [[country_field]]
+===  Country en region field [[country_field]]
 
-A drop down with countries of the world
+A dropdown with countries of the world
 [source, yaml]
 ----
  country:
    $type: countryField
+   useIcons: true
 ----
 Countries are displayed in current `Locale`, and stored as ISO 639 country code.
+
+Actually it is a specialization of `$type: regionField`, which could also be used for other type of regions like country subdivisions or continents.
+
 
 [NOTE]
 ====
@@ -114,11 +118,12 @@ For this to work you need
 [source, xml]
 ----
 <dependency>
-    <groupId>com.neovisionaries</groupId>
-    <artifactId>nv-i18n</artifactId>
-    <version>1.29</version>
+    <groupId>org.meeuw.i18n</groupId>
+    <artifactId>i18n-regions</artifactId>
+    <version>1.3.0</version>
 </dependency>
 ----
+
 ====
 
 === Integer range field [[integerrange_field]]

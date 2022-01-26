@@ -1,19 +1,20 @@
 package nl.vpro.magnolia.ui.colorpicker;
 
+import lombok.extern.log4j.Log4j2;
+
 import com.vaadin.annotations.StyleSheet;
 import com.vaadin.data.*;
 import com.vaadin.server.Setter;
 import com.vaadin.shared.ui.ValueChangeMode;
 import com.vaadin.shared.ui.colorpicker.Color;
 import com.vaadin.ui.*;
-import lombok.extern.log4j.Log4j2;
 
 /**
  * @author Michiel Meeuwissen
  * @since 3.0
  */
 @Log4j2
-@StyleSheet({"style.css"}) // to add a border to the color area, and some other details
+@StyleSheet({"colorPicker.css"}) // to add a border to the color area, and some other details
 public class ColorPickerField extends CustomField<String> {
 
 

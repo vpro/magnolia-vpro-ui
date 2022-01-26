@@ -2,7 +2,8 @@
 <!DOCTYPE module SYSTEM "module.dtd">
 <module>
   <name>magnolia-vpro-ui-poms</name>
-  <displayName>VPRO Magnolia UI module</displayName>
+  <displayName>VPRO Magnolia UI POMS module</displayName>
+  <versionHandler>nl.vpro.magnolia.ui.poms.setup.UIPomsVersionHandler</versionHandler>
   <version>1.0</version>
   <properties>
     <property>
@@ -38,4 +39,10 @@
       <implementation>nl.vpro.magnolia.ui.poms.broadcasters.BroadcastersSelectFieldSupport</implementation>
     </component>
   </components>
+  <dependencies>
+    <dependency>
+      <name>magnolia-vpro-ui</name>
+      <version>1.0/*</version>
+    </dependency>
+  </dependencies>
 </module>

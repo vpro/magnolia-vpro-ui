@@ -4,12 +4,15 @@
  */
 package nl.vpro.magnolia.ui.poms.mediachooser;
 
+import lombok.Getter;
+
+import java.util.UUID;
+
+import javax.inject.Named;
+
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.server.Page;
 import com.vaadin.ui.*;
-import java.util.UUID;
-import javax.inject.Named;
-import lombok.Getter;
 
 /**
  * @author rico
@@ -38,7 +41,8 @@ public class ChooseMediaField extends CustomField<String> {
 
     @Override
     protected Component initContent() {
-        Page.getCurrent().addDependency(new Dependency(Dependency.Type.JAVASCRIPT, cmsSelector));
+        Page.getCurrent().addDependency
+            (new Dependency(Dependency.Type.JAVASCRIPT, cmsSelector));
 
         addStyleName("linkfield");
         // Initialize root

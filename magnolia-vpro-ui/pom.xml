@@ -34,6 +34,14 @@
       <version>2.0.1.Final</version>
       <optional>true</optional>
     </dependency>
+
+
+   <!-- <dependency>
+      &lt;!&ndash; alternatively just use https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css &ndash;&gt;
+      <groupId>org.webjars.bowergithub.lipis</groupId>
+      <artifactId>flag-icon-css</artifactId>
+      <version>3.4.6</version>
+    </dependency>-->
   </dependencies>
 
 
