@@ -15,7 +15,6 @@ These are a few magnolia UI components which we developed mostly years ago. Rece
 to migrate these components too. We took the occasion to isolate them to this github project. Hopefully it may benefit others, or otherwise it
 may at least facilitate use showing our code.
 
-Currently, there is no need yet to let this be an actual magnolia module.
 
 SNAPSHOT's are present in sonatype.
 
