@@ -336,7 +336,7 @@ validator:
       $type: wordcountValidator
 ----
 
-== URL validator
+=== URL validator
 
 [source, yaml]
 ----
