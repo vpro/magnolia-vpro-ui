@@ -12,7 +12,6 @@ import nl.vpro.magnolia.ui.enumfield.AbstractEnumFieldDefinition;
 @FieldType("ageRatingField")
 public class AgeRatingSelectFieldDefinition extends AbstractEnumFieldDefinition<AgeRating> {
 
-
     public AgeRatingSelectFieldDefinition() {
         super(AgeRating.class);
     }

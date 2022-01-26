@@ -16,4 +16,9 @@ public class DisplayableConverter<E extends Enum<E> & Displayable> extends EnumC
             context.getLocale().orElse(Locales.getDefault())
         ).getValue();
     }
+
+    @Override
+    public String getIcon(E value) {
+        return value.getIcon().orElse(null);
+    }
 }

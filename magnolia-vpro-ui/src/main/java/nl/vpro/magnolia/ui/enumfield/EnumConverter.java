@@ -1,5 +1,7 @@
 package nl.vpro.magnolia.ui.enumfield;
 
+import java.util.Optional;
+
 import com.vaadin.data.*;
 
 public class EnumConverter<E extends Enum<E>> implements Converter<String, E> {
@@ -15,13 +17,9 @@ public class EnumConverter<E extends Enum<E>> implements Converter<String, E> {
         if (value == null) {
             return Result.ok(null);
         }
-        for (E e : clazz.getEnumConstants()) {
-            if (convertToPresentation(e, context).equals(value)) {
-                return Result.ok(e);
-            }
-        }
+        Optional<E> e =  fromString(value, context);
         //log.warn("Could not convert " + value + " to " + clazz);
-        return Result.ok(null);
+        return e.map(Result::ok).orElseGet(() -> Result.ok(null));
     }
 
     @Override
@@ -31,4 +29,23 @@ public class EnumConverter<E extends Enum<E>> implements Converter<String, E> {
         }
         return value.toString();
     }
+
+    private Optional<E> fromString(String value, ValueContext context) {
+        for (E e : clazz.getEnumConstants()) {
+            if (convertToPresentation(e, context).equals(value)) {
+                return Optional.of(e);
+            }
+        }
+        return Optional.empty();
+    }
+
+    public String getIcon(String value, ValueContext context) {
+        return getIcon(Enum.valueOf(clazz, value));
+    }
+
+
+    public String getIcon(E value) {
+        return null;
+    }
+
 }

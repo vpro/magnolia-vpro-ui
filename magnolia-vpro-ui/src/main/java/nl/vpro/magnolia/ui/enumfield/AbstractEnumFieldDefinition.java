@@ -1,28 +1,32 @@
 package nl.vpro.magnolia.ui.enumfield;
 
-import com.vaadin.data.*;
 import info.magnolia.ui.field.ConfiguredFieldDefinition;
-import java.util.Optional;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
+
+import java.util.Optional;
+
+import com.vaadin.data.Result;
+import com.vaadin.data.ValueContext;
+
 import nl.vpro.i18n.Displayable;
 
 /**
  * Abstract super class for {@link Enum}
  * @author Michiel Meeuwissen
- * @since 3.0
+ * @since 1.0
  */
 @SuppressWarnings("rawtypes")
 @Log4j2
-public abstract class AbstractEnumFieldDefinition<E extends Enum> extends ConfiguredFieldDefinition<String> {
+public abstract class AbstractEnumFieldDefinition<E extends Enum<E>> extends ConfiguredFieldDefinition<String> {
 
 
     private Class<E> enumClass;
 
 
     @Getter
-    private Converter<String, E> converter;
+    private EnumConverter<E> converter;
 
     @Getter
     @Setter
@@ -52,7 +56,7 @@ public abstract class AbstractEnumFieldDefinition<E extends Enum> extends Config
         return enumClass;
     }
 
-    public void setConverter(Converter<String, E> converter) {
+    public void setConverter(EnumConverter<E> converter) {
         if (converter != null) {
             this.converter = converter;
         } else if (this.converter != null) {
@@ -92,12 +96,12 @@ public abstract class AbstractEnumFieldDefinition<E extends Enum> extends Config
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})
-    protected Converter<String, E> converterFromFromEnum(Class<E> enumClass) {
+    protected EnumConverter<E> converterFromFromEnum(Class<E> enumClass) {
         return getDisplayableConverter(enumClass).orElseGet(() ->  new EnumConverter(enumClass));
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})
-    Optional<Converter<String, E>> getDisplayableConverter(Class<E> enumClass) {
+    Optional<EnumConverter<E>> getDisplayableConverter(Class<E> enumClass) {
         try {
             return Optional.of(enumClass)
                 .filter(Displayable.class::isAssignableFrom)

@@ -1,11 +1,16 @@
 package nl.vpro.magnolia.ui.enumfield;
 
-import com.vaadin.data.ValueContext;
-import com.vaadin.ui.*;
+import lombok.extern.log4j.Log4j2;
+
 import java.util.*;
 import java.util.stream.Collectors;
-import lombok.extern.log4j.Log4j2;
+
 import org.vaadin.addons.ComboBoxMultiselect;
+
+import com.vaadin.data.ValueContext;
+import com.vaadin.server.ExternalResource;
+import com.vaadin.server.Resource;
+import com.vaadin.ui.*;
 
 @Log4j2
 public class EnumField<E extends Enum<E>> extends CustomField<String> {
@@ -25,21 +30,33 @@ public class EnumField<E extends Enum<E>> extends CustomField<String> {
     }
 
     protected void createComponent() {
+        IconGenerator<String> iconGenerator = new IconGenerator<String>() {
+            @Override
+            public Resource apply(String item) {
+                String icon = definition.getConverter().getIcon(item, valueContext);
+                if (icon == null) {
+                    return null;
+                } else {
+                    return new ExternalResource(icon);
+                }
+            }
+        };
         if (definition.isMultiselect()) {
             ComboBoxMultiselect<String> multiselect = new ComboBoxMultiselect<>();
             multiselect.setItemCaptionGenerator((ItemCaptionGenerator<String>) EnumField.this::getCaption);
+            multiselect.setItemIconGenerator(iconGenerator);
             listing = multiselect;
         } else {
             ComboBox<String> comboBox = new ComboBox<>();
             comboBox.setEmptySelectionAllowed(! definition.isRequired());
             comboBox.setItemCaptionGenerator((ItemCaptionGenerator<String>) EnumField.this::getCaption);
+            comboBox.setItemIconGenerator(iconGenerator);
             listing = comboBox;
         }
 
 
         valueContext = new ValueContext(listing);
-        Class<? extends Enum<?>> enumClass = definition.getEnum();
-
+        Class<E> enumClass = definition.getEnum();
         listing.setItems(
             Arrays.stream(enumClass.getEnumConstants()).map(Enum::name)
         );
