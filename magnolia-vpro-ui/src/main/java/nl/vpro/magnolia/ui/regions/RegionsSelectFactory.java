@@ -29,7 +29,7 @@ public class RegionsSelectFactory extends ComboBoxFieldFactory<Region, RegionSel
         // Let's then use resource servlet of magnolia itself
 
         Page.getCurrent().addDependency(
-            new Dependency(Dependency.Type.STYLESHEET, "/.resources/magnolia-vpro-ui/regions.css")
+            new Dependency(Dependency.Type.STYLESHEET, "/.resources/vpro-ui/regions.css")
         );
         return component;
     }

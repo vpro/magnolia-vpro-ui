@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sv:node xmlns:sv="http://www.jcp.org/jcr/sv/1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         sv:name="kijkwijzer">
+   <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>mgnl:contentNode</sv:value>
+   </sv:property>
+   <sv:property sv:name="class" sv:type="String">
+      <sv:value>info.magnolia.voting.voters.URIStartsWithVoter</sv:value>
+   </sv:property>
+   <sv:property sv:name="pattern" sv:type="String">
+      <sv:value>/kijkwijzer/</sv:value>
+   </sv:property>
+</sv:node>

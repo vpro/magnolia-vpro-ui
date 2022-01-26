@@ -1,3 +1,0 @@
-'kijkwijzer':
-  'class': 'info.magnolia.voting.voters.URIStartsWithVoter'
-  'pattern': '/kijkwijzer/'

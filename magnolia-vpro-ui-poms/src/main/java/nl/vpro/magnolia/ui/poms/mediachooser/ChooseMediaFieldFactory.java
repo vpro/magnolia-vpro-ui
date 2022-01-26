@@ -4,15 +4,18 @@
  */
 package nl.vpro.magnolia.ui.poms.mediachooser;
 
+import info.magnolia.objectfactory.ComponentProvider;
+import info.magnolia.ui.field.factory.AbstractFieldFactory;
+import lombok.extern.log4j.Log4j2;
+
+import java.util.stream.Collectors;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import com.vaadin.server.Page;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
-import info.magnolia.objectfactory.ComponentProvider;
-import info.magnolia.ui.field.factory.AbstractFieldFactory;
-import java.util.stream.Collectors;
-import javax.inject.Inject;
-import javax.inject.Named;
-import lombok.extern.log4j.Log4j2;
 
 /**
  * @author rico
@@ -50,7 +53,9 @@ public class ChooseMediaFieldFactory extends AbstractFieldFactory<String, Choose
             String id = mediaField.getTextField().getId();
             String mediaType = definition.getMediaType() == null ? "" : definition.getMediaType().stream().map(Enum::name).collect(Collectors.joining(","));
             String property = definition.getMediaProperty();
-            Page.getCurrent().getJavaScript().execute(String.format("window.nl_vpro_magnolia_ui_field_mediachooser('%s', '%s', '%s')", id, mediaType, property));
+            Page.getCurrent().getJavaScript().execute(
+                String.format("window.nl_vpro_magnolia_ui_field_mediachooser('%s', '%s', '%s')",
+                    id, mediaType, property));
         };
     }
 
