@@ -335,3 +335,26 @@ validator:
    wordcount:
       $type: wordcountValidator
 ----
+
+== URL validator
+
+[source, yaml]
+----
+validator:
+   url:
+      $type: urlValidator
+----
+
+[NOTE]
+====
+For this to work you need
+
+.Dependency on validator implementation
+[source, xml]
+----
+<dependency>
+  <groupId>nl.vpro.shared</groupId>
+  <artifactId>vpro-shared-validation</artifactId>
+</dependency>
+----
+====

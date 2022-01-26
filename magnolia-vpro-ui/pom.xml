@@ -27,6 +27,13 @@
       <optional>true</optional>
     </dependency>
 
+    <!-- You need this dependency if you need urlValidator-->
+    <dependency>
+      <groupId>nl.vpro.shared</groupId>
+      <artifactId>vpro-shared-validation</artifactId>
+      <optional>true</optional>
+    </dependency>
+
     <!-- You need this dependency if your want to use $type: beanValidator -->
     <dependency>
       <groupId>javax.validation</groupId>
