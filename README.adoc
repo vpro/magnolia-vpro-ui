@@ -3,7 +3,7 @@
 :toclevels: 5
 
 
-image:https://github.com/vpro/magnolia-vpro-ui/workflows/build/badge.svg?[Build Status,link=https://github.com/vpro/magnolia-vpro-ui/actions?query=workflow%build]
+image:https://github.com/vpro/magnolia-vpro-ui/workflows/build/badge.svg?[Build Status,link=https://github.com/vpro/magnolia-vpro-ui/actions/workflows/maven.yml]
 image:https://img.shields.io/maven-central/v/nl.vpro/magnolia-vpro-ui.svg[MavenCentral,link=https://search.maven.org/search?q=g:%22nl.vpro%22]
 // image:http://www.javadoc.io/badge/nl.vpro.magnolia/magnolia-vpro-ui/.svg?color=blue[javadoc,link=http://www.javadoc.io/doc/nl.vpro.magnolia/magnolia-vpro-ui/]
 // image:https://codecov.io/gh/vpro/magnolia-vpro-ui/branch/main/graph/badge.svg[codecov,link=https://codecov.io/gh/vpro/magnolia-vpro-ui]
@@ -260,6 +260,14 @@ For this to work you need
 ----
 ====
 
+=== date only column
+
+[souce, yaml]
+----
+ description:
+   $type: dateonlyColumn
+----
+
 == Validators
 
 === Bean validation [[bean_validation]]
@@ -316,4 +324,14 @@ validator:
 validator:
    embedValidation:
       $type: linkFieldValidator
+----
+
+
+=== Word count validator
+
+[source, yaml]
+----
+validator:
+   wordcount:
+      $type: wordcountValidator
 ----
