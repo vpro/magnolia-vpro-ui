@@ -69,6 +69,8 @@ We provide a simpler version to use enums in a combobox.
  type:
     $type: enumField
     enum: nl.vpro.domain.koos.KoosTipType
+    multiselect: <true|false>
+    twinselect: <true|false>
 ----
 
 Just specify as field $type `enumField`, and the name of the enum.
