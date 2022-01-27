@@ -3,8 +3,7 @@ package nl.vpro.magnolia.ui.regions;
 import info.magnolia.cms.i18n.I18nContentSupport;
 import info.magnolia.ui.field.SelectFieldSupport;
 
-import java.util.Comparator;
-import java.util.Locale;
+import java.util.*;
 import java.util.stream.Stream;
 
 import javax.inject.Inject;
@@ -42,7 +41,7 @@ public class RegionsSelectFieldSupport implements SelectFieldSupport<Region> {
     public DataProvider<Region, String> getDataProvider() {
 
         final Locale locale = i18nContentSupport.getLocale();
-        final Region.Type regionType = fieldDefinition.getRegionType();
+
         return new AbstractDataProvider<Region, String>() {
             @Override
             public boolean isInMemory() {
@@ -56,11 +55,7 @@ public class RegionsSelectFieldSupport implements SelectFieldSupport<Region> {
 
             @Override
             public Stream<Region> fetch(Query<Region, String> query) {
-                return regionService
-                    .values(fieldDefinition.getRegionClass())
-                    .map(r -> (Region) r)
-                    .filter(r -> regionType == null
-                        || r.getType().equals(regionType))
+                return fieldDefinition.regions()
                     .sorted(
                         Comparator.comparing(r -> r.getName(locale))
                     );
@@ -72,7 +67,7 @@ public class RegionsSelectFieldSupport implements SelectFieldSupport<Region> {
 
     @Override
     public ItemCaptionGenerator<Region> getItemCaptionGenerator() {
-        return region -> region.getName(i18nContentSupport.getLocale());
+        return region -> region.getName(i18nContentSupport.getLocale()) + (fieldDefinition.isShowCode() ? " (" + region.getCode() + ")" : "");
     }
 
     @Override

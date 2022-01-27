@@ -6,9 +6,14 @@ import info.magnolia.ui.field.FieldType;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+import java.util.stream.Stream;
+
 import javax.inject.Inject;
 
+import org.meeuw.i18n.countries.CurrentCountry;
 import org.meeuw.i18n.regions.Region;
+import org.meeuw.i18n.regions.RegionService;
 
 import com.neovisionaries.i18n.CountryCode;
 
@@ -19,13 +24,20 @@ import com.neovisionaries.i18n.CountryCode;
 @FieldType("regionField")
 public class RegionSelectFieldDefinition extends ComboBoxFieldDefinition<Region> {
 
+    // uses java service loader
+    private static final RegionService regionService = RegionService.getInstance();
+
     @Getter
     @Setter
     private boolean useIcons;
 
     @Getter
     @Setter
-    private Region.Type regionType;
+    private boolean showCode;
+
+    @Getter
+    @Setter
+    private List<Region.Type> regionType;
 
     @Getter
     @Setter
@@ -34,7 +46,7 @@ public class RegionSelectFieldDefinition extends ComboBoxFieldDefinition<Region>
 
     @Getter
     @Setter
-    private CountryCode.Assignment countryAssignment;
+    private List<CountryCode.Assignment> countryAssignment;
 
     @Inject
     public RegionSelectFieldDefinition(
@@ -42,6 +54,22 @@ public class RegionSelectFieldDefinition extends ComboBoxFieldDefinition<Region>
         setFactoryClass(RegionsSelectFactory.class);
         setDatasource(dataSourceDefinition);
         setStyleName("region");
+    }
+
+
+    Stream<Region> regions() {
+        final List<Region.Type> regionType = getRegionType(); // bytebuddy?
+        return regionService
+            .values(getRegionClass())
+            .filter(r -> {
+                List<CountryCode.Assignment> countryAssignment = getCountryAssignment();
+                return countryAssignment == null || countryAssignment.isEmpty() ||
+                    (!(r instanceof CurrentCountry)) ||
+                    countryAssignment.contains(((CurrentCountry) r).getAssignment());
+            })
+            .map(r -> (Region) r)
+            .filter(r -> regionType == null || regionType.isEmpty()
+                || regionType.contains(r.getType()));
     }
 
 }
