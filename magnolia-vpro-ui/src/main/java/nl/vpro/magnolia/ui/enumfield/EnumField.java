@@ -54,9 +54,7 @@ public class EnumField<E extends Enum<E>> extends CustomField<String> {
 
         valueContext = new ValueContext(listing);
         Class<E> enumClass = definition.getEnum();
-        listing.setItems(
-            Arrays.stream(enumClass.getEnumConstants()).map(Enum::name)
-        );
+        listing.setItems(definition.getItems().map(Enum::name));
         listing.addStyleNames("vpro-ui", "vpro-ui-enumfield", "vpro-ui-enumfield-" + enumClass.getSimpleName().toLowerCase());
     }
 
@@ -110,5 +108,7 @@ public class EnumField<E extends Enum<E>> extends CustomField<String> {
     protected String getCaption(String value) {
         return definition.convertToPresentation(value, valueContext);
     }
+
+
 
 }

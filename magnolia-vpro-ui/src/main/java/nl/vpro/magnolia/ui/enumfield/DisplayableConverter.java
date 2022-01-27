@@ -6,8 +6,12 @@ import nl.vpro.i18n.Locales;
 
 public class DisplayableConverter<E extends Enum<E> & Displayable> extends EnumConverter<E> {
 
-    public DisplayableConverter(Class<E> clazz) {
+
+    private final boolean filter;
+
+    public DisplayableConverter(Class<E> clazz, boolean filter) {
         super(clazz);
+        this.filter = filter;
     }
 
     @Override
@@ -20,5 +24,10 @@ public class DisplayableConverter<E extends Enum<E> & Displayable> extends EnumC
     @Override
     public String getIcon(E value) {
         return value.getIcon().orElse(null);
+    }
+
+    @Override
+    public boolean filter(E value) {
+        return (! filter) || value.display();
     }
 }

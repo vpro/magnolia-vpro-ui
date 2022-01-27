@@ -48,4 +48,8 @@ public class EnumConverter<E extends Enum<E>> implements Converter<String, E> {
         return null;
     }
 
+    protected boolean filter(E value) {
+        return true;
+    }
+
 }
