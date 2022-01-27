@@ -11,14 +11,12 @@ import javax.inject.Inject;
 import org.meeuw.i18n.regions.Region;
 
 import com.neovisionaries.i18n.CountryCode;
-import com.vaadin.annotations.StyleSheet;
 
 /**
  * @author Michiel Meeuwissen
  * @since 1.0
  */
 @FieldType("regionField")
-@StyleSheet("style.css") // doesn't work. I need to put it on the custom field
 public class RegionSelectFieldDefinition extends ComboBoxFieldDefinition<Region> {
 
     @Getter
