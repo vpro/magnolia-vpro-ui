@@ -42,7 +42,7 @@ Differences with: https://github.com/magnolia-community/color-picker-field
 - more configurable
 **  `text: <NOT|BEFORE|AFTER>`
 **  `cssInPopup: <true: false>`
-** `format: <HASH|RGB|RGBA>
+** `format: <HASH|RGB|RGBA>`
 ** `pickerWidth: 100`
 ** `pickerHeight: 100`
 
@@ -139,6 +139,10 @@ fields:
     max: 11
 ----
 
+=== Virtual value field
+
+This a field to just show some 'calculated' value. Extend `VirtualValueFieldDefinition` and implement the abstract method. (look out with bytebuddy, access all fields via getters)
+
 === Random UUID
 
 Text field which default value is a random UUID.
@@ -212,7 +216,7 @@ The idea is to use the link:https://beanvalidation.org/2.0/[`javax.validation`] 
 .Example usage of beanValidator validator.
 [source, yaml]
 ----
-validator:
+validators:
    urlValidation:
       $type: beanValidator
       bean: nl.vpro.koos.KoosTip
@@ -245,7 +249,7 @@ Checks whether the value is acceptable as an embed code. The contained HTML must
 .Example usage of htmlEmbed validator.
 [source, yaml]
 ----
-validator:
+validators:
    embedValidation:
       $type: htmlEmbedValidator
 ----
@@ -256,7 +260,7 @@ validator:
 .Example usage of linkValidator
 [source, yaml]
 ----
-validator:
+validators:
    embedValidation:
       $type: linkFieldValidator
 ----
@@ -266,7 +270,7 @@ validator:
 
 [source, yaml]
 ----
-validator:
+validators:
    wordcount:
       $type: wordcountValidator
 ----
@@ -275,7 +279,7 @@ validator:
 
 [source, yaml]
 ----
-validator:
+validators:
    url:
       $type: urlValidator
 ----
