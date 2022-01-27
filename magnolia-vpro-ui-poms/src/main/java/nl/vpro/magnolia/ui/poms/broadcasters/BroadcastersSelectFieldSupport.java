@@ -2,6 +2,7 @@ package nl.vpro.magnolia.ui.poms.broadcasters;
 
 import info.magnolia.ui.field.SelectFieldSupport;
 
+import java.util.Comparator;
 import java.util.stream.Stream;
 
 import javax.inject.Inject;
@@ -11,8 +12,7 @@ import com.vaadin.data.provider.*;
 import com.vaadin.ui.IconGenerator;
 import com.vaadin.ui.ItemCaptionGenerator;
 
-import nl.vpro.domain.user.BroadcasterService;
-import nl.vpro.domain.user.Organization;
+import nl.vpro.domain.user.*;
 
 public class BroadcastersSelectFieldSupport implements SelectFieldSupport<String> {
 
@@ -41,6 +41,7 @@ public class BroadcastersSelectFieldSupport implements SelectFieldSupport<String
             @Override
             public Stream<String> fetch(Query<String, String> query) {
                 return broadcasterService.findAll().stream()
+                    .sorted(Comparator.comparing(Broadcaster::getDisplayName))
                     .map(Organization::getId);
             }
         };
