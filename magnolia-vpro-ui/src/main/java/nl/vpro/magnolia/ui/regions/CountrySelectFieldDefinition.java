@@ -3,9 +3,13 @@ package nl.vpro.magnolia.ui.regions;
 
 import info.magnolia.ui.field.FieldType;
 
+import java.util.Arrays;
+
 import javax.inject.Inject;
 
-import org.meeuw.i18n.countries.Country;
+import org.meeuw.i18n.countries.CurrentCountry;
+
+import com.neovisionaries.i18n.CountryCode;
 
 /**
  * @author Michiel Meeuwissen
@@ -18,7 +22,8 @@ public class CountrySelectFieldDefinition extends RegionSelectFieldDefinition {
     @Inject
     public CountrySelectFieldDefinition(RegionDataSource dataSourceDefinition) {
         super(dataSourceDefinition);
-        setRegionClass(Country.class);
+        setRegionClass(CurrentCountry.class);
+        setCountryAssignment(Arrays.asList(CountryCode.Assignment.OFFICIALLY_ASSIGNED));
     }
 
 }
