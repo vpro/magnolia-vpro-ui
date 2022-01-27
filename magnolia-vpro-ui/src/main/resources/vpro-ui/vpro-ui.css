@@ -1,3 +1,12 @@
 .v-filterselect-region .v-icon + [class*="input"] {
     padding-left: 60px
 }
+
+.v-filterselect-vpro-ui-enumfield-agerating .v-icon + [class*="input"],
+.v-filterselect-vpro-ui-enumfield-contentratings .v-icon + [class*="input"] {
+    padding-left: 40px;
+
+}
+.v-filterselect-vpro-ui-enumfield {
+    width: 100%;
+}

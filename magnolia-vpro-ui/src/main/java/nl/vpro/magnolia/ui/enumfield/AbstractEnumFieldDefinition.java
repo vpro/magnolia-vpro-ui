@@ -32,6 +32,12 @@ public abstract class AbstractEnumFieldDefinition<E extends Enum<E>> extends Con
     @Setter
     private boolean multiselect = false;
 
+
+
+    @Getter
+    @Setter
+    private boolean useIcons = true;
+
     @SuppressWarnings("unchecked")
     public AbstractEnumFieldDefinition() {
         setFactoryClass((Class) EnumFieldFactory.class);

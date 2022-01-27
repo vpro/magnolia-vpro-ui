@@ -53,6 +53,7 @@ public class IntegerRangeSelectFieldDefinition extends ConfiguredFieldDefinition
                 @Override
                 protected Component initContent() {
                     comboBox.setItems(IntStream.range(definition.getMin(), definition.getMax() + 1).boxed().toArray(Integer[]::new));
+                    comboBox.addStyleNames("vpro-ui", "vpro-ui-integerrange");
                     return comboBox;
                 }
             };

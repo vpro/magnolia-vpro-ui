@@ -27,7 +27,7 @@ public class RegionsSelectFactory extends ComboBoxFieldFactory<Region, RegionSel
         // we can try to use published resources, but I can't figure it out.
         // (it's easier with plain vaadin)
         // Let's then use resource servlet of magnolia itself
-
+        component.addStyleNames("vpro-ui");
         Page.getCurrent().addDependency(
             new Dependency(Dependency.Type.STYLESHEET, "/.resources/vpro-ui/vpro-ui.css")
         );

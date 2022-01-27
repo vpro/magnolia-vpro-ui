@@ -30,12 +30,13 @@ public class EnumField<E extends Enum<E>> extends CustomField<String> {
 
     protected void createComponent() {
         IconGenerator<String> iconGenerator = item -> {
-            String icon = definition.getConverter().getIcon(item, valueContext);
-            if (icon == null) {
-                return null;
-            } else {
-                return new ExternalResource(icon);
+            if (definition.isUseIcons()) {
+                String icon = definition.getConverter().getIcon(item, valueContext);
+                if (icon != null) {
+                    return new ExternalResource(icon);
+                }
             }
+            return null;
         };
         if (definition.isMultiselect()) {
             ComboBoxMultiselect<String> multiselect = new ComboBoxMultiselect<>();
@@ -56,7 +57,7 @@ public class EnumField<E extends Enum<E>> extends CustomField<String> {
         listing.setItems(
             Arrays.stream(enumClass.getEnumConstants()).map(Enum::name)
         );
-        listing.addStyleName(enumClass.getSimpleName().toLowerCase());
+        listing.addStyleNames("vpro-ui", "vpro-ui-enumfield", "vpro-ui-enumfield-" + enumClass.getSimpleName().toLowerCase());
     }
 
     @Override
