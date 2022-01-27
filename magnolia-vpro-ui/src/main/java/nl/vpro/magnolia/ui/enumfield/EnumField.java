@@ -38,19 +38,33 @@ public class EnumField<E extends Enum<E>> extends CustomField<String> {
             }
             return null;
         };
-        if (definition.isMultiselect()) {
-            ComboBoxMultiselect<String> multiselect = new ComboBoxMultiselect<>();
-            multiselect.setItemCaptionGenerator((ItemCaptionGenerator<String>) EnumField.this::getCaption);
-            multiselect.setItemIconGenerator(iconGenerator);
-            listing = multiselect;
+        boolean isMultiselect = definition.getMultiselect() == Boolean.TRUE || definition.isTwinselect();
+        if (isMultiselect) {
+            if (definition.isTwinselect()) {
+                if (definition.getUseIcons() == Boolean.TRUE) {
+                    throw new IllegalStateException();
+                }
+                TwinColSelect<String> twinColSelect = new TwinColSelect<>();
+                twinColSelect.setItemCaptionGenerator((ItemCaptionGenerator<String>) EnumField.this::getCaption);
+                twinColSelect.setRows((int) definition.getItems().limit(10).count());
+                listing = twinColSelect;
+            } else {
+                ComboBoxMultiselect<String> multiselect = new ComboBoxMultiselect<>();
+                multiselect.setItemCaptionGenerator((ItemCaptionGenerator<String>) EnumField.this::getCaption);
+                multiselect.setItemIconGenerator(iconGenerator);
+                listing = multiselect;
+            }
         } else {
+            if (definition.isTwinselect()) {
+                throw new IllegalStateException();
+            }
             ComboBox<String> comboBox = new ComboBox<>();
             comboBox.setEmptySelectionAllowed(! definition.isRequired());
             comboBox.setItemCaptionGenerator((ItemCaptionGenerator<String>) EnumField.this::getCaption);
             comboBox.setItemIconGenerator(iconGenerator);
             listing = comboBox;
         }
-
+        listing.setWidthFull();
 
         valueContext = new ValueContext(listing);
         Class<E> enumClass = definition.getEnum();

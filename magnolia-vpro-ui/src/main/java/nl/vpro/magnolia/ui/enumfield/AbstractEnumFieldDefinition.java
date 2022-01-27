@@ -30,11 +30,15 @@ public abstract class AbstractEnumFieldDefinition<E extends Enum<E>> extends Con
 
     @Getter
     @Setter
-    private boolean multiselect = false;
+    private Boolean multiselect = null;
+
+
+    @Getter
+    @Setter boolean twinselect = false;
 
     @Getter
     @Setter
-    private boolean useIcons = true;
+    private Boolean useIcons = null;
 
 
     @Getter
@@ -124,4 +128,8 @@ public abstract class AbstractEnumFieldDefinition<E extends Enum<E>> extends Con
         return Arrays.stream(getEnum().getEnumConstants()).filter(e -> getConverter().filter(e));
     }
 
+
+    public boolean isUseIcons() {
+        return useIcons == null || useIcons == Boolean.TRUE;
+    }
 }
