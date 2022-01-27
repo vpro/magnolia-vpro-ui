@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 
+import java.util.Arrays;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import com.vaadin.data.Result;
 import com.vaadin.data.ValueContext;
@@ -21,9 +23,7 @@ import nl.vpro.i18n.Displayable;
 @Log4j2
 public abstract class AbstractEnumFieldDefinition<E extends Enum<E>> extends ConfiguredFieldDefinition<String> {
 
-
     private Class<E> enumClass;
-
 
     @Getter
     private EnumConverter<E> converter;
@@ -32,11 +32,14 @@ public abstract class AbstractEnumFieldDefinition<E extends Enum<E>> extends Con
     @Setter
     private boolean multiselect = false;
 
+    @Getter
+    @Setter
+    private boolean useIcons = true;
 
 
     @Getter
     @Setter
-    private boolean useIcons = true;
+    private boolean filter = true;
 
     @SuppressWarnings("unchecked")
     public AbstractEnumFieldDefinition() {
@@ -80,7 +83,6 @@ public abstract class AbstractEnumFieldDefinition<E extends Enum<E>> extends Con
     /**
      * Converts the name of the enum to a value to display in the combobox.
      *
-     * This per default is
      */
     protected String convertToPresentation(String value, ValueContext context) {
         return convertToPresentation(getEnumByName(value), context);
@@ -95,7 +97,7 @@ public abstract class AbstractEnumFieldDefinition<E extends Enum<E>> extends Con
 
 
     @SuppressWarnings({"unchecked", "rawtypes"})
-    private  E getEnumByName(String value) {
+    protected  E getEnumByName(String value) {
         Class currentEnumClass = getEnum();
         assert currentEnumClass != null; // It seems that bytebuddy is messing all stuff horribly up. this.enumClass may simply be null.
         return value == null ? null : (E) Enum.valueOf(currentEnumClass, value);
@@ -111,12 +113,15 @@ public abstract class AbstractEnumFieldDefinition<E extends Enum<E>> extends Con
         try {
             return Optional.of(enumClass)
                 .filter(Displayable.class::isAssignableFrom)
-                .map(e -> new DisplayableConverter(e))
+                .map(e -> new DisplayableConverter(e, isFilter()))
                 ;
         } catch (NoClassDefFoundError classNotFoundException) {
             return Optional.empty();
         }
+    }
 
+    Stream<E> getItems() {
+        return Arrays.stream(getEnum().getEnumConstants()).filter(e -> getConverter().filter(e));
     }
 
 }
