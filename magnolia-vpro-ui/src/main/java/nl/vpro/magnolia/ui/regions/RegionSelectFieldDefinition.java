@@ -1,6 +1,7 @@
 package nl.vpro.magnolia.ui.regions;
 
 
+import info.magnolia.ui.contentapp.FilteringMode;
 import info.magnolia.ui.field.ComboBoxFieldDefinition;
 import info.magnolia.ui.field.FieldType;
 import lombok.Getter;
@@ -54,6 +55,9 @@ public class RegionSelectFieldDefinition extends ComboBoxFieldDefinition<Region>
         setFactoryClass(RegionsSelectFactory.class);
         setDatasource(dataSourceDefinition);
         setStyleName("region");
+        setTextInputAllowed(true);
+        setFilteringMode(FilteringMode.CONTAINS);
+        setPageLength(40);
     }
 
 
