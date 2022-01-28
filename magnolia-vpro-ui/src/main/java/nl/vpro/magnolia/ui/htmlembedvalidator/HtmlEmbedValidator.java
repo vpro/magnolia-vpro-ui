@@ -47,7 +47,7 @@ public class HtmlEmbedValidator extends AbstractValidator<String> {
         Parser parser = Parser.htmlParser().setTrackErrors(10);
         Document doc = Jsoup.parse(value, "", parser);
         if (!parser.getErrors().isEmpty()) {
-            log.warn(parser.getErrors());
+            log.debug(parser.getErrors());
             return ValidationResult.error(simpleTranslator.translate(definition.getHtmlInvalidMessage()));
         }
         Element body = doc.body();
