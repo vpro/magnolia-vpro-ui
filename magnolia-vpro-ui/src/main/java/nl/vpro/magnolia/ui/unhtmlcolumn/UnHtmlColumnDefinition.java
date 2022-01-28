@@ -35,7 +35,9 @@ public class UnHtmlColumnDefinition extends ConfiguredColumnDefinition<Node> {
         @Override
         public String apply(Node property) {
             try {
-                return TextUtil.stripHtml(property.getProperty(definition.getName()).getString());
+                return TextUtil.sanitize(
+                    property.getProperty(definition.getName()).getString()
+                );
             } catch (RepositoryException pathNotFoundException) {
                 return "";
             }
