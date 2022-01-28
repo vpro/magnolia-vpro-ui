@@ -6,10 +6,13 @@ package nl.vpro.magnolia.ui.poms.mediachooser;
 
 import info.magnolia.ui.field.ConfiguredFieldDefinition;
 import info.magnolia.ui.field.FieldType;
-import java.util.List;
-import java.util.stream.Collectors;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import nl.vpro.domain.Displayable;
 import nl.vpro.domain.media.MediaType;
 
 /**
@@ -34,10 +37,10 @@ public class ChooseMediaFieldDefinition extends ConfiguredFieldDefinition<String
         if (buttonLabel != null) {
             return buttonLabel;
         } else if (mediaType == null || mediaType.isEmpty()) {
-            return "Kies een " + MediaType.MEDIA.getDisplayName();
+            return "Kies uit " + MediaType.MEDIA.getDisplayName().toLowerCase();
         } else {
             return "Kies een " + mediaType.stream()
-                .map(mt -> mt.getDisplayName())
+                .map(Displayable::getDisplayName)
                 .map(String::toLowerCase)
                 .collect(Collectors.joining(" of een "));
         }
