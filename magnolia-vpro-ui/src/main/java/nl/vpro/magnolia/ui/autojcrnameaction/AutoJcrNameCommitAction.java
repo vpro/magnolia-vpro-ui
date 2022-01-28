@@ -54,7 +54,7 @@ public class AutoJcrNameCommitAction extends CommitAction<Node> {
         this.getValueContext().getSingle().ifPresent(Exceptions.wrap().consumer(item -> {
             FormView<Node> form = (FormView<Node>) getForm();
             form.write(item);
-            String title = form.<String>getPropertyValue(propertyName).orElseThrow(ActionExecutionException::new);
+            String title = form.getPropertyValue(propertyName).map(Object::toString).orElseThrow(ActionExecutionException::new);
             title = nodeNameHelper.getUniqueName(item.getParent(), nodeNameHelper.getValidatedName(title));
             if (StringUtils.isNotBlank(title)) {
                 NodeUtil.renameNode(item, title);
