@@ -158,6 +158,22 @@ fields:
     $type: randomUUIDField
 ----
 
+== Actions
+
+=== Auto JCR Name
+
+Can be used as a commit action. To fill in jcrName, based on another property
+
+[source, yaml]
+----
+ detail:
+    class: info.magnolia.ui.contentapp.detail.DetailDescriptor
+    actions:
+      commit:
+        $type: autoJcrCommitAction
+        propertyName: name # default is 'title'
+----
+
 == Columns
 === Referred column [[referred_column]]
 
