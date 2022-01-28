@@ -1,33 +1,26 @@
 package nl.vpro.magnolia.ui.virtualvaluefield;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import com.vaadin.data.HasValue;
-import com.vaadin.shared.Registration;
-import com.vaadin.ui.Label;
+import com.vaadin.ui.*;
 
 /**
  * Just wraps a {@link Label} in a field, so that it can be used to show some information in a form.
  */
-class VirtualValueField extends Label implements HasValue<String> {
+class VirtualValueField extends CustomField<String> {
 
-    @Getter
-    @Setter
-    private boolean requiredIndicatorVisible = false;
+    private final String value;
+    private final String name;
 
-    @Getter
-    @Setter
-    private boolean readOnly = true;
-
-    VirtualValueField(String value) {
-        super(value);
-        addStyleNames("vpro-ui", "vpro-ui-virtualfield");
+    public VirtualValueField(String value, String name) {
+        this.value = value;
+        this.name = name;
     }
 
-    @Override
-    public void setValue(String value) {
 
+    @Override
+    protected Component initContent() {
+        Label field = new Label(value);
+        field.addStyleNames("vpro-ui", "vpro-ui-virtualfield", "vpro-ui-virtualfield-" + name);
+        return field;
     }
 
     @Override
@@ -36,8 +29,7 @@ class VirtualValueField extends Label implements HasValue<String> {
     }
 
     @Override
-    public Registration addValueChangeListener(ValueChangeListener<String> listener) {
-        return () -> {};
+    protected void doSetValue(String value) {
+
     }
 }
-

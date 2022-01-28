@@ -31,7 +31,7 @@ public class VirtualValueFieldFactory extends AbstractFieldFactory<String, Virtu
     @Override
     protected Component createFieldComponent() { // It seems that this must return a field
         // so just wrap it in something silly
-        return new VirtualValueField(definition.calculateValue(valueContext));
+        return new VirtualValueField(definition.calculateValue(valueContext), definition.getName());
     }
 
 }
