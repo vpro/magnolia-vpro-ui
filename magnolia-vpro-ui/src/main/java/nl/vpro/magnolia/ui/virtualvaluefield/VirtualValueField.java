@@ -1,12 +1,9 @@
 package nl.vpro.magnolia.ui.virtualvaluefield;
 
-import org.vaadin.viritin.fields.LabelField;
-
-import com.vaadin.ui.Component;
-import com.vaadin.ui.CustomField;
+import com.vaadin.ui.*;
 
 /**
- * Just to unbind all values.
+ * Just wraps a {@link Label} in a field, so that it can be used to show some information in a form.
  */
 public class VirtualValueField extends CustomField<String> {
 
@@ -16,17 +13,17 @@ public class VirtualValueField extends CustomField<String> {
         this.value = value;
     }
 
-    @Override
-    public String getValue() {
-        return null;
-    }
 
     @Override
     protected Component initContent() {
-        LabelField<String> field = new LabelField<>();
-        field.setReadOnly(true);
-        field.setValue(value);
+        Label field = new Label(value);
+        field.addStyleNames("vpro-ui", "vpro-ui-virtualfield");
         return field;
+    }
+
+    @Override
+    public String getValue() {
+        return null;
     }
 
     @Override
