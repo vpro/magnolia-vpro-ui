@@ -3,6 +3,7 @@
 <module>
   <name>vpro-ui</name>
   <displayName>VPRO Magnolia UI module</displayName>
+  <versionHandler>nl.vpro.magnolia.ui.VproUiVersionHandler</versionHandler>
   <version>1.0</version>
   <components>
     <id>datasource-regions</id>

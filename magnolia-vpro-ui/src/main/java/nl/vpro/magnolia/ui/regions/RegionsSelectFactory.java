@@ -1,5 +1,6 @@
 package nl.vpro.magnolia.ui.regions;
 
+import info.magnolia.context.MgnlContext;
 import info.magnolia.objectfactory.ComponentProvider;
 import info.magnolia.ui.field.factory.ComboBoxFieldFactory;
 
@@ -29,7 +30,7 @@ public class RegionsSelectFactory extends ComboBoxFieldFactory<Region, RegionSel
         // Let's then use resource servlet of magnolia itself
         component.addStyleNames("vpro-ui");
         Page.getCurrent().addDependency(
-            new Dependency(Dependency.Type.STYLESHEET, "/.resources/vpro-ui/vpro-ui.css")
+            new Dependency(Dependency.Type.STYLESHEET, MgnlContext.getWebContext().getContextPath() + "/.resources/vpro-ui/vpro-ui.css")
         );
         return component;
     }

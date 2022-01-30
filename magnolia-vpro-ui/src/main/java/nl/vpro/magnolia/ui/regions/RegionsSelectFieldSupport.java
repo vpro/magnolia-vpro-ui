@@ -1,8 +1,14 @@
 package nl.vpro.magnolia.ui.regions;
 
 import info.magnolia.cms.i18n.I18nContentSupport;
+import info.magnolia.context.MgnlContext;
 import info.magnolia.ui.field.SelectFieldSupport;
+import lombok.SneakyThrows;
+import lombok.extern.log4j.Log4j2;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.*;
 import java.util.stream.Stream;
 
@@ -19,6 +25,7 @@ import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.IconGenerator;
 import com.vaadin.ui.ItemCaptionGenerator;
 
+@Log4j2
 public class RegionsSelectFieldSupport implements SelectFieldSupport<Region> {
 
     // uses java service loader
@@ -27,13 +34,22 @@ public class RegionsSelectFieldSupport implements SelectFieldSupport<Region> {
     private final RegionSelectFieldDefinition fieldDefinition;
     private final I18nContentSupport i18nContentSupport;
 
+    static final String WEBJARS;
+    public static final boolean HAS_WEBJARS_JAR;
+    static {
+        Optional<String> localWebJars = getLocalWebJars();
+        WEBJARS = getLocalWebJars().orElseGet(
+            RegionsSelectFieldSupport::getCdnWebJars
+        );
+        HAS_WEBJARS_JAR =  getLocalWebJars().isPresent();
+    }
+
     @Inject
     public RegionsSelectFieldSupport(
         RegionSelectFieldDefinition definition,
         I18nContentSupport i18nContentSupport) {
         this.fieldDefinition = definition;
         this.i18nContentSupport = i18nContentSupport;
-
     }
 
 
@@ -72,13 +88,12 @@ public class RegionsSelectFieldSupport implements SelectFieldSupport<Region> {
 
     @Override
     public IconGenerator<Region> getIconGenerator() {
-        //return item -> new ExternalResource("/webjars/flag-icon-css/flags/4x3/" + item.toLowerCase() + ".svg");
-
         return region -> {
             if (fieldDefinition.isUseIcons() && region instanceof CurrentCountry) {
                 CurrentCountry country = (CurrentCountry) region;
                 if (country.getCountryCode().getAssignment() == CountryCode.Assignment.OFFICIALLY_ASSIGNED) {
-                    return new ExternalResource("https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/flags/4x3/" + region.getCode().toLowerCase() + ".svg");
+                    String baseUrl = HAS_WEBJARS_JAR ? MgnlContext.getWebContext().getContextPath() + WEBJARS : WEBJARS;
+                    return new ExternalResource(baseUrl + region.getCode().toLowerCase() + ".svg");
                 }
             }
             return null;
@@ -102,5 +117,29 @@ public class RegionsSelectFieldSupport implements SelectFieldSupport<Region> {
             }
         };
 
+    }
+
+    private static Optional<String> getLocalWebJars() {
+        URL url  = RegionsSelectFieldSupport.class.getClassLoader().getResource("META-INF/maven/org.webjars.npm/flag-icon-css/pom.properties");
+        if (url != null) {
+            Properties prop = new Properties();
+            try (InputStream input = url.openStream()) {
+                prop.load(input);
+                return Optional.of("/webjars/flag-icon-css/" + prop.getProperty("version") + "/flags/4x3/");
+            } catch (IOException e) {
+                log.warn(e.getMessage());
+            }
+        }
+        return Optional.empty();
+    }
+
+    @SneakyThrows
+    static String getCdnWebJars()  {
+        URL url  = RegionsSelectFieldSupport.class.getClassLoader().getResource("META-INF/maven/nl.vpro.magnolia/magnolia-vpro-ui/maven.properties");
+        Properties prop = new Properties();
+        try (InputStream input = url.openStream()) {
+            prop.load(input);
+        }
+        return "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/" + prop.getProperty("flag-icon-css.version")+ "/flags/4x3/";
     }
 }

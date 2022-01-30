@@ -8,8 +8,30 @@
   </parent>
   <artifactId>magnolia-vpro-ui</artifactId>
 
+  <properties>
+    <flag-icon-css.version>3.5.0</flag-icon-css.version>
+  </properties>
+
+
   <build>
     <defaultGoal>install</defaultGoal>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>properties-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>write-project-properties</goal>
+            </goals>
+            <configuration>
+              <outputFile>${project.build.outputDirectory}/META-INF/maven/${project.groupId}/${project.artifactId}/maven.properties</outputFile>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
   <dependencies>
 
@@ -43,12 +65,14 @@
     </dependency>
 
 
-   <!-- <dependency>
-      &lt;!&ndash; alternatively just use https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css &ndash;&gt;
-      <groupId>org.webjars.bowergithub.lipis</groupId>
+    <dependency>
+      <groupId>org.webjars.npm</groupId>
       <artifactId>flag-icon-css</artifactId>
-      <version>3.4.6</version>
-    </dependency>-->
+      <version>${flag-icon-css.version}</version>
+      <!-- if present, it will be used -->
+      <!-- otherwise cdnjs.cloudflare.com will be used -->
+      <optional>true</optional>
+    </dependency>
   </dependencies>
 
 
