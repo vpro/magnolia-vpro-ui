@@ -94,7 +94,9 @@ Countries are displayed in current `Locale`, and stored as ISO 639 country code.
 
 Actually it is a specialization of `$type: regionField`, which could also be used for other type of regions like country subdivisions or continents.
 
-image:{docdir}/doc/countries.png[]]
+[#countries]
+.Example of countries drop down in use
+image::{docdir}/doc/countries.png[Countries drop down]
 
 === Integer range field [[integerrange_field]]
 
@@ -323,9 +325,12 @@ fields:
       - SERIES
 ----
 
-A property poms `poms.baseUrl=https://poms.omroep.nl/` needs to be present
+A property poms `poms.baseUrl=https://poms.omroep.nl/` is used and can be overriden to point to test or acceptance environment.
 
-image:{docdir}/doc/poms-selector.png[]
+[#poms-selector]
+.Example of poms selector in use
+[link=https://poms.omroep.nl/CMSSelector/example]
+image::{docdir}/doc/poms-selector.png[pomsselector]
 
 
 ==== Thesaurus
@@ -350,7 +355,9 @@ fields:
 
 link:https://www.kijkwijzer.nl/[NICAM] age ratings
 
-image:{docdir}/doc/ageratings.png[]
+[#ageratings]
+.Example of age ratings in use
+image::{docdir}/doc/ageratings.png[ageratings drop down]
 
 ==== Content ratings
 
