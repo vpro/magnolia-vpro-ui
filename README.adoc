@@ -259,9 +259,18 @@ validators:
 
 [source, yaml]
 ----
-validators:
-   wordcount:
-      $type: wordcountValidator
+fields:
+  a_text_field:
+      description: 10 words max!
+      rows: 5
+      required: false
+      $type: richTextField
+      validators:
+        words:
+          parseHtml: true
+          $type: wordcountValidator
+          wordcount: 10
+
 ----
 
 === URL validator
@@ -284,8 +293,15 @@ For this to work you need
   <groupId>nl.vpro.shared</groupId>
   <artifactId>vpro-shared-validation</artifactId>
 </dependency>
+<dependency>
+  <groupId>org.hibernate.validator</groupId>
+  <artifactId>hibernate-validator</artifactId>
+  <version>6.2.1.Final</version>
+</dependency>
 ----
 ====
+
+The URL must parse, have a scheme, and the host must have at least two parts.
 
 
 == POMS extensions
