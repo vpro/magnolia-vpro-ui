@@ -25,5 +25,6 @@ public class WordcountValidatorDefinition extends ConfiguredFieldValidatorDefini
 
     public WordcountValidatorDefinition() {
         setFactoryClass(WordcountValidatorFactory.class);
+        setName("wordcountValidator");
     }
 }

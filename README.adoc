@@ -303,6 +303,16 @@ For this to work you need
 
 The URL must parse, have a scheme, and the host must have at least two parts.
 
+It is also available as a implicitely on 'urlField':
+
+[source, yaml]
+----
+fields:
+   urlField:
+     descripton: Also an URL, but the validator is implicit
+     $type: urlField
+----
+
 
 == POMS extensions
 

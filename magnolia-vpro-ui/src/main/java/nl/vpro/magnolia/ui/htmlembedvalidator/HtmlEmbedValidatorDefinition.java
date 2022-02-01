@@ -18,6 +18,7 @@ public class HtmlEmbedValidatorDefinition extends ConfiguredFieldValidatorDefini
     public HtmlEmbedValidatorDefinition() {
         setFactoryClass(HtmlEmbedValidatorFactory.class);
         setErrorMessage("embed.invalid");
+        setName("htmlEmbedValidator");
     }
 
     @Getter
