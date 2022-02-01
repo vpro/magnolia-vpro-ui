@@ -34,12 +34,10 @@
     </plugins>
   </build>
   <dependencies>
-
     <!-- You need this dependency if your enum want to implement Displayable -->
     <dependency>
       <groupId>nl.vpro.shared</groupId>
       <artifactId>vpro-shared-i18n</artifactId>
-      <optional>true</optional>
     </dependency>
 
     <!-- You need this dependency if you need unhtml  -->
