@@ -9,7 +9,6 @@
   <artifactId>magnolia-vpro-ui</artifactId>
 
   <properties>
-    <flag-icon-css.version>3.5.0</flag-icon-css.version>
   </properties>
 
 
@@ -62,15 +61,6 @@
       <optional>true</optional>
     </dependency>
 
-
-    <dependency>
-      <groupId>org.webjars.npm</groupId>
-      <artifactId>flag-icon-css</artifactId>
-      <version>${flag-icon-css.version}</version>
-      <!-- if present, it will be used -->
-      <!-- otherwise cdnjs.cloudflare.com will be used -->
-      <optional>true</optional>
-    </dependency>
   </dependencies>
 
 

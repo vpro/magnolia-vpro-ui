@@ -7,12 +7,12 @@ import info.magnolia.module.delta.Task;
 
 import java.util.*;
 
-import nl.vpro.magnolia.ui.regions.RegionsSelectFieldSupport;
+import org.meeuw.i18n.countries.CurrentCountry;
 
 public class VproUiVersionHandler extends DefaultModuleVersionHandler {
     @Override
     protected final List<Task> getExtraInstallTasks(InstallContext installContext) {
-        if (RegionsSelectFieldSupport.HAS_WEBJARS_JAR) {
+        if (CurrentCountry.HAS_WEBJARS_JAR) {
             log.info("Detected webjars, make sure it is bypassed in mgnl filter");
             return Arrays.asList(
                 new BootstrapSingleResource(

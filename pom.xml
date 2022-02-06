@@ -125,6 +125,14 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
+        <!-- can be transitive in shared-bom >= 2.29.3 -->
+        <groupId>org.meeuw.i18n</groupId>
+        <artifactId>i18n-regions-bom</artifactId>
+        <version>1.4.2</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
         <groupId>nl.vpro.shared</groupId>
         <artifactId>vpro-shared-bom</artifactId>
         <version>2.29.2</version>
