@@ -1,15 +1,18 @@
 package nl.vpro.magnolia.ui.referredcolumn;
 
-import com.vaadin.data.ValueProvider;
-import com.vaadin.ui.renderers.TextRenderer;
 import info.magnolia.context.SystemContext;
 import info.magnolia.ui.contentapp.configuration.column.ColumnType;
 import info.magnolia.ui.contentapp.configuration.column.ConfiguredColumnDefinition;
-import java.util.List;
-import javax.jcr.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
+
+import java.util.List;
+
+import javax.jcr.*;
+
+import com.vaadin.data.ValueProvider;
+import com.vaadin.ui.renderers.TextRenderer;
 
 /**
  * @author Michiel Meeuwissen
@@ -50,9 +53,14 @@ public class ReferredColumnDefinition extends ConfiguredColumnDefinition<Node> {
                 if (definition.getForType() == null || definition.getForType().contains(type)) {
 
                     Session session = context.getJCRSession(definition.getWorkspace());
-                    Property value = node.getProperty(definition.getName());
-                    String propertyName = definition.getOtherProperty();
-                    return session.getNodeByIdentifier(value.getString()).getProperty(propertyName).getString();
+                    String fieldName = definition.getName();
+                    if (node.hasProperty(fieldName)) {
+                        Property value = node.getProperty(fieldName);
+                        String propertyName = definition.getOtherProperty();
+                        return session.getNodeByIdentifier(value.getString()).getProperty(propertyName).getString();
+                    } else {
+                        return "no " + fieldName;
+                    }
                 } else {
                     return "-";
                 }
