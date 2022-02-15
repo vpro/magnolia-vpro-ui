@@ -42,16 +42,20 @@ public class AutoJcrNameCommitAction extends CommitAction<Node> {
         this.nodeNameHelper = nodeNameHelper;
     }
 
-    @Override
-    public void write() {
-        final String propertyName;
+    protected String getPropertyName() {
         CommitActionDefinition definition = getDefinition();
         if (definition instanceof AutoJcrNameCommitActionDefinition) {
-            propertyName = ((AutoJcrNameCommitActionDefinition) definition).getPropertyName();
+            return  ((AutoJcrNameCommitActionDefinition) definition).getPropertyName();
         } else {
-            propertyName = "title";
+            return  "title";
         }
-        this.getValueContext().getSingle().ifPresent(Exceptions.wrap().consumer(item -> {
+    }
+
+    @Override
+    protected void write() {
+        final String propertyName = getPropertyName();
+
+        this.getValueContext().get().forEach(Exceptions.wrap().consumer(item -> {
             FormView<Node> form = (FormView<Node>) getForm();
             form.write(item);
             String title = form.getPropertyValue(propertyName).map(Object::toString).orElseThrow(ActionExecutionException::new);
