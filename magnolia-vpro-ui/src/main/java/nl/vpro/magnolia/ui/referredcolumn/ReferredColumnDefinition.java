@@ -56,8 +56,12 @@ public class ReferredColumnDefinition extends ConfiguredColumnDefinition<Node> {
                     String fieldName = definition.getName();
                     if (node.hasProperty(fieldName)) {
                         Property value = node.getProperty(fieldName);
-                        String propertyName = definition.getOtherProperty();
-                        return session.getNodeByIdentifier(value.getString()).getProperty(propertyName).getString();
+                        try {
+                            String propertyName = definition.getOtherProperty();
+                            return session.getNodeByIdentifier(value.getString()).getProperty(propertyName).getString();
+                        } catch (ItemNotFoundException itemNotFoundException) {
+                            return value.getString() + " (not found)";
+                        }
                     } else {
                         return "no " + fieldName;
                     }
