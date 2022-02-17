@@ -42,6 +42,9 @@ public class EnumColumnDefinition extends ConfiguredColumnDefinition<Node> {
         public Provider(EnumColumnDefinition definition) throws Throwable {
             this.definition = definition;
             this.enumClass = definition.getEnum();
+            if (this.enumClass == null) {
+                throw new IllegalStateException("No enum defined in '" +  definition.getName() + "' " + definition);
+            }
         }
 
 
