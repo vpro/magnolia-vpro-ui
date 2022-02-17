@@ -146,6 +146,11 @@ columns:
 It'll show a checkbox. It will only filter if checked. (Or with 'negate: true, only when not checked)
 
 
+[#searchablecheckbox]
+.Example of checkBoxSearchField in  use
+image::{docdir}/doc/searchablecheckbox.png[searchablecheckbox]
+
+
 == Actions
 
 === Auto JCR Name
