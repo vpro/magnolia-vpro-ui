@@ -81,6 +81,15 @@ The enum is presented on default via its `toString` method, unless it implements
 If both of these are not desired (e.g. because you can't change the implementation of the enum), then you can set a `Converter` in the field definition or extend `nl.vpro.magnolia.ui.enumfield.EnumFieldDefinition` and overwrite `#convertToPresentation`
 
 
+To be used in conjuction with this, there is also a '$type: enumColumn'
+[source, yaml]
+----
+type:
+  $type: enumColumn
+  enum:  nl.vpro.domain.drievoortwaalf.DrieVoorTwaalfUpdateType
+----
+
+
 ===  Country and region field [[country_field]]
 
 A dropdown with countries of the world

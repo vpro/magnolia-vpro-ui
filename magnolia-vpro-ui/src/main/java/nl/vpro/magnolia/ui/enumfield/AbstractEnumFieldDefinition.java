@@ -112,12 +112,16 @@ public abstract class AbstractEnumFieldDefinition<E extends Enum<E>> extends Con
         return getDisplayableConverter(enumClass).orElseGet(() ->  new EnumConverter(enumClass));
     }
 
-    @SuppressWarnings({"unchecked", "rawtypes"})
     Optional<EnumConverter<E>> getDisplayableConverter(Class<E> enumClass) {
+        return getDisplayableConverter(enumClass, isFilter());
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    static <E extends Enum<E>> Optional<EnumConverter<E>> getDisplayableConverter(Class<E> enumClass, boolean isFilter) {
         try {
             return Optional.of(enumClass)
                 .filter(Displayable.class::isAssignableFrom)
-                .map(e -> new DisplayableConverter(e, isFilter()))
+                .map(e -> new DisplayableConverter(e, isFilter))
                 ;
         } catch (NoClassDefFoundError classNotFoundException) {
             return Optional.empty();
