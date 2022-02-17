@@ -1,4 +1,4 @@
-package nl.vpro.magnolia.ui.searchableoptionlist;
+package nl.vpro.magnolia.ui.searchablecheckbox;
 
 import info.magnolia.objectfactory.ComponentProvider;
 import info.magnolia.ui.field.factory.AbstractFieldFactory;
