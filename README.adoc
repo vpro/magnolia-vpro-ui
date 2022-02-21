@@ -2,6 +2,8 @@
 :toc:
 :toclevels: 5
 
+:VERSION: 1.0-SNAPSHOT
+
 
 image:https://github.com/vpro/magnolia-vpro-ui/workflows/build/badge.svg?[Build Status,link=https://github.com/vpro/magnolia-vpro-ui/actions/workflows/maven.yml]
 image:https://img.shields.io/maven-central/v/nl.vpro/magnolia-vpro-ui.svg[MavenCentral,link=https://search.maven.org/search?q=g:%22nl.vpro%22]
@@ -19,12 +21,12 @@ may at least facilitate use showing our code.
 SNAPSHOT's are present in sonatype.
 
 .pom.xml dependency
-[source,xml]
+[source, xml, subs='attributes,verbatim']
 ----
  <dependency>
   <groupId>nl.vpro</groupId>
   <artifactId>magnolia-vpro-ui</artifactId>
-  <verrsion>1.0-SNAPSHOT</version>
+  <version>{VERSION}</version>
  </dependency>
 ----
 We'll make a release when we're ready, and the artifact will be available in maven central then.
@@ -334,7 +336,7 @@ For this to work you need
 
 The URL must parse, have a scheme, and the host must have at least two parts.
 
-It is also available as a implicitely on 'urlField':
+It is also available implicitly on 'urlField':
 
 [source, yaml]
 ----
@@ -355,12 +357,12 @@ POMS is a CMS for media meta data, which  is in use at dutch public brothcasters
 ====
 For these to work you need
 
-[source, xml]
+[source, xml, subs='attributes,verbatim']
 ----
 <dependency>
    <groupId>nl.vpro.magnolia</groupId>
    <artifactId>magnolia-vpro-ui-poms</artifactId>
-   <version>1.0-SNAPSHOT</version>
+   <version>{VERSION}</version>
 </dependency>
 ----
 ====
@@ -412,6 +414,13 @@ fields:
 
 link:https://www.kijkwijzer.nl/[NICAM] age ratings
 
+[source, yaml]
+----
+fields:
+  ageRating:
+    $type: ageRatingField
+----
+
 [#ageratings]
 .Example of age ratings in use
 image::{docdir}/doc/ageratings.png[ageratings drop down]
@@ -420,11 +429,35 @@ image::{docdir}/doc/ageratings.png[ageratings drop down]
 
 link:https://www.kijkwijzer.nl/[NICAM] content ratings
 
+[source, yaml]
+----
+fields:
+  contentRating:
+    $type: contentRatingsField
+----
 
 ==== Channels
 
 Drop down with all known channels. Channels that at some point where visible in the Netherlands.
 
+[source, yaml]
+----
+fields:
+   channel:
+      $type: channelField
+----
+
+
 ==== Broadcasters
 
 Dropdown with all know Dutch broadcasters.
+
+[source, yaml]
+----
+fields:
+   broadcasters:
+      $type: broadcastersField
+    twinBroadcasters:
+      $type: broadcastersTwinField
+----
+
