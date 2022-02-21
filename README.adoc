@@ -219,7 +219,7 @@ For this to work you need
 ----
 ====
 
-=== date only column
+=== Date only column
 
 Just shows the date part of a datetime field.
 
