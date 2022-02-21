@@ -12,7 +12,7 @@ import lombok.Setter;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import nl.vpro.domain.Displayable;
+import nl.vpro.i18n.Displayable;
 import nl.vpro.domain.media.MediaType;
 
 /**

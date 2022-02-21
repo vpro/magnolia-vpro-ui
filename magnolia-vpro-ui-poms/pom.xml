@@ -13,7 +13,7 @@
       <dependency>
         <groupId>nl.vpro.poms</groupId>
         <artifactId>poms-parent</artifactId>
-        <version>5.30.10</version>
+        <version>5.31-SNAPSHOT</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
