@@ -210,7 +210,7 @@ String HTML markup from the value, so that it can more nicely be presented in a 
 [NOTE]
 ====
 For this to work you need
-[source, xml]
+[source, xml, subs='attributes,verbatim']
 ----
 <dependency>
   <groupId>nl.vpro.shared</groupId>
@@ -321,7 +321,7 @@ validators:
 For this to work you need
 
 .Dependency on validator implementation
-[source, xml]
+[source, xml, subs='attributes,verbatim']
 ----
 <dependency>
   <groupId>nl.vpro.shared</groupId>
