@@ -3,6 +3,7 @@
 :toclevels: 5
 
 :VERSION: 1.0-SNAPSHOT
+:VPRO_SHARED_VERSION: 2.29.3
 
 
 image:https://github.com/vpro/magnolia-vpro-ui/workflows/build/badge.svg?[Build Status,link=https://github.com/vpro/magnolia-vpro-ui/actions/workflows/maven.yml]
@@ -214,7 +215,7 @@ For this to work you need
 <dependency>
   <groupId>nl.vpro.shared</groupId>
   <artifactId>vpro-shared-util</artifactId>
-  <version>2.29.2</version>
+  <version>{VPRO_SHARED_VERSION}</version>
 </dependency>
 ----
 ====
@@ -325,6 +326,7 @@ For this to work you need
 <dependency>
   <groupId>nl.vpro.shared</groupId>
   <artifactId>vpro-shared-validation</artifactId>
+  <version>{VPRO_SHARED_VERSION}</version>
 </dependency>
 <dependency>
   <groupId>org.hibernate.validator</groupId>
