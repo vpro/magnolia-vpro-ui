@@ -3,7 +3,7 @@
   <parent>
     <groupId>nl.vpro.magnolia</groupId>
     <artifactId>magnolia-vpro-ui-parent</artifactId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
   </parent>
   <artifactId>magnolia-vpro-ui-poms</artifactId>
 
