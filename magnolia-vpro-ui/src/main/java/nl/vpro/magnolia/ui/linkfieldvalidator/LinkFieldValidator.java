@@ -2,7 +2,10 @@ package nl.vpro.magnolia.ui.linkfieldvalidator;
 
 import info.magnolia.context.MgnlContext;
 import info.magnolia.jcr.util.NodeTypes;
+import info.magnolia.jcr.util.SessionUtil;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.UUID;
 
 import javax.jcr.*;
 
@@ -13,7 +16,7 @@ import com.vaadin.data.ValueContext;
 import com.vaadin.data.validator.AbstractValidator;
 
 @Slf4j
-public class LinkFieldValidator extends AbstractValidator<Node> {
+public class LinkFieldValidator extends AbstractValidator<Object> {
 
     private final LinkFieldValidatorDefinition definition;
 
@@ -23,10 +26,27 @@ public class LinkFieldValidator extends AbstractValidator<Node> {
     }
 
     @Override
-    public ValidationResult apply(Node value, ValueContext context) {
+    public ValidationResult apply(Object value, ValueContext context) {
+        Node node;
+        if (value instanceof Node) {
+            node = (Node) value;
+        } else if (value instanceof CharSequence) {
+            String s = value.toString();
+            try {
+                node = SessionUtil.getNodeByIdentifier(definition.getRepository(), UUID.fromString(s).toString());
+            } catch (IllegalArgumentException invalideUUID) {
+                node = SessionUtil.getNode(definition.getRepository(), value.toString());
+            }
+            if (node == null) {
+                return ValidationResult.error("No such node " + s);
+            }
+        } else {
+            throw new IllegalArgumentException("Don't know how to interpret " + value + " as a jcr link");
+        }
         try {
             // To check against deleted nodes. Using MissingNode would be easier, but that is package private (again).
-            if (value.isNodeType(NodeTypes.Deleted.NAME)) {
+
+            if (node.isNodeType(NodeTypes.Deleted.NAME)) {
                 log.error("Can't check if node is deleted for value: {}", value);
                 return toResult(value, false);
             }
@@ -36,7 +56,7 @@ public class LinkFieldValidator extends AbstractValidator<Node> {
         if (StringUtils.isNotEmpty(definition.getRepository())) {
             try {
                 Session session = MgnlContext.getJCRSession(definition.getRepository());
-                session.getNodeByIdentifier(value.getIdentifier());
+                session.getNodeByIdentifier(node.getIdentifier());
                 return toResult(value, true);
             } catch (ItemNotFoundException notfound) {
                 return toResult(value, false);
