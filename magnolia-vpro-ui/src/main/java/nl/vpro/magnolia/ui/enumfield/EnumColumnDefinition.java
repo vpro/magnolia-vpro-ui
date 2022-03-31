@@ -57,11 +57,17 @@ public class EnumColumnDefinition extends ConfiguredColumnDefinition<Node> {
                     if (value == null) {
                         return "";
                     }
-                    Enum<?> e = Enum.valueOf(enumClass, value);
-                    if (e instanceof Displayable) {
-                        return ((Displayable) e).getDisplayName();
-                    } else {
-                        return e.toString();
+
+                    try {
+                        Enum<?> e = Enum.valueOf(enumClass, value);
+                        if (Displayable.class.isAssignableFrom(enumClass)) {
+                            return ((Displayable) e).getDisplayName();
+                        } else {
+                            return e.toString();
+                        }
+                    } catch (IllegalArgumentException iae) {
+                        log.warn(iae.getMessage());
+                        return value + " (unrecognized)";
                     }
                 } else {
                     return "";
