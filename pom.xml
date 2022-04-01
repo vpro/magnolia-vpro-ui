@@ -8,7 +8,7 @@
   <packaging>pom</packaging>
   <inceptionYear>2022</inceptionYear>
   <url>https://github.com/vpro/magnolia-vpro-ui</url>
-  <name>magnolia vpro ui</name>
+  <name>magnolia vpro ui parent</name>
   <description>Some Magnolia CMS UI components in use at VPRO</description>
 
   <modules>
