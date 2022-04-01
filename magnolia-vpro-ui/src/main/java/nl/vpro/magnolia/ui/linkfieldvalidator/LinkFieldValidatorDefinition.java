@@ -13,5 +13,6 @@ public class LinkFieldValidatorDefinition extends ConfiguredFieldValidatorDefini
 
     public LinkFieldValidatorDefinition() {
         setFactoryClass(LinkFieldValidatorFactory.class);
+        setName("linkFieldValidator");
     }
 }

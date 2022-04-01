@@ -132,7 +132,7 @@ This a field to just show some 'calculated' value. Extend `VirtualValueFieldDefi
 
 Text field which default value is a random UUID.
 
-On default it is readonly (but this can be overridden)
+On default, it is readonly (but this can be overridden)
 
 [source, yaml]
 ----
@@ -140,6 +140,20 @@ fields:
   uuid:
     $type: randomUUIDField
 ----
+
+=== DAM Link Field with edit option
+
+
+Add to the default `damLinkField` an 'edit' button, to jump to the asset app and edit the image after selection.
+[source, yaml]
+----
+fields:
+  image:
+    $type: damLinkFieldWithEdit
+----
+
+It also allows text input, and therefore, implicitely a link validator is added so that you can only enter valid dam links.
+
 
 === CheckBox for searching
 
