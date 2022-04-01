@@ -154,6 +154,19 @@ fields:
 
 It also allows text input, and therefore, implicitely a link validator is added so that you can only enter valid dam links.
 
+image::{docdir}/doc/dam-selector-with-edit.png[Dam Selector in action]
+
+.pom.xml dependency
+[source, xml, subs='attributes,verbatim']
+----
+  <dependency>
+    <groupId>info.magnolia.dam</groupId>
+    <artifactId>magnolia-dam-app</artifactId>
+    <version>3.0.14</version>
+  </dependency>
+----
+
+
 
 === CheckBox for searching
 
