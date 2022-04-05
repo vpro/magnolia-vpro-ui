@@ -19,25 +19,24 @@ import nl.vpro.i18n.Displayable;
 @Log4j2
 public class EnumColumnDefinition extends ConfiguredColumnDefinition<Node> {
 
-    private Class<? extends Enum> enumClass;
+    private Class<? extends Enum<?>> enumClass;
 
     public EnumColumnDefinition() {
         setValueProvider(Provider.class);
     }
 
-    public void setEnum(Class<? extends Enum> enumClass) {
+    public void setEnum(Class<? extends Enum<?>> enumClass) {
         this.enumClass = enumClass;
     }
 
-    public Class<? extends Enum> getEnum() {
+    public Class<? extends Enum<?>> getEnum() {
         return enumClass;
     }
-
 
     public static class Provider implements ValueProvider<Node, String> {
 
         private final EnumColumnDefinition definition;
-        private final Class<? extends Enum> enumClass;
+        private final Class<? extends Enum<?>> enumClass;
 
         public Provider(EnumColumnDefinition definition) throws Throwable {
             this.definition = definition;
@@ -48,7 +47,7 @@ public class EnumColumnDefinition extends ConfiguredColumnDefinition<Node> {
         }
 
 
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings({"rawtypes", "unchecked"})
         @Override
         public String apply(Node property) {
             try {
@@ -59,7 +58,7 @@ public class EnumColumnDefinition extends ConfiguredColumnDefinition<Node> {
                     }
 
                     try {
-                        Enum<?> e = Enum.valueOf(enumClass, value);
+                        Enum<?> e = Enum.valueOf((Class) enumClass, value);
                         if (Displayable.class.isAssignableFrom(enumClass)) {
                             return ((Displayable) e).getDisplayName();
                         } else {

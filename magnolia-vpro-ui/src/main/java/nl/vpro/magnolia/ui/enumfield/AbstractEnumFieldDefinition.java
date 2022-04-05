@@ -41,9 +41,16 @@ public abstract class AbstractEnumFieldDefinition<E extends Enum<E>> extends Con
     private Boolean useIcons = null;
 
 
+    /**
+     * Filter on {@link Displayable#display()}
+     */
     @Getter
     @Setter
     private boolean filter = true;
+
+    @Getter
+    @Setter
+    private String emptyValue = null;
 
     @SuppressWarnings("unchecked")
     public AbstractEnumFieldDefinition() {

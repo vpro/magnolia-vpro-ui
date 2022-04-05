@@ -62,6 +62,7 @@ public class EnumField<E extends Enum<E>> extends CustomField<String> {
             comboBox.setEmptySelectionAllowed(! definition.isRequired());
             comboBox.setItemCaptionGenerator((ItemCaptionGenerator<String>) EnumField.this::getCaption);
             comboBox.setItemIconGenerator(iconGenerator);
+            comboBox.setRequiredIndicatorVisible(definition.isRequired());
             listing = comboBox;
         }
         listing.setWidthFull();
@@ -69,7 +70,13 @@ public class EnumField<E extends Enum<E>> extends CustomField<String> {
         valueContext = new ValueContext(listing);
         Class<E> enumClass = definition.getEnum();
         listing.setItems(definition.getItems().map(Enum::name));
+
         listing.addStyleNames("vpro-ui", "vpro-ui-enumfield", "vpro-ui-enumfield-" + enumClass.getSimpleName().toLowerCase());
+    }
+
+    @Override
+    public String getEmptyValue() {
+        return definition.getEmptyValue();
     }
 
     @Override
