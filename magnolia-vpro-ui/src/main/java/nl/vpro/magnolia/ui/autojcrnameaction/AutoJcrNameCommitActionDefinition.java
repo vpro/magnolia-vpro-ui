@@ -8,6 +8,9 @@ import lombok.Setter;
 @ActionType("autoJcrCommitAction")
 public class AutoJcrNameCommitActionDefinition extends CommitActionDefinition {
 
+    @Getter
+    @Setter
+    private String browserName = "browser";
 
     @Getter
     @Setter

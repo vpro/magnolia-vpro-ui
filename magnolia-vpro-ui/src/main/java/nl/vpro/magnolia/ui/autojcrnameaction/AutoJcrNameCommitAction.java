@@ -8,9 +8,13 @@ import info.magnolia.jcr.util.*;
 import info.magnolia.ui.CloseHandler;
 import info.magnolia.ui.ValueContext;
 import info.magnolia.ui.api.action.ActionExecutionException;
+import info.magnolia.ui.api.app.AppContext;
+import info.magnolia.ui.api.location.LocationController;
+import info.magnolia.ui.contentapp.ContentBrowserSubApp;
 import info.magnolia.ui.contentapp.Datasource;
 import info.magnolia.ui.contentapp.action.CommitAction;
 import info.magnolia.ui.contentapp.action.CommitActionDefinition;
+import info.magnolia.ui.datasource.ItemResolver;
 import info.magnolia.ui.editor.EditorView;
 import info.magnolia.ui.editor.FormView;
 import info.magnolia.ui.observation.DatasourceObservation;
@@ -21,6 +25,7 @@ import javax.jcr.Node;
 import org.apache.commons.lang3.StringUtils;
 
 import com.machinezoo.noexception.Exceptions;
+import com.vaadin.data.BinderValidationStatus;
 
 /**
  * @author rico
@@ -28,6 +33,10 @@ import com.machinezoo.noexception.Exceptions;
 public class AutoJcrNameCommitAction extends CommitAction<Node> {
 
     private final NodeNameHelper nodeNameHelper;
+
+    private final LocationController locationController;
+    private final AppContext appContext;
+    private final ItemResolver<Node> itemResolver;
 
     @Inject
     public AutoJcrNameCommitAction(
@@ -37,17 +46,44 @@ public class AutoJcrNameCommitAction extends CommitAction<Node> {
         EditorView<Node> form,
         Datasource<Node> datasource,
         DatasourceObservation.Manual datasourceObservation,
-        NodeNameHelper nodeNameHelper) {
+        NodeNameHelper nodeNameHelper, LocationController locationController, AppContext appContext, ItemResolver<Node> itemResolver) {
         super(definition, closeHandler, valueContext, form, datasource, datasourceObservation);
         this.nodeNameHelper = nodeNameHelper;
+        this.locationController = locationController;
+        this.appContext = appContext;
+        this.itemResolver = itemResolver;
     }
 
     protected String getPropertyName() {
         CommitActionDefinition definition = getDefinition();
         if (definition instanceof AutoJcrNameCommitActionDefinition) {
-            return  ((AutoJcrNameCommitActionDefinition) definition).getPropertyName();
+            return ((AutoJcrNameCommitActionDefinition) definition).getPropertyName();
         } else {
-            return  "title";
+            return "title";
+        }
+    }
+
+    protected String getBrowserName() {
+        CommitActionDefinition definition = getDefinition();
+        if (definition instanceof AutoJcrNameCommitActionDefinition) {
+            return ((AutoJcrNameCommitActionDefinition) definition).getBrowserName();
+        } else {
+            return "browser";
+        }
+    }
+
+
+    @Override
+    public void execute() throws ActionExecutionException {
+        super.execute();
+        if (!getBrowserName().isEmpty() && getForm().validate().stream().allMatch(BinderValidationStatus::isOk)) {
+            locationController.goTo(new ContentBrowserSubApp.BrowserLocation(
+                appContext.getName(),
+                getBrowserName(),
+                getValueContext().getSingle()
+                    .map(itemResolver::getId)
+                    .orElse("")
+            ));
         }
     }
 
@@ -71,3 +107,4 @@ public class AutoJcrNameCommitAction extends CommitAction<Node> {
         }));
     }
 }
+
