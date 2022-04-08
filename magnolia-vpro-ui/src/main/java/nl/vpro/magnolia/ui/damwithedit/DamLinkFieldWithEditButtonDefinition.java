@@ -19,6 +19,7 @@ public class DamLinkFieldWithEditButtonDefinition extends DamLinkFieldDefinition
         LinkFieldValidatorDefinition linkFieldValidatorDefinition = new LinkFieldValidatorDefinition();
         linkFieldValidatorDefinition.setRepository(DamConstants.WORKSPACE);
         setValidators(Arrays.asList(linkFieldValidatorDefinition));
+        //setChooserId("dam-app-core:chooser");
     }
 
     static ItemPreviewDefinition<Item> getPreviewDefinition() {
@@ -31,4 +32,6 @@ public class DamLinkFieldWithEditButtonDefinition extends DamLinkFieldDefinition
     protected ItemPreviewDefinition<Item> getItemPreviewDefinition() {
         return getPreviewDefinition();
     }
+
+
 }

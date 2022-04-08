@@ -34,6 +34,7 @@ import com.vaadin.ui.*;
  *
  * @since 5.0
  */
+@SuppressWarnings("UnstableApiUsage")
 @Slf4j
 public class DamItemPreviewComponentWithEditButton extends AbstractItemPreviewComponent<Item> {
 
@@ -46,6 +47,7 @@ public class DamItemPreviewComponentWithEditButton extends AbstractItemPreviewCo
         this.setVisible(false);
     }
 
+    @SuppressWarnings("rawtypes")
     private static Map<String, Class> getProperties() {
         Map<String, Class> properties = new HashMap<>();
         properties.put("name", String.class);
