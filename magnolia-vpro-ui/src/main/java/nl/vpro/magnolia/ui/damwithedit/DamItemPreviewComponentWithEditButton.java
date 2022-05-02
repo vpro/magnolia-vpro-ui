@@ -128,15 +128,13 @@ public class DamItemPreviewComponentWithEditButton extends AbstractItemPreviewCo
         }
         image.addStyleName("file-preview-thumbnail");
 
-        previewLayout.addComponents(createEditButtonPanel(item), controlButtonPanel, image);
+        controlButtonPanel.addComponents(createEditButton(item));
+        previewLayout.addComponents(controlButtonPanel, image);
 
         return previewLayout;
     }
 
-    private Component createEditButtonPanel(Item item) {
-        CssLayout editButtonPanel = new CssLayout();
-        editButtonPanel.addStyleName("control-button");
-        editButtonPanel.setWidth(30, Unit.PIXELS);
+    private Component createEditButton(Item item) {
         Button editButton = createControlPanelButton(MagnoliaIcons.EDIT);
         editButton.addClickListener(event -> {
             final String appType = Location.LOCATION_TYPE_APP;
@@ -147,9 +145,7 @@ public class DamItemPreviewComponentWithEditButton extends AbstractItemPreviewCo
             locationController.goTo(location);
         });
         editButton.setDescription(getI18n().translate("dam.damUploadField.edit"));
-        editButtonPanel.addComponents(editButton);
-
-        return editButtonPanel;
+        return editButton;
     }
 
     private MediaType getAssetMediaType(Asset item) {
