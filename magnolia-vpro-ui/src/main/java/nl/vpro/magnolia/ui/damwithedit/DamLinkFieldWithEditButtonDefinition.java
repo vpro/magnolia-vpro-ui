@@ -26,10 +26,18 @@ import info.magnolia.ui.field.FieldType;
 
 import java.util.Arrays;
 
+import lombok.Getter;
+
+import lombok.Setter;
+
 import nl.vpro.magnolia.ui.linkfieldvalidator.LinkFieldValidatorDefinition;
 
 @FieldType("damLinkFieldWithEdit")
 public class DamLinkFieldWithEditButtonDefinition extends DamLinkFieldDefinition {
+
+    @Getter
+    @Setter
+    private boolean showEditButton = false;
 
     public DamLinkFieldWithEditButtonDefinition() {
         super();
@@ -48,7 +56,11 @@ public class DamLinkFieldWithEditButtonDefinition extends DamLinkFieldDefinition
 
     @Override
     protected ItemPreviewDefinition<Item> getItemPreviewDefinition() {
-        return getPreviewDefinition();
+        if (showEditButton) {
+            return getPreviewDefinition();
+        } else {
+            return super.getItemPreviewDefinition();
+        }
     }
 
 
