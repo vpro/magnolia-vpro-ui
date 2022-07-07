@@ -22,7 +22,9 @@ public class ProofOfProvenanceView implements EditorView<Node> {
     private final ProofOfProvenanceViewDefinition definition;
 
     @Inject
-    public ProofOfProvenanceView(FormFieldFactory formFieldFactory, ProofOfProvenanceViewDefinition definition) {
+    public ProofOfProvenanceView(
+        FormFieldFactory formFieldFactory,
+        ProofOfProvenanceViewDefinition definition) {
         this.field = formFieldFactory.createField(new ProofOfProvenanceFieldDefinition());
         this.converter = new ProofOfProvenanceFieldConverter(definition);
         this.definition = definition;

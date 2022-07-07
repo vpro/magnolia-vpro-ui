@@ -172,11 +172,12 @@ To enable signing a text field using https://waag.org/en/project/proof-provenanc
 
 [source, yaml]
 ----
-          fields:
-            signedText:
-              description: A text field with Proof Of Provenance
-              $type: proofOfProvenanceField
----
+fields:
+  signedText:
+      description: A text field with Proof Of Provenance
+      $type: proofOfProvenanceField
+----
+
 This will make a field 'signedText', but it will present an extra text area which contains the 'signature', which can be filled manually, or via a button, which uses the field's value to create a signature.
 
 == Actions

@@ -26,6 +26,8 @@ import info.magnolia.ui.field.factory.AbstractFieldFactory;
 import javax.inject.Inject;
 import javax.jcr.Node;
 
+import nl.vpro.irma.ProofOfProvenanceService;
+
 /**
  * @author Michiel Meeuwissen
  * @since 1.4
@@ -34,17 +36,22 @@ public class ProofOfProvenanceFieldFactory extends AbstractFieldFactory<SignedTe
 
     private final ValueContext<Node> valueContext;
 
+    private final ProofOfProvenanceService proofOfProvenanceService;
+
+
     @Inject
     public ProofOfProvenanceFieldFactory(
         ProofOfProvenanceFieldDefinition definition,
         ComponentProvider componentProvider,
-        ValueContext<Node> valueContext) {
+        ValueContext<Node> valueContext,
+        ProofOfProvenanceService proofOfProvenanceService) {
         super(definition, componentProvider);
         this.valueContext = valueContext;
+        this.proofOfProvenanceService = proofOfProvenanceService;
     }
 
     @Override
     protected ProofOfProvenanceField createFieldComponent() {
-        return new ProofOfProvenanceField(valueContext, definition);
+        return new ProofOfProvenanceField(valueContext, definition, proofOfProvenanceService);
     }
 }

@@ -5,6 +5,16 @@
   <displayName>VPRO Magnolia UI module</displayName>
   <versionHandler>nl.vpro.magnolia.ui.VproUiVersionHandler</versionHandler>
   <version>1.0</version>
+  <properties>
+    <property>
+      <name>irma.key</name>
+      <value>UNSET</value>
+    </property>
+    <property>
+      <name>irma.baseUrl</name>
+      <value>https://pop.waag.org/irma</value>
+    </property>
+  </properties>
   <components>
     <id>datasource-regions</id>
     <component>
@@ -14,6 +24,14 @@
     <component>
       <type>info.magnolia.ui.field.factory.ComboBoxFieldFactory</type>
       <implementation>nl.vpro.magnolia.ui.regions.RegionsSelectFactory</implementation>
+    </component>
+  </components>
+  <components>
+    <id>main</id>
+    <component>
+      <type>nl.vpro.irma.ProofOfProvenanceService</type>
+      <implementation>nl.vpro.irma.ProofOfProvenanceServiceImpl</implementation>
+      <lazy>true</lazy>
     </component>
   </components>
   <dependencies>
