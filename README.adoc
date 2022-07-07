@@ -168,8 +168,16 @@ image::{docdir}/doc/dam-selector-with-edit.png[Dam Selector in action]
 
 === Proof of Provenance Field
 
-To enable signing a text field using https://waag.org/en/project/proof-provenance/[irma] ('(I Reveal My Attributes)') you can use a field
+To enable signing a text field using https://waag.org/en/project/proof-provenance/[irma] ('(I Reveal My Attributes)') you can use a field with type 'proofOfProvenanceField'
 
+[source, yaml]
+----
+          fields:
+            signedText:
+              description: A text field with Proof Of Provenance
+              $type: proofOfProvenanceField
+---
+This will make a field 'signedText', but it will present an extra text area which contains the 'signature', which can be filled manually, or via a button, which uses the field's value to create a signature.
 
 == Actions
 
