@@ -67,6 +67,16 @@
       <version>3.0.16</version>
       <optional>true</optional>
     </dependency>
+
+
+    <!-- Used for irma. may be migrated to other repo -->
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>2.13.3</version>
+      <optional>true</optional>
+    </dependency>
   </dependencies>
 
 

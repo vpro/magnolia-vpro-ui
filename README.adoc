@@ -2,9 +2,8 @@
 :toc:
 :toclevels: 5
 
-:VERSION: 1.1
-:VPRO_SHARED_VERSION: 2.29.5
-
+:VERSION: 1.4
+:VPRO_SHARED_VERSION: 2.32.0
 
 image:https://github.com/vpro/magnolia-vpro-ui/workflows/build/badge.svg?[Build Status,link=https://github.com/vpro/magnolia-vpro-ui/actions/workflows/maven.yml]
 image:https://img.shields.io/maven-central/v/nl.vpro.magnolia/magnolia-vpro-ui.svg[MavenCentral,link=https://search.maven.org/search?q=g:%22nl.vpro.magnolia%22]
@@ -19,7 +18,7 @@ to migrate these components too. We took the occasion to isolate them to this gi
 may at least facilitate use showing our code.
 
 
-SNAPSHOT's are present in sonatype.
+SNAPSHOTs are present in sonatype.
 
 .pom.xml dependency
 [source, xml, subs='attributes,verbatim']
@@ -167,28 +166,9 @@ image::{docdir}/doc/dam-selector-with-edit.png[Dam Selector in action]
   </dependency>
 ----
 
+=== Proof of Provenance Field
 
-
-=== CheckBox for searching
-
-This is to be used as `filterComponent` in a view.
-
-[source, yaml]
-----
-columns:
-  highlighted:
-    defaultValue: false
-    type: java.lang.Boolean
-    filterComponent:
-      $type: checkBoxSearchField
-----
-
-It'll show a checkbox. It will only filter if checked. (Or with `negate: true`, only when not checked)
-
-
-[#searchablecheckbox]
-.Example of checkBoxSearchField in  use
-image::{docdir}/doc/searchablecheckbox.png[searchablecheckbox]
+To enable signing a text field using https://waag.org/en/project/proof-provenance/[irma] ('(I Reveal My Attributes)') you can use a field
 
 
 == Actions
@@ -257,6 +237,28 @@ Just shows the date part of a datetime field.
  description:
    $type: dateonlyColumn
 ----
+
+=== CheckBox for searching
+
+This is to be used as `filterComponent` in a view.
+
+[source, yaml]
+----
+columns:
+  highlighted:
+    defaultValue: false
+    type: java.lang.Boolean
+    filterComponent:
+      $type: checkBoxSearchField
+----
+
+It'll show a checkbox. It will only filter if checked. (Or with `negate: true`, only when not checked)
+
+
+[#searchablecheckbox]
+.Example of checkBoxSearchField in  use
+image::{docdir}/doc/searchablecheckbox.png[searchablecheckbox]
+
 
 == Validators
 
