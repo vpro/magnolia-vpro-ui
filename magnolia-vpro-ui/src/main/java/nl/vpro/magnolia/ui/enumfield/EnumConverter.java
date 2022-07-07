@@ -61,7 +61,6 @@ public class EnumConverter<E extends Enum<E>> implements Converter<String, E> {
         return getIcon(Enum.valueOf(clazz, value));
     }
 
-
     public String getIcon(E value) {
         return null;
     }

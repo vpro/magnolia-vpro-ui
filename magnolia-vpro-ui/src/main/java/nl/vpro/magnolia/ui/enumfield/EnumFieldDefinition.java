@@ -22,7 +22,7 @@ import info.magnolia.ui.field.FieldType;
 
 /**
  * Ungeneric version of {@link AbstractEnumFieldDefinition}, because otherwise bytebuddy gets very confused.
- * (might be related to https://stackoverflow.com/questions/45864313/define-field-with-generic-type-using-bytebuddy)
+ * (might be related to <a href="https://stackoverflow.com/questions/45864313/define-field-with-generic-type-using-bytebuddy">stackoverflow</a>)
  * @author Michiel Meeuwissen
  * @since 3.0
  */
