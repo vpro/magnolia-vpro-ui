@@ -20,10 +20,8 @@ package nl.vpro.magnolia.ui.irma;
 
 import info.magnolia.ui.field.ConfiguredFieldDefinition;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 
-import javax.inject.Inject;
 import javax.jcr.Node;
 
 /**
@@ -31,16 +29,12 @@ import javax.jcr.Node;
  * @since 1.4
  * */
 @Getter
-@Setter
 @Log4j2
 public class ProofOfProvenanceFieldDefinition extends ConfiguredFieldDefinition<SignedText> {
 
-    @Inject
     public ProofOfProvenanceFieldDefinition() {
         setType(Node.class);
         setFactoryClass(ProofOfProvenanceFieldFactory.class);
     }
-
-
 }
 

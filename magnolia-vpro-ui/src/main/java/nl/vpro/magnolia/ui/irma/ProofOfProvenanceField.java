@@ -26,6 +26,8 @@ import javax.jcr.Node;
 
 import com.vaadin.ui.*;
 
+import nl.vpro.irma.ProofOfProvenanceService;
+
 /**
  * @author Michiel Meeuwissen
  * @since 1.4
@@ -38,14 +40,18 @@ public class ProofOfProvenanceField extends CustomField<SignedText> {
     private final ProofOfProvenanceFieldDefinition definition;
 
     private final AbstractOrderedLayout layout;
-    private TextArea text;
-    private TextArea signature;
-    private Button button;
+    private final TextArea text;
+    private final TextArea signature;
     private boolean signatureDirty = false;
 
-    public ProofOfProvenanceField(ValueContext<Node> valueContext, ProofOfProvenanceFieldDefinition definition) {
+    private final ProofOfProvenanceService proofOfProvenanceService;
+
+    public ProofOfProvenanceField(ValueContext<Node> valueContext, ProofOfProvenanceFieldDefinition definition, ProofOfProvenanceService proofOfProvenanceService
+
+    ) {
         this.valueContext = valueContext;
         this.definition = definition;
+        this.proofOfProvenanceService = proofOfProvenanceService;
         setCaption(definition.getLabel());
         setRequiredIndicatorVisible(definition.isRequired());
         addStyleName(definition.getStyleName());
@@ -57,7 +63,7 @@ public class ProofOfProvenanceField extends CustomField<SignedText> {
 
     @Override
     protected Component initContent() {
-        button = new Button();
+        Button button = new Button();
         button.setCaption("Sign with Irma");
         //button.setIcon();
         text.addValueChangeListener(
@@ -84,7 +90,7 @@ public class ProofOfProvenanceField extends CustomField<SignedText> {
         button.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
-                signature.setValue("signed:" + text.getValue());
+                signature.setValue(proofOfProvenanceService.sign(text.getValue()));
                 signatureDirty = false;
             }
         });
