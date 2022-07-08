@@ -28,7 +28,7 @@ function pop_sign(url, attribute, normalized_message){
         debugging: false,
         language:  'en',
         translations: {
-            header:  'Use your <i class="irma-web-logo">IRMA</i> app to sign with your email adress',
+            header:  'Use your <i class="irma-web-logo">IRMA</i> app to sign with your email address',
             loading: 'Just one second please!'
         },
         session: {
