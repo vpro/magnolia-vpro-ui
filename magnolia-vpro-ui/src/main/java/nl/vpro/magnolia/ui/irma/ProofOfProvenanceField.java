@@ -22,8 +22,13 @@ import info.magnolia.ui.ValueContext;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 
+import java.util.UUID;
+
 import javax.jcr.Node;
 
+import com.vaadin.annotations.JavaScript;
+import com.vaadin.annotations.StyleSheet;
+import com.vaadin.server.Page;
 import com.vaadin.ui.*;
 
 import nl.vpro.irma.ProofOfProvenanceService;
@@ -33,6 +38,8 @@ import nl.vpro.irma.ProofOfProvenanceService;
  * @since 1.4
  */
 @Log4j2
+@JavaScript({"irma.js"})
+@StyleSheet({"irma.css"})
 public class ProofOfProvenanceField extends CustomField<SignedText> {
 
     @Getter
@@ -46,7 +53,10 @@ public class ProofOfProvenanceField extends CustomField<SignedText> {
 
     private final ProofOfProvenanceService proofOfProvenanceService;
 
-    public ProofOfProvenanceField(ValueContext<Node> valueContext, ProofOfProvenanceFieldDefinition definition, ProofOfProvenanceService proofOfProvenanceService
+    public ProofOfProvenanceField(
+        ValueContext<Node> valueContext,
+        ProofOfProvenanceFieldDefinition definition,
+        ProofOfProvenanceService proofOfProvenanceService
 
     ) {
         this.valueContext = valueContext;
@@ -59,17 +69,23 @@ public class ProofOfProvenanceField extends CustomField<SignedText> {
         layout.addStyleName("proofOfProvenance");
         text = new TextArea();
         signature = new TextArea();
+        signature.setId(UUID.randomUUID().toString());
     }
 
     @Override
     protected Component initContent() {
+        for (String javascript : proofOfProvenanceService.getJavaScripts()) {
+            Page.getCurrent().addDependency
+                (new Dependency(Dependency.Type.JAVASCRIPT, javascript));
+        }
+
         Button button = new Button();
         button.setCaption("Sign with Irma");
         //button.setIcon();
         text.addValueChangeListener(
             event -> {
                 if (! signatureDirty) {
-                    signature.setValue("value change " + event);
+                    signature.addStyleName("dirty");
                 }
             }
         );
@@ -83,18 +99,19 @@ public class ProofOfProvenanceField extends CustomField<SignedText> {
         );
         signature.addBlurListener(
             event -> {
-                signatureDirty = true;
+                signature.removeStyleName("dirty");
             }
 
         );
         button.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
-                signature.setValue(proofOfProvenanceService.sign(text.getValue()));
+                Page.getCurrent().getJavaScript().execute("sign('" + text.getValue() + "','" + signature.getId() + "')");
                 signatureDirty = false;
             }
         });
         layout.addComponent(text);
+        layout.addComponent(new Label("Signature:"));
         layout.addComponent(signature);
         layout.addComponent(button);
         return layout;

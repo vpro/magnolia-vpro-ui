@@ -1,7 +1,11 @@
 package nl.vpro.irma;
 
+import java.util.List;
+
 public interface ProofOfProvenanceService {
 
-    String sign(String message);
+
+    List<String> getJavaScripts();
+
 
 }
