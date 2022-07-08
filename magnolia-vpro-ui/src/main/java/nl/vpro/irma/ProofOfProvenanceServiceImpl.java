@@ -1,5 +1,7 @@
 package nl.vpro.irma;
 
+import lombok.Getter;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class ProofOfProvenanceServiceImpl implements ProofOfProvenanceService {
 
     private final String privateKey;
 
+    @Getter
     private final String baseUrl;
 
     private final String cdnBaseUrl;

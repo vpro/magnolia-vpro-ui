@@ -12,7 +12,7 @@
     </property>
     <property>
       <name>irma.baseUrl</name>
-      <value>https://pop.waag.org/irma</value>
+      <value>https://pop.waag.org</value>
     </property>
      <property>
       <name>irma.cdn.baseUrl</name>

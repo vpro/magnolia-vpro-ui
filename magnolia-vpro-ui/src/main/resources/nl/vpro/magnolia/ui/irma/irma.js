@@ -1,15 +1,21 @@
-function sign(normalized_text, target) {
-    pop_sign("https://pop.waag.org",
-        "pbdf.sidn-pbdf.email.email",
+
+function sign(url, normalized_text, attribute, target) {
+    if (url === null) {
+        url = "https://pop.waag.nl"
+    }
+    pop_sign(url,
+        attribute,
         normalized_text)
         .then(result => {
             document.getElementById(target).value = result;
+            nl.vpro.magnolia.ui.irma.callBack("Success", result);
         }).catch(error => {
         if (error === 'Aborted') {
             console.log('We closed it ourselves, so no problem 😅');
             return;
         }
         console.error("Couldn't do what you asked 😢", error);
+        nl.vpro.magnolia.ui.irma.callBack(error);
     });
 }
 

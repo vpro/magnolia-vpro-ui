@@ -7,5 +7,6 @@ public interface ProofOfProvenanceService {
 
     List<String> getJavaScripts();
 
+    String getBaseUrl();
 
 }
