@@ -2,18 +2,14 @@ package nl.vpro.irma;
 
 import org.junit.jupiter.api.Test;
 
-import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
-import com.github.tomakehurst.wiremock.junit5.WireMockTest;
-
-@WireMockTest
 class ProofOfProvenanceServiceImplTest {
 
     @Test
-    public void test(WireMockRuntimeInfo wmRuntimeInfo) {
+    public void test() {
 
         ProofOfProvenanceService proofOfProvenanceService = new ProofOfProvenanceServiceImpl(
             "",
-            "https://pop.waag.org/irma",
+            "https://pop.waag.org",
             "https://snotolf.waag.org/"
             );
 
