@@ -18,6 +18,7 @@
  */
 package nl.vpro.magnolia.ui.irma;
 
+import elemental.json.JsonArray;
 import info.magnolia.ui.ValueContext;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
@@ -26,12 +27,17 @@ import java.util.UUID;
 
 import javax.jcr.Node;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.annotations.StyleSheet;
 import com.vaadin.server.Page;
 import com.vaadin.ui.*;
 
 import nl.vpro.irma.ProofOfProvenanceService;
+
+import static org.apache.commons.lang.StringEscapeUtils.escapeJavaScript;
 
 /**
  * @author Michiel Meeuwissen
@@ -49,7 +55,6 @@ public class ProofOfProvenanceField extends CustomField<SignedText> {
     private final AbstractOrderedLayout layout;
     private final TextArea text;
     private final TextArea signature;
-    private boolean signatureDirty = false;
 
     private final ProofOfProvenanceService proofOfProvenanceService;
 
@@ -67,8 +72,10 @@ public class ProofOfProvenanceField extends CustomField<SignedText> {
         addStyleName(definition.getStyleName());
         layout = new VerticalLayout();
         layout.addStyleName("proofOfProvenance");
+
         text = new TextArea();
         signature = new TextArea();
+        signature.setRows(1);
         signature.setId(UUID.randomUUID().toString());
     }
 
@@ -81,39 +88,34 @@ public class ProofOfProvenanceField extends CustomField<SignedText> {
 
         Button button = new Button();
         button.setCaption("Sign with Irma");
-        //button.setIcon();
-        text.addValueChangeListener(
-            event -> {
-                if (! signatureDirty) {
-                    signature.addStyleName("dirty");
-                }
-            }
-        );
 
-        text.addBlurListener(
-            event -> {
-                if (! signatureDirty) {
-                    signature.setValue("value blur" + event);
-                }
-            }
-        );
-        signature.addBlurListener(
-            event -> {
-                signature.removeStyleName("dirty");
-            }
-
-        );
         button.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
-                Page.getCurrent().getJavaScript().execute("sign('" + text.getValue() + "','" + signature.getId() + "')");
-                signatureDirty = false;
+                Document document = Jsoup.parse(text.getValue());
+                String attribute = definition.getDefinition().getAttribute();
+                String url = proofOfProvenanceService.getBaseUrl();
+                Page.getCurrent().getJavaScript().execute("sign('" + escapeJavaScript(url) + "','" + escapeJavaScript(document.text()) + "','" + attribute + "','" + signature.getId() + "')");
             }
         });
+
+        com.vaadin.ui.JavaScript.getCurrent().addFunction("nl.vpro.magnolia.ui.irma.callBack",
+            new JavaScriptFunction() {
+                @Override
+                public void call(JsonArray arguments) {
+                    if ("Success".equals(arguments.getString(0))) {
+                        signature.setValue(arguments.getString(1));
+                    }
+                }
+            });
+
         layout.addComponent(text);
-        layout.addComponent(new Label("Signature:"));
-        layout.addComponent(signature);
-        layout.addComponent(button);
+        HorizontalLayout horizontalLayout = new HorizontalLayout();
+
+        horizontalLayout.addComponent(new Label("Signature:"));
+        horizontalLayout.addComponent(signature);
+        horizontalLayout.addComponent(button);
+        layout.addComponent(horizontalLayout);
         return layout;
     }
 

@@ -32,9 +32,12 @@ import javax.jcr.Node;
 @Log4j2
 public class ProofOfProvenanceFieldDefinition extends ConfiguredFieldDefinition<SignedText> {
 
-    public ProofOfProvenanceFieldDefinition() {
+    final ProofOfProvenanceViewDefinition definition;
+
+    public ProofOfProvenanceFieldDefinition(ProofOfProvenanceViewDefinition definition) {
         setType(Node.class);
         setFactoryClass(ProofOfProvenanceFieldFactory.class);
+        this.definition = definition;
     }
 }
 
