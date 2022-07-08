@@ -2,7 +2,7 @@
 :toc:
 :toclevels: 5
 
-:VERSION: 1.4
+:VERSION: 1.5
 :VPRO_SHARED_VERSION: 2.32.0
 
 image:https://github.com/vpro/magnolia-vpro-ui/workflows/build/badge.svg?[Build Status,link=https://github.com/vpro/magnolia-vpro-ui/actions/workflows/maven.yml]
@@ -172,13 +172,18 @@ To enable signing a text field using https://waag.org/en/project/proof-provenanc
 
 [source, yaml]
 ----
-fields:
-  signedText:
+
+    fields:
+      signedText:
       description: A text field with Proof Of Provenance
+      attribute: pbdf.sidn-pbdf.email.email
       $type: proofOfProvenanceField
 ----
 
 This will make a field 'signedText', but it will present an extra text area which contains the 'signature', which can be filled manually, or via a button, which uses the field's value to create a signature.
+
+image::{docdir}/doc/irma.png[Exaple of IRMA Popup]
+
 
 == Actions
 
