@@ -31,10 +31,7 @@ public class ProofOfProvenanceServiceImpl implements ProofOfProvenanceService {
 
     //@Override
     public String sign(String message) {
-        IrmaDisclosureRequest request = IrmaDisclosureRequest.builder()
-            .message(message)
-            .build();
-        // TODO: fire
+
         return "signed:" + message;
     }
 
