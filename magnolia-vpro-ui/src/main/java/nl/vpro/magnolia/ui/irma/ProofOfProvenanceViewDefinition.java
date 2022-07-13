@@ -1,7 +1,6 @@
 package nl.vpro.magnolia.ui.irma;
 
-import info.magnolia.ui.editor.EditorDefinition;
-import info.magnolia.ui.editor.JcrChildNodeProviderDefinition;
+import info.magnolia.ui.editor.*;
 import info.magnolia.ui.field.ConfiguredComplexPropertyDefinition;
 import info.magnolia.ui.field.FieldType;
 import lombok.Getter;
@@ -22,6 +21,7 @@ public class ProofOfProvenanceViewDefinition extends ConfiguredComplexPropertyDe
     @Inject
     public ProofOfProvenanceViewDefinition() {
         this.setImplementationClass((Class)ProofOfProvenanceView.class);
-        this.setItemProvider(new JcrChildNodeProviderDefinition());
+        this.setItemProvider(new CurrentItemProviderDefinition<>());
     }
+
 }
