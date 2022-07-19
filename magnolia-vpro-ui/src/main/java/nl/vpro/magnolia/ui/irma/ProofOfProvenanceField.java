@@ -89,23 +89,17 @@ public class ProofOfProvenanceField extends CustomField<SignedText> {
         Button button = new Button();
         button.setCaption("Sign with Irma");
 
-        button.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent event) {
-                Document document = Jsoup.parse(text.getValue());
-                String attribute = definition.getDefinition().getAttribute();
-                String url = proofOfProvenanceService.getBaseUrl();
-                Page.getCurrent().getJavaScript().execute("sign('" + escapeJavaScript(url) + "','" + escapeJavaScript(document.text()) + "','" + attribute + "','" + signature.getId() + "')");
-            }
+        button.addClickListener((Button.ClickListener) event -> {
+            Document document = Jsoup.parse(text.getValue());
+            String attribute = definition.getDefinition().getAttribute();
+            String url = proofOfProvenanceService.getBaseUrl();
+            Page.getCurrent().getJavaScript().execute("sign('" + escapeJavaScript(url) + "','" + escapeJavaScript(document.text()) + "','" + attribute + "','" + signature.getId() + "')");
         });
 
         com.vaadin.ui.JavaScript.getCurrent().addFunction("nl.vpro.magnolia.ui.irma.callBack",
-            new JavaScriptFunction() {
-                @Override
-                public void call(JsonArray arguments) {
-                    if ("Success".equals(arguments.getString(0))) {
-                        signature.setValue(arguments.getString(1));
-                    }
+            (JavaScriptFunction) arguments -> {
+                if ("Success".equals(arguments.getString(0))) {
+                    signature.setValue(arguments.getString(1));
                 }
             });
 

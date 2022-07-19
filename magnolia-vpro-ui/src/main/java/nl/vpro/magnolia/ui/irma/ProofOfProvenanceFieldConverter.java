@@ -43,11 +43,10 @@ public class ProofOfProvenanceFieldConverter implements Converter<SignedText, No
         Node currentNode = getNode(context).orElse(null);
         if (currentNode != null) {
             String fieldName = definition.getName();
-            SignedText signedText = new SignedText(
+            return new SignedText(
                 PropertyUtil.getString(currentNode, fieldName),
                 PropertyUtil.getString(currentNode, postFix(fieldName))
             );
-            return signedText;
         }
 
         return new SignedText("", "");
