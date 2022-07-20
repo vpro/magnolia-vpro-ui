@@ -18,8 +18,10 @@
  */
 package nl.vpro.magnolia.ui.irma;
 
-import elemental.json.JsonArray;
 import info.magnolia.ui.ValueContext;
+import info.magnolia.ui.field.FieldDefinition;
+import info.magnolia.ui.field.TextFieldDefinition;
+import info.magnolia.ui.field.factory.FormFieldFactory;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 
@@ -53,17 +55,18 @@ public class ProofOfProvenanceField extends CustomField<SignedText> {
     private final ProofOfProvenanceFieldDefinition definition;
 
     private final AbstractOrderedLayout layout;
-    private final TextArea text;
+
+    private final AbstractField<String> text;
     private final TextArea signature;
 
     private final ProofOfProvenanceService proofOfProvenanceService;
 
+
     public ProofOfProvenanceField(
         ValueContext<Node> valueContext,
         ProofOfProvenanceFieldDefinition definition,
-        ProofOfProvenanceService proofOfProvenanceService
-
-    ) {
+        ProofOfProvenanceService proofOfProvenanceService,
+        FormFieldFactory formFieldFactory) {
         this.valueContext = valueContext;
         this.definition = definition;
         this.proofOfProvenanceService = proofOfProvenanceService;
@@ -73,7 +76,8 @@ public class ProofOfProvenanceField extends CustomField<SignedText> {
         layout = new VerticalLayout();
         layout.addStyleName("proofOfProvenance");
 
-        text = new TextArea();
+        FieldDefinition<String> textFieldDefinition = definition.getDefinition().getField();
+        text = formFieldFactory.createField(textFieldDefinition != null ? textFieldDefinition : new TextFieldDefinition());
         signature = new TextArea();
         signature.setRows(1);
         signature.setId(UUID.randomUUID().toString());
