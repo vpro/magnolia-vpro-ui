@@ -1,6 +1,7 @@
 package nl.vpro.magnolia.ui.irma;
 
 import info.magnolia.jcr.util.PropertyUtil;
+import info.magnolia.ui.field.ConfiguredComplexPropertyDefinition;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.Optional;
@@ -13,9 +14,9 @@ import com.vaadin.data.*;
 @Log4j2
 public class ProofOfProvenanceFieldConverter implements Converter<SignedText, Node> {
 
-    private final ProofOfProvenanceViewDefinition definition;
+    private final ConfiguredComplexPropertyDefinition<Node> definition;
 
-    public ProofOfProvenanceFieldConverter(ProofOfProvenanceViewDefinition definition) {
+    public ProofOfProvenanceFieldConverter(ConfiguredComplexPropertyDefinition<Node> definition) {
         this.definition = definition;
     }
 
@@ -43,11 +44,10 @@ public class ProofOfProvenanceFieldConverter implements Converter<SignedText, No
         Node currentNode = getNode(context).orElse(null);
         if (currentNode != null) {
             String fieldName = definition.getName();
-            SignedText signedText = new SignedText(
+            return new SignedText(
                 PropertyUtil.getString(currentNode, fieldName),
                 PropertyUtil.getString(currentNode, postFix(fieldName))
             );
-            return signedText;
         }
 
         return new SignedText("", "");

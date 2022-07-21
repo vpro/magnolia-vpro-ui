@@ -172,7 +172,6 @@ To enable signing a text field using https://waag.org/en/project/proof-provenanc
 
 [source, yaml]
 ----
-
     fields:
       signedText:
       description: A text field with Proof Of Provenance
@@ -180,9 +179,21 @@ To enable signing a text field using https://waag.org/en/project/proof-provenanc
       $type: proofOfProvenanceField
 ----
 
-This will make a field 'signedText', but it will present an extra text area which contains the 'signature', which can be filled manually, or via a button, which uses the field's value to create a signature.
+This will make a plain text field 'signedText', but it will present an extra text area which contains the 'signature', which can be filled manually, or via a button, which uses the field's value to create a signature.
 
 image::{docdir}/doc/irma.png[Exaple of IRMA Popup]
+
+You can also specify the textfield definition it will use. It must be a fielddefinition for a field of type `AbstractField<String>` it will use the value from that field to sign.
+[source, yaml]
+----
+    fields:
+      signedRichText:
+      description: A text field with Proof Of Provenance
+      attribute: pbdf.sidn-pbdf.email.email
+      $type: proofOfProvenanceField
+      field:
+        $type: richTextField
+----
 
 
 == Actions
