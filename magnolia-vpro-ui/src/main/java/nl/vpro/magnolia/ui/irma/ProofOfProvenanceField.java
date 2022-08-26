@@ -29,9 +29,6 @@ import java.util.UUID;
 
 import javax.jcr.Node;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.annotations.StyleSheet;
 import com.vaadin.server.Page;
@@ -94,10 +91,10 @@ public class ProofOfProvenanceField extends CustomField<SignedText> {
         button.setCaption("Sign with Irma");
 
         button.addClickListener((Button.ClickListener) event -> {
-            Document document = Jsoup.parse(text.getValue());
             String attribute = definition.getDefinition().getAttribute();
             String url = proofOfProvenanceService.getBaseUrl();
-            Page.getCurrent().getJavaScript().execute("sign('" + escapeJavaScript(url) + "','" + escapeJavaScript(document.text()) + "','" + attribute + "','" + signature.getId() + "')");
+            log.debug("Signing {}", text.getValue());
+            Page.getCurrent().getJavaScript().execute("sign('" + escapeJavaScript(url) + "','" + escapeJavaScript(text.getValue()) + "','" + attribute + "','" + signature.getId() + "')");
         });
 
         com.vaadin.ui.JavaScript.getCurrent().addFunction("nl.vpro.magnolia.ui.irma.callBack",

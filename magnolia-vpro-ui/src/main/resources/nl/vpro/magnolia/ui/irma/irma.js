@@ -57,6 +57,7 @@ function pop_sign(url, attribute, normalized_message){
     return irmaPopup.start().then(result => {
         //strip and encode the signature
         var signature = result.signature;
+        console.log("result", JSON.parse(JSON.stringify(result))); // console.log is asynchrounus, and result will be changed in next line
         signature.message = undefined;
         return btoa(JSON.stringify(signature));
     })

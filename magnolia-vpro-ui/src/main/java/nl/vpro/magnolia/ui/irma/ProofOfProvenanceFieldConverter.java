@@ -14,6 +14,8 @@ import com.vaadin.data.*;
 @Log4j2
 public class ProofOfProvenanceFieldConverter implements Converter<SignedText, Node> {
 
+    public static final String SIGNATURE_POSTFIX = "@signature";
+
     private final ConfiguredComplexPropertyDefinition<Node> definition;
 
     public ProofOfProvenanceFieldConverter(ConfiguredComplexPropertyDefinition<Node> definition) {
@@ -54,7 +56,7 @@ public class ProofOfProvenanceFieldConverter implements Converter<SignedText, No
     }
 
     private String postFix(String fieldName) {
-        return fieldName + "@signature";
+        return fieldName + SIGNATURE_POSTFIX;
     }
     private Optional<Node> getNode(ValueContext valueContext) {
         return valueContext.getComponent()
