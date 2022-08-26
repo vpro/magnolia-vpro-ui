@@ -5,6 +5,7 @@ function irma_sign(url, attribute, message, target, debugging=false) {
     if (url === null) {
         url = "https://pop.waag.nl"
     }
+    // pop: 'proof of provenance'
     pop_sign(url,
         attribute,
         message)
