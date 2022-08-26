@@ -1,5 +1,5 @@
 // Integrates vaadin field with irma
-// The irma javascript itself is loaded dynamiclly via
+// The irma javascripts themselves are loaded dynamically via vaadin JavaScript object.
 
 function irma_sign(url, attribute, message, target, debugging=false) {
     if (url === null) {
