@@ -1,3 +1,5 @@
+// Integrates vaadin field with irma
+// The irma javascript itself is loaded dynamiclly via
 
 function irma_sign(url, attribute, message, target, debugging=false) {
     if (url === null) {
@@ -58,7 +60,7 @@ function irma_pop_sign(url, attribute, message, debugging){
         //strip and encode the signature
         var signature = result.signature;
         if (debugging) {
-            console.log("result", JSON.parse(JSON.stringify(result))); // console.log is asynchrounus, and result will be changed in next line
+            console.log("result", JSON.parse(JSON.stringify(result))); // console.log is asynchronous, and result will be changed in next line
         }
         signature.message = undefined;
         return btoa(JSON.stringify(signature));

@@ -2,6 +2,7 @@ package nl.vpro.irma;
 
 import lombok.Getter;
 
+import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,10 +43,10 @@ public class ProofOfProvenanceServiceImpl implements ProofOfProvenanceService {
     }
 
     @Override
-    public List<String> getJavaScripts() {
+    public List<URI> getJavaScripts() {
         String popBase = cdnBaseUrl + "pop/";
         return Arrays.asList(
-            popBase + "irma.js"
+            URI.create(popBase + "irma.js")
             //popBase + "blockhash.js",
             //popBase + "zlib.js",
             //popBase + "pop.js"

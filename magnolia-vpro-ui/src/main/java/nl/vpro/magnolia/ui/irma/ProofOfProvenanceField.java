@@ -25,6 +25,7 @@ import info.magnolia.ui.field.factory.FormFieldFactory;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 
+import java.net.URI;
 import java.util.UUID;
 
 import javax.jcr.Node;
@@ -43,8 +44,8 @@ import static org.apache.commons.lang.StringEscapeUtils.escapeJavaScript;
  * @since 1.4
  */
 @Log4j2
-@JavaScript({"irma.js"})
-@StyleSheet({"irma.css"})
+@JavaScript({"irma_field.js"})
+@StyleSheet({"irma_field.css"})
 public class ProofOfProvenanceField extends CustomField<SignedText> {
 
     @Getter
@@ -83,9 +84,9 @@ public class ProofOfProvenanceField extends CustomField<SignedText> {
 
     @Override
     protected Component initContent() {
-        for (String javascript : proofOfProvenanceService.getJavaScripts()) {
+        for (URI javascript : proofOfProvenanceService.getJavaScripts()) {
             Page.getCurrent().addDependency
-                (new Dependency(Dependency.Type.JAVASCRIPT, javascript));
+                (new Dependency(Dependency.Type.JAVASCRIPT, javascript.toString()));
         }
 
         final Button button = new Button();
