@@ -46,7 +46,8 @@ public class ProofOfProvenanceServiceImpl implements ProofOfProvenanceService {
     public List<URI> getJavaScripts() {
         String popBase = cdnBaseUrl + "pop/";
         return Arrays.asList(
-            URI.create(popBase + "irma.js")
+            URI.create(popBase + "irma.js"),
+            URI.create(popBase + "pop.js")
             //popBase + "blockhash.js",
             //popBase + "zlib.js",
             //popBase + "pop.js"
