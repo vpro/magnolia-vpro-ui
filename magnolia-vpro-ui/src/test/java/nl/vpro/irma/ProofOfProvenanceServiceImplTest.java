@@ -10,7 +10,8 @@ class ProofOfProvenanceServiceImplTest {
         ProofOfProvenanceService proofOfProvenanceService = new ProofOfProvenanceServiceImpl(
             "",
             "https://pop.waag.org",
-            "https://snotolf.waag.org/"
+            "https://snotolf.waag.org/",
+            true
             );
 
         // TODO: This is mock

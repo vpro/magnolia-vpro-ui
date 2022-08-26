@@ -78,6 +78,7 @@ public class ProofOfProvenanceField extends CustomField<SignedText> {
         signature = new TextArea();
         signature.setRows(1);
         signature.setId(UUID.randomUUID().toString());
+
     }
 
     @Override
@@ -94,7 +95,8 @@ public class ProofOfProvenanceField extends CustomField<SignedText> {
             String attribute = definition.getDefinition().getAttribute();
             String url = proofOfProvenanceService.getBaseUrl();
             log.debug("Signing {}", text.getValue());
-            Page.getCurrent().getJavaScript().execute("sign('" + escapeJavaScript(url) + "','" + escapeJavaScript(text.getValue()) + "','" + attribute + "','" + signature.getId() + "')");
+            Page.getCurrent().getJavaScript()
+                .execute("sign('" + escapeJavaScript(url) + "','" + escapeJavaScript(text.getValue()) + "','" + attribute + "','" + signature.getId() + "', " + proofOfProvenanceService.isDebugging() + ")");
         });
 
         com.vaadin.ui.JavaScript.getCurrent().addFunction("nl.vpro.magnolia.ui.irma.callBack",

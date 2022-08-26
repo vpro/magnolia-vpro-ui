@@ -9,4 +9,5 @@ public interface ProofOfProvenanceService {
 
     String getBaseUrl();
 
+    boolean isDebugging();
 }

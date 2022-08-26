@@ -17,16 +17,22 @@ public class ProofOfProvenanceServiceImpl implements ProofOfProvenanceService {
 
     private final String cdnBaseUrl;
 
+    @Getter
+    private final boolean debugging;
+
 
     @Inject
     public ProofOfProvenanceServiceImpl(
         @Named("irma.key") String privateKey,
         @Named("irma.baseUrl") String baseUrl,
-        @Named("irma.cdn.baseUrl") String cdnBaseUrl
+        @Named("irma.cdn.baseUrl") String cdnBaseUrl,
+        @Named("irma.debugging") boolean debugging
+
         ) {
         this.privateKey = privateKey;
         this.baseUrl = baseUrl;
         this.cdnBaseUrl = cdnBaseUrl;
+        this.debugging = debugging;
     }
 
     //@Override

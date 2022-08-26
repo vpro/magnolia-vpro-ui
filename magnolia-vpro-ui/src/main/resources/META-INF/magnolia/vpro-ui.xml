@@ -14,9 +14,13 @@
       <name>irma.baseUrl</name>
       <value>https://pop.waag.org</value>
     </property>
-     <property>
+    <property>
       <name>irma.cdn.baseUrl</name>
        <value>https://snotolf.waag.org/</value>
+    </property>
+    <property>
+      <name>irma.debugging</name>
+      <value>true</value>
     </property>
   </properties>
   <components>
