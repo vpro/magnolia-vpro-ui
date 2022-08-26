@@ -1,11 +1,11 @@
 
-function sign(url, text, attribute, target, debugging=false) {
+function irma_sign(url, attribute, message, target, debugging=false) {
     if (url === null) {
         url = "https://pop.waag.nl"
     }
-    pop_sign(url,
+    irma_pop_sign(url,
         attribute,
-        text, debugging)
+        message, debugging)
         .then(result => {
             document.getElementById(target).value = result;
             nl.vpro.magnolia.ui.irma.callBack("Success", result);
@@ -22,7 +22,7 @@ function sign(url, text, attribute, target, debugging=false) {
 
 //calls irma server specified in url
 //to sign the message, using the (disclosed) attribute name
-function pop_sign(url, attribute, message, debugging){
+function irma_pop_sign(url, attribute, message, debugging){
     let options = {
         // Developer options
         debugging: debugging,

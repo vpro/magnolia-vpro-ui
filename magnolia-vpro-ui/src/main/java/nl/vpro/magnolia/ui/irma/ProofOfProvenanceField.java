@@ -88,15 +88,21 @@ public class ProofOfProvenanceField extends CustomField<SignedText> {
                 (new Dependency(Dependency.Type.JAVASCRIPT, javascript));
         }
 
-        Button button = new Button();
+        final Button button = new Button();
         button.setCaption("Sign with Irma");
 
         button.addClickListener((Button.ClickListener) event -> {
-            String attribute = definition.getDefinition().getAttribute();
-            String url = proofOfProvenanceService.getBaseUrl();
+            final String attribute = definition.getDefinition().getAttribute();
+            final String url = proofOfProvenanceService.getBaseUrl();
             log.debug("Signing {}", text.getValue());
             Page.getCurrent().getJavaScript()
-                .execute("sign('" + escapeJavaScript(url) + "','" + escapeJavaScript(text.getValue()) + "','" + attribute + "','" + signature.getId() + "', " + proofOfProvenanceService.isDebugging() + ")");
+                .execute(
+                    "irma_sign('" + escapeJavaScript(url) +
+                        "','" + attribute +
+                        "','" + escapeJavaScript(text.getValue()) +
+                        "','" + signature.getId() +
+                        "'," + proofOfProvenanceService.isDebugging() +
+                        ")");
         });
 
         com.vaadin.ui.JavaScript.getCurrent().addFunction("nl.vpro.magnolia.ui.irma.callBack",
