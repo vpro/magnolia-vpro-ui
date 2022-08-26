@@ -5,7 +5,7 @@ function irma_sign(url, attribute, message, target, debugging=false) {
     if (url === null) {
         url = "https://pop.waag.nl"
     }
-    irma_pop(url,
+    pop_sign(url,
         attribute,
         message)
         .then(result => {
