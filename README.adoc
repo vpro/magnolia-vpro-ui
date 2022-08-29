@@ -233,7 +233,7 @@ This can be used in workbench view to display a field in another node. In this c
 
 === Unhtml column
 
-String HTML markup from the value, so that it can more nicely be presented in a column
+Strip HTML markup from the value, so that it can more nicely be presented in a column
 [souce, yaml]
 ----
  description:
@@ -517,4 +517,3 @@ fields:
     twinBroadcasters:
       $type: broadcastersTwinField
 ----
-
