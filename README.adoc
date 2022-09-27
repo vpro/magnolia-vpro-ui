@@ -451,12 +451,12 @@ image::{docdir}/doc/poms-selector.png[pomsselector]
 
 ==== Thesaurus
 
-TODO, a very similar popup exists for the Thesaurus of  Beel & Geluid. Integration would be quite straight forward.
+TODO, a very similar popup exists for the Thesaurus of  Beeld & Geluid. Integration would be quite straight forward.
 
 
 ==== Media types
 
-A dropdown with types from POMS
+A dropdown with types from POMS. Based on the enum in `media-domain`
 
 [source, yaml]
 ----
@@ -495,7 +495,7 @@ fields:
 
 ==== Channels
 
-Drop down with all known channels. Channels that at some point where visible in the Netherlands.
+Drop down with all known channels. Channels that at some point where visible in the Netherlands. Based on the enum in `media-domain`.
 
 [source, yaml]
 ----
@@ -507,7 +507,7 @@ fields:
 
 ==== Broadcasters
 
-Dropdown with all know Dutch broadcasters.
+Dropdown with all know Dutch broadcasters. Based on https://poms.omroep.nl/broadcasters/ (or, actually, a link:https://poms.omroep.nl/broadcasters/broadcasters/CSV[CSV] version )
 
 [source, yaml]
 ----
