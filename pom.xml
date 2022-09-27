@@ -48,8 +48,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <magnolia.ui.version>6.2.22</magnolia.ui.version>
-    <vpro.shared.version>2.33.0</vpro.shared.version>
+    <magnolia.ui.version>6.2.24</magnolia.ui.version>
+    <vpro.shared.version>2.33.1</vpro.shared.version>
   </properties>
 
   <build>
@@ -155,7 +155,7 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
-      <version>5.9.0</version>
+      <version>5.9.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -167,7 +167,7 @@
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>4.7.0</version>
+      <version>4.8.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
