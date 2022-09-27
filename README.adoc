@@ -507,7 +507,7 @@ fields:
 
 ==== Broadcasters
 
-Dropdown with all known Dutch broadcasters. Based on https://poms.omroep.nl/broadcasters/ (or, actually, a link:https://poms.omroep.nl/broadcasters/broadcasters/CSV[CSV] version )
+Dropdown with all known Dutch broadcasters. Based on https://poms.omroep.nl/broadcasters/ (or, actually, a link:https://poms.omroep.nl/broadcasters/CSV[CSV] version )
 
 [source, yaml]
 ----
