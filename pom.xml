@@ -48,7 +48,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <magnolia.ui.version>6.2.24</magnolia.ui.version>
+    <magnolia.ui.version>6.2.25</magnolia.ui.version>
     <vpro.shared.version>2.33.1</vpro.shared.version>
   </properties>
 
