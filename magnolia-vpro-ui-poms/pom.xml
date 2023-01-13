@@ -11,8 +11,8 @@
     <dependencies>
       <dependency>
         <groupId>nl.vpro.poms</groupId>
-        <artifactId>poms-parent</artifactId>
-        <version>6.2.2</version>
+        <artifactId>poms-bom</artifactId>
+        <version>7.1.3</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
