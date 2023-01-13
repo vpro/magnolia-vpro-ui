@@ -25,7 +25,7 @@ jobs:
           email: 'digitaal-techniek@vpro.nl'
           token: '${{ secrets.GITHUB_TOKEN  }}'
       - name: Release
-        run: mvn --ntp Pdeploy --batch-mode  -Darguments=-DskipTests  release:prepare release:perform
+        run: mvn --ntp -Pdeploy --batch-mode  -Darguments=-DskipTests  release:prepare release:perform
         env:
             SONATYPE_USERNAME: vpro
             SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
