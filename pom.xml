@@ -48,8 +48,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <magnolia.ui.version>6.2.27</magnolia.ui.version>
-    <vpro.shared.version>3.0.1</vpro.shared.version>
+    <magnolia.ui.version>6.2.28</magnolia.ui.version>
+    <vpro.shared.version>3.1.0</vpro.shared.version>
   </properties>
 
   <build>
@@ -148,7 +148,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.24</version>
+      <version>1.18.26</version>
       <scope>provided</scope>
     </dependency>
 
@@ -161,13 +161,13 @@
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
-      <version>3.24.1</version>
+      <version>3.24.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>4.11.0</version>
+      <version>5.1.1</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
