@@ -48,8 +48,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <magnolia.ui.version>6.2.36</magnolia.ui.version>
-    <vpro.shared.version>3.5.3</vpro.shared.version>
+    <magnolia.ui.version>6.2.37</magnolia.ui.version>
+    <vpro.shared.version>3.5.4</vpro.shared.version>
   </properties>
 
   <build>
@@ -57,7 +57,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.1.2</version>
+        <version>3.3.0</version>
         <configuration>
           <useManifestOnlyJar>false</useManifestOnlyJar>
         </configuration>
@@ -159,7 +159,7 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
-      <version>5.9.3</version>
+      <version>5.10.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
