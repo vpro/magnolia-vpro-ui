@@ -48,9 +48,11 @@ public class ChooseMediaField extends CustomField<String> {
     private final ChooseMediaFieldDefinition definition;
     private final String cmsSelector;
 
-    public ChooseMediaField(ChooseMediaFieldDefinition definition, @Named("poms.baseUrl") String pomsBaseUrl) {
-        this.definition = definition;
-        this.cmsSelector = pomsBaseUrl + "/CMSSelector/media.js";
+    public ChooseMediaField(
+        ChooseMediaFieldDefinition definition,
+        @Named("poms.baseUrl") String pomsBaseUrl) {
+        this .definition = definition;
+        this.cmsSelector = pomsBaseUrl + "/CMSSelector/media2.js";
     }
 
     @Override
