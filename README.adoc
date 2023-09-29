@@ -2,8 +2,8 @@
 :toc:
 :toclevels: 5
 
-:VERSION: 1.8
-:VPRO_SHARED_VERSION: 3.0.1
+:VERSION: 1.9
+:VPRO_SHARED_VERSION: 4.0.0
 
 image:https://github.com/vpro/magnolia-vpro-ui/workflows/build/badge.svg?[Build Status,link=https://github.com/vpro/magnolia-vpro-ui/actions/workflows/maven.yml]
 image:https://img.shields.io/maven-central/v/nl.vpro.magnolia/magnolia-vpro-ui.svg[MavenCentral,link=https://search.maven.org/search?q=g:%22nl.vpro.magnolia%22]
