@@ -514,6 +514,18 @@ Dropdown with all known Dutch broadcasters. Based on https://poms.omroep.nl/broa
 fields:
    broadcasters:
       $type: broadcastersField
-    twinBroadcasters:
+   twinBroadcasters:
       $type: broadcastersTwinField
 ----
+
+==== Versions
+
+
+|===
+|Version | Java  | Remarks
+
+| =< 1.9 | 11 |
+| 1.10 | 17 |
+
+|===
+
