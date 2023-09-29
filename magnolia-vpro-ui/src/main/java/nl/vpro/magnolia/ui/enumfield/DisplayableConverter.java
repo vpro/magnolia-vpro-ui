@@ -18,7 +18,10 @@
  */
 package nl.vpro.magnolia.ui.enumfield;
 
+import java.net.URI;
+
 import com.vaadin.data.ValueContext;
+
 import nl.vpro.i18n.Displayable;
 import nl.vpro.i18n.Locales;
 
@@ -41,7 +44,7 @@ public class DisplayableConverter<E extends Enum<E> & Displayable> extends EnumC
 
     @Override
     public String getIcon(E value) {
-        return value.getIcon().orElse(null);
+        return value.getIcon().map(URI::toString).orElse(null);
     }
 
     @Override

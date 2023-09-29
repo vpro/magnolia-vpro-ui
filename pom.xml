@@ -48,8 +48,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <magnolia.ui.version>6.2.38</magnolia.ui.version>
-    <vpro.shared.version>3.5.4</vpro.shared.version>
+    <magnolia.ui.version>6.2.39</magnolia.ui.version>
+    <vpro.shared.version>4.0.0</vpro.shared.version>
   </properties>
 
   <build>
@@ -152,7 +152,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.28</version>
+      <version>1.18.30</version>
       <scope>provided</scope>
     </dependency>
 
