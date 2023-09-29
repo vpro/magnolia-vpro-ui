@@ -3,7 +3,7 @@
 :toclevels: 5
 
 :VERSION: 1.9
-:VPRO_SHARED_VERSION: 4.0.0
+:VPRO_SHARED_VERSION: 3.5.4
 
 image:https://github.com/vpro/magnolia-vpro-ui/workflows/build/badge.svg?[Build Status,link=https://github.com/vpro/magnolia-vpro-ui/actions/workflows/maven.yml]
 image:https://img.shields.io/maven-central/v/nl.vpro.magnolia/magnolia-vpro-ui.svg[MavenCentral,link=https://search.maven.org/search?q=g:%22nl.vpro.magnolia%22]
@@ -522,10 +522,11 @@ fields:
 
 
 |===
-|Version | Java  | Remarks
+|Version | Java  | magnolia | shared | poms | Remarks
 
-| =< 1.9 | 11 |
-| 1.10 | 17 |
-
+| 1.7 | 8 |  6.2.22     | 2.33 | 6.0 |
+| 1.8 | 11 |  6.2.28     | 3.0 | 7.1 |
+| 1.9 | 11 |  6.2.38     | 3.5 | 7.6 |
+| 1.10   | 17 | 6.2.39 | 4.0 | 7.7 |
 |===
 
